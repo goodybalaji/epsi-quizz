@@ -6,7 +6,7 @@ package quizz;
 
 /**
  *
- * @author Mama
+ * @author Mathieu 'Triboulet' RONDOT
  */
 public class QUIZZ {
 
