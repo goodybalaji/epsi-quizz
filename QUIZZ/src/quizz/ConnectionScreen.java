@@ -64,7 +64,7 @@ public class ConnectionScreen extends JFrame
         bottomRadio.add(lbl4);
         bottomRadio.add(radioUser);
         bottomRadio.add(radioAdmin);
-        bottomConnection.add(new JLabel("                                                                                                                                           "));
+        bottomConnection.add(new JLabel("                                                                "));
         bottomConnection.add(btnConnection);
         bottom.add(bottomRadio);
         bottom.add(bottomConnection);        
@@ -78,7 +78,7 @@ public class ConnectionScreen extends JFrame
         this.getContentPane().add(BorderLayout.NORTH, top);
         this.getContentPane().add(BorderLayout.CENTER, center);
         this.setTitle("QUIZZ : Ecran de connection");
-        this.setSize(550,245);
+        this.setSize(400,245);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
