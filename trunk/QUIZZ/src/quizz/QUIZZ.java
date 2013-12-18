@@ -10,13 +10,13 @@ package quizz;
  */
 public class QUIZZ
 {
-    static public ConnectionScreen cnxScreen;
+    static public ConnectionScreen connectionScreen;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
     {
-        cnxScreen = new ConnectionScreen();
-        cnxScreen.setVisible(true);
+        connectionScreen = new ConnectionScreen();
+        connectionScreen.setVisible(true);
     }
 }
