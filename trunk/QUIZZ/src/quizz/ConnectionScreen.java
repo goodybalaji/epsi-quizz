@@ -54,8 +54,7 @@ public class ConnectionScreen extends JFrame
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
         
         centerUser.add(lbl2);
-        centerPwd.add(lbl3);
-        
+        centerPwd.add(lbl3);        
         centerUser.add(txtUser);
         centerPwd.add(txtPwd);        
         center.add(centerUser);
