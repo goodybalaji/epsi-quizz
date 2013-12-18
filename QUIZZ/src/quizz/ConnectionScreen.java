@@ -16,6 +16,7 @@ import javax.swing.*;
  */
 public class ConnectionScreen extends JFrame
 {
+    /** parametre de la Frame */
     public JPanel center = new JPanel();
     public JPanel centerUser = new JPanel();
     public JPanel centerPwd = new JPanel();
