@@ -39,8 +39,8 @@ public class ConnectionScreen extends JFrame
     {
         /** mise en forme des éléments de la page */
         lbl1.setFont(lbl1.getFont().deriveFont(48.0f));
-        txtUser.setPreferredSize(new Dimension( 200, 24 ));
-        txtPwd.setPreferredSize(new Dimension( 200, 24 ));
+        txtUser.setPreferredSize(new Dimension( 200, 25));
+        txtPwd.setPreferredSize(new Dimension( 200, 25));
         
         /** création du groupe de radioBtn */
         radioGroup.add(radioUser);
