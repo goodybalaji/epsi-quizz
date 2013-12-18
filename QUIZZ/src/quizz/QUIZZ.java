@@ -8,12 +8,15 @@ package quizz;
  *
  * @author Mathieu 'Triboulet' RONDOT
  */
-public class QUIZZ {
-
+public class QUIZZ
+{
+    static public ConnectionScreen cnxScreen;
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)
+    {
+        cnxScreen = new ConnectionScreen();
+        cnxScreen.setVisible(true);
     }
 }
