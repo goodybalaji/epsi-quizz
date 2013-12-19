@@ -34,7 +34,7 @@ public class ConnectionScreen extends JFrame
     public JPasswordField txtPwd = new JPasswordField();
     public JRadioButton radioUser = new JRadioButton(" Joueur ", true);
     public JRadioButton radioAdmin = new JRadioButton("Administrateur", false);
-    public Connection btnConnection = new Connection("se connecter");
+    public ConnectionBtn btnConnection = new ConnectionBtn("se connecter");
     
     ConnectionScreen()
     {
