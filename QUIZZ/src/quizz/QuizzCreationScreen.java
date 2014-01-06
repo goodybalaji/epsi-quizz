@@ -23,7 +23,7 @@ public class QuizzCreationScreen extends JFrame
     public JLabel lbl3 = new JLabel("Thème :               ");
     public JLabel lbl4 = new JLabel("Difficulté :            ");
     public JLabel lbl5 = new JLabel("Temps (en min) : ");
-    public JTextField txtNomQuizz = new JTextField();
+    public JTextField txtNameQuizz = new JTextField();
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
     public JTextField txtTemp = new JTextField();
@@ -48,7 +48,7 @@ public class QuizzCreationScreen extends JFrame
     QuizzCreationScreen()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
-        txtNomQuizz.setPreferredSize(new Dimension( 200, 25));
+        txtNameQuizz.setPreferredSize(new Dimension( 200, 25));
         txtTemp.setPreferredSize(new Dimension( 200, 25));
         cbxLevel.setPreferredSize(new Dimension( 198, 25));
         cbxTheme.setPreferredSize(new Dimension( 198, 25));
@@ -61,7 +61,7 @@ public class QuizzCreationScreen extends JFrame
         panelCenterSpace.add(new JLabel(""));
         center.add(panelCenterSpace);
         panelCenterName.add(lbl2);
-        panelCenterName.add(txtNomQuizz);
+        panelCenterName.add(txtNameQuizz);
         center.add(panelCenterName);        
         panelCenterTheme.add(lbl3);
         panelCenterTheme.add(cbxTheme);
