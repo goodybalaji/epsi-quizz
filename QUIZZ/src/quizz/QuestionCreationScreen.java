@@ -65,7 +65,7 @@ public class QuestionCreationScreen extends JFrame
     QuestionCreationScreen()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
-        txtQuestion.setPreferredSize(new Dimension( 500, 25));
+        txtQuestion.setPreferredSize(new Dimension( 550, 25));
         txtRep1.setPreferredSize(new Dimension( 500, 25));
         txtRep2.setPreferredSize(new Dimension( 500, 25));
         txtRep3.setPreferredSize(new Dimension( 500, 25));
