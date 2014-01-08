@@ -40,8 +40,8 @@ public class QuestionCreationScreen extends JFrame
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
     public JCheckBox cbxQ5 = new JCheckBox();
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
-    public QuestionValidationBtn btnNext = new QuestionValidationBtn(" Suivant ");    
+    public LeaveToJoueurBtn btnQuitter = new LeaveToJoueurBtn("Quitter");
+    public QuestionValidationBtn btnNext = new QuestionValidationBtn("  Suivant  ");    
     public QuestionValidationBtn btnPrevious = new QuestionValidationBtn("Précédent");
     
     
@@ -109,7 +109,7 @@ public class QuestionCreationScreen extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(btnQuitter);
-        theBottom.add(new JLabel("                                                                                                                                         "));
+        theBottom.add(new JLabel("                                                                                                                                     "));
         theBottom.add(btnPrevious);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNext);
