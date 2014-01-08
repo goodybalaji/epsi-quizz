@@ -12,7 +12,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Mama
+ * @author Llauron
  */
 public class ToRankingBtn extends JButton implements ActionListener
 {
