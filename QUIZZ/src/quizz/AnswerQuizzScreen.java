@@ -134,7 +134,7 @@ public class AnswerQuizzScreen extends JFrame {
         
         this.setTitle("QUIZZ : Corection du QUIZZ");
         this.setSize(700,400);  
-        //this.setResizable(false);
+        this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.NORTH, top);
         this.getContentPane().add(BorderLayout.CENTER, center);
