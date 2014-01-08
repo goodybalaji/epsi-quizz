@@ -4,8 +4,8 @@
  */
 package quizz;
 
-
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
@@ -16,8 +16,7 @@ import javax.swing.*;
  *
  * @author Mama
  */
-public class QuestionCorrectionScreen extends JFrame
-{
+public class AnswerQuizzScreen extends JFrame {
     public ArrayList<JButton> questionBtnList = new ArrayList<JButton>();
     public int i;    
     public JLabel lblQuizzName = new JLabel("[Nom du QUIZZ]");
@@ -26,17 +25,24 @@ public class QuestionCorrectionScreen extends JFrame
     public JLabel lblRep1 = new JLabel("Solution 1 : [ ... ] ");
     public JLabel lblRep2 = new JLabel("Solution 2 : [ ... ] ");
     public JLabel lblRep3 = new JLabel("Solution 3 : [ ... ] ");
+    public JLabel lblTimer = new JLabel("XX:YY");
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
+    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Abandonner");
+    public JButton btnValideQuizzBtn = new JButton("Valider Quizz");
+    public JButton btnValideQuestionBtn = new JButton("Valider Question");
     public QuestionValidationBtn btnNext = new QuestionValidationBtn("  Suivant  ");    
     public QuestionValidationBtn btnPrevious = new QuestionValidationBtn("Précédent");
     
     public JPanel top = new JPanel();
-    public JPanel topLbl = new JPanel();
-    public JPanel topLblBox = new JPanel();
-    public JPanel topQuestion = new JPanel();
+    public JPanel topCenter = new JPanel();
+    public JPanel topSouth = new JPanel();
+    public JPanel topEast = new JPanel();
+    public JPanel topWest = new JPanel();
+    public JPanel topCenterC = new JPanel();
+    public JPanel topEastC = new JPanel();
+    public JPanel topWestC = new JPanel();
     public JPanel topQuestionList1 = new JPanel();
     public JPanel topQuestionList2 = new JPanel();
     
@@ -49,8 +55,8 @@ public class QuestionCorrectionScreen extends JFrame
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
-
-    QuestionCorrectionScreen() 
+    
+    AnswerQuizzScreen()
     {
         for(i=1; i<=41; i++)
         {
@@ -65,11 +71,18 @@ public class QuestionCorrectionScreen extends JFrame
         lblQuizzName.setFont(lblQuizzName.getFont().deriveFont(20.0f));
         lblNbQuestion.setFont(lblNbQuestion.getFont().deriveFont(18.0f));
         lblQuestion.setFont(lblQuestion.getFont().deriveFont(16.0f));
+        lblTimer.setFont(lblTimer.getFont().deriveFont(16.0f));
         
-        topLblBox.add(lblQuizzName);
-        topLblBox.add(lblNbQuestion);
-        topLblBox.setLayout(new BoxLayout(topLblBox, BoxLayout.Y_AXIS));
-        topLbl.add(topLblBox);
+        topWestC.add(lblTimer);
+        topWest.add(topWestC);
+        topWestC.setLayout(new BoxLayout(topWestC, BoxLayout.Y_AXIS));
+        topCenterC.add(lblQuizzName);
+        topCenterC.add(lblNbQuestion);
+        topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
+        topCenter.add(topCenterC);
+        topEastC.add(btnQuitter);
+        topEast.add(topEastC);
+        topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
         for(i=0; i<=20; i++)
         {
             topQuestionList1.add(questionBtnList.get(i));
@@ -78,16 +91,21 @@ public class QuestionCorrectionScreen extends JFrame
         {
             topQuestionList2.add(questionBtnList.get(i));
         }
-        topQuestion.add(topQuestionList1);
-        topQuestion.add(topQuestionList2);
-        topQuestion.setLayout(new BoxLayout(topQuestion, BoxLayout.Y_AXIS));
+        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+        topSouth.add(topQuestionList1);
+        topSouth.add(topQuestionList2);
+        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+        topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
         
-        top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
-        top.add(topQuestion);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
-        top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        topEast.setPreferredSize(new Dimension(150, topCenter.getSize().height));
         
+        
+        top.setLayout(new BorderLayout());        
+        top.add(BorderLayout.CENTER, topCenter);
+        top.add(BorderLayout.SOUTH, topSouth);
+        top.add(BorderLayout.WEST, topWest);
+        top.add(BorderLayout.EAST, topEast);
      
         panelCenterQuestion.add(lblQuestion);
         center.add(panelCenterQuestion);
@@ -102,9 +120,11 @@ public class QuestionCorrectionScreen extends JFrame
         center.add(panelCenterRep3);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));     
           
-        theBottom.add(btnQuitter);
-        theBottom.add(new JLabel("                                                                                                                                     "));
+        theBottom.add(btnValideQuizzBtn);
+        theBottom.add(new JLabel("                                                                         "));
         theBottom.add(btnPrevious);
+        theBottom.add(new JLabel(" "));
+        theBottom.add(btnValideQuestionBtn);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNext);
         underBottom.add(new JLabel(""));
@@ -114,14 +134,12 @@ public class QuestionCorrectionScreen extends JFrame
         
         this.setTitle("QUIZZ : Corection du QUIZZ");
         this.setSize(700,400);  
-        this.setResizable(false);
+        //this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.NORTH, top);
         this.getContentPane().add(BorderLayout.CENTER, center);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-    }  
-    
+    }
 }
