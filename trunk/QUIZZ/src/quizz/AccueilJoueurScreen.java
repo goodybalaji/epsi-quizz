@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.Border;
 /**
@@ -37,18 +38,24 @@ public class AccueilJoueurScreen extends JFrame
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
     public JButton statPlayer = new JButton("Statistiques");
-    public JButton classPlayer = new JButton("Classement");
+    public PlayerRankQuizzBtn rankPlayer = new PlayerRankQuizzBtn("Classement");
     public JButton playPlayer = new JButton("Jouer");
     
     public JPanel top = new JPanel();
     public JPanel center = new JPanel();
+    
     public JPanel centerTop = new JPanel();
     public JPanel centerBottom = new JPanel();
     public JPanel centerUnderBottom = new JPanel();
     public JPanel bottom = new JPanel();
     
-    public JPanel topLbl1 = new JPanel();
-    public JPanel topBtn = new JPanel();
+    public JPanel topCenter = new JPanel();
+    public JPanel topCenterC = new JPanel();
+    public JPanel topEast = new JPanel();
+    public JPanel topEastC = new JPanel();
+    public JPanel topWest = new JPanel();
+    public JPanel topWestC = new JPanel();
+    public JPanel topSouth = new JPanel();
     public JPanel centerTopName = new JPanel();
     public JPanel centerTopTheme = new JPanel();
     public JPanel centerTopCheck = new JPanel();
@@ -62,14 +69,36 @@ public class AccueilJoueurScreen extends JFrame
     public JPanel bottomBtnClass = new JPanel();
     public JPanel bottomBtnPlay = new JPanel();
     
+    public void mouseClicked(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {}
+    
     AccueilJoueurScreen()
     {   
         //TOP
-        lbl1.setFont(lbl1.getFont().deriveFont(15.0f));
-        topLbl1.add(lbl1);
-        top.add(topLbl1);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
-        top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
+        
+        topCenterC.add(lbl1);
+        topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
+        topCenter.add(topCenterC);
+        topEastC.add(btnDeco);
+        topEast.add(topEastC);
+        topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
+       
+        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+        topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
+        
+        topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        topEast.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        
+        
+        top.setLayout(new BorderLayout());        
+        top.add(BorderLayout.CENTER, topCenter);
+        top.add(BorderLayout.SOUTH, topSouth);
+        top.add(BorderLayout.WEST, topWest);
+        top.add(BorderLayout.EAST, topEast);
         
         //CENTER
         txtNameQuizz.setPreferredSize(new Dimension( 150, 25));
@@ -120,11 +149,11 @@ public class AccueilJoueurScreen extends JFrame
         
         //BOTTOM
         statPlayer.setPreferredSize(new Dimension( 120, 50));
-        classPlayer.setPreferredSize(new Dimension( 120, 50));
+        rankPlayer.setPreferredSize(new Dimension( 120, 50));
         playPlayer.setPreferredSize(new Dimension( 120, 50));
         
         bottomBtnStat.add(statPlayer);
-        bottomBtnClass.add(classPlayer);
+        bottomBtnClass.add(rankPlayer);
         bottomBtnPlay.add(playPlayer);
         
         bottom.add(bottomBtnStat);
@@ -141,5 +170,7 @@ public class AccueilJoueurScreen extends JFrame
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
     }
 }
