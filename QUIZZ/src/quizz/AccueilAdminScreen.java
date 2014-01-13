@@ -20,6 +20,7 @@ import javax.swing.border.Border;
 public class AccueilAdminScreen extends JFrame
 {
     public JLabel lbl1 = new JLabel("Accueil [AdminName]");
+    public JButton btnDeco = new JButton("Deconnexion");
     public JLabel lbl4 = new JLabel("Nom du Quizz");
     public JLabel lbl5 = new JLabel("Theme");
     public JLabel lbl6 = new JLabel("Date Creation");
@@ -35,6 +36,12 @@ public class AccueilAdminScreen extends JFrame
     public JButton newAdminBtn = new JButton("Nouveau");
     
     public JPanel top = new JPanel();
+    public JPanel topEast = new JPanel();
+    public JPanel topEastC = new JPanel();
+    public JPanel topCenter = new JPanel();
+    public JPanel topCenterC = new JPanel();
+    public JPanel topSouth = new JPanel();
+    public JPanel topWest = new JPanel();
     public JPanel center = new JPanel();
     public JPanel centerTop = new JPanel();
     public JPanel centerBottom = new JPanel();
@@ -55,11 +62,27 @@ public class AccueilAdminScreen extends JFrame
     AccueilAdminScreen()
     {
         //TOP
-        lbl1.setFont(lbl1.getFont().deriveFont(15.0f));
-        JPlbl1.add(lbl1);
-        top.add(JPlbl1);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
-        top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
+        
+        topCenterC.add(lbl1);
+        topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
+        topCenter.add(topCenterC);
+        topEastC.add(btnDeco);
+        topEast.add(topEastC);
+        topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
+       
+        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+        topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
+        
+        topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        topEast.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        
+        
+        top.setLayout(new BorderLayout());        
+        top.add(BorderLayout.CENTER, topCenter);
+        top.add(BorderLayout.SOUTH, topSouth);
+        top.add(BorderLayout.WEST, topWest);
+        top.add(BorderLayout.EAST, topEast);
         
         //CENTER       
         JPlbl4.add(lbl4);
