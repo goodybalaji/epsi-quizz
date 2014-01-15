@@ -31,7 +31,7 @@ public class PlayerRankQuizzScreen extends JFrame
     public JPanel PlayerGameDate = new JPanel();
     public JPanel PlayersRank = new JPanel();
     
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
+    public ReturnRankPlayerBtn btnRetour = new ReturnRankPlayerBtn("Retour");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -89,7 +89,8 @@ public class PlayerRankQuizzScreen extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(new JLabel("                                                                                                                                                                          "));
-        theBottom.add(btnQuitter);
+        theBottom.add(btnRetour);
+        btnRetour.addActionListener(btnRetour);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);

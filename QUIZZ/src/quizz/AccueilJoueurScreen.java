@@ -37,7 +37,7 @@ public class AccueilJoueurScreen extends JFrame
     String[] head = {"Nom", "Theme", "Difficulté", "Date Création", "Date Maj"};
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
-    public JButton statPlayer = new JButton("Statistiques");
+    public PlayerStatQuizzBtn statPlayer = new PlayerStatQuizzBtn("Statistiques");
     public PlayerRankQuizzBtn rankPlayer = new PlayerRankQuizzBtn("Classement");
     public JButton playPlayer = new JButton("Jouer");
     
@@ -149,7 +149,9 @@ public class AccueilJoueurScreen extends JFrame
         
         //BOTTOM
         statPlayer.setPreferredSize(new Dimension( 120, 50));
+        statPlayer.addActionListener(statPlayer);
         rankPlayer.setPreferredSize(new Dimension( 120, 50));
+        rankPlayer.addActionListener(rankPlayer);
         playPlayer.setPreferredSize(new Dimension( 120, 50));
         
         bottomBtnStat.add(statPlayer);

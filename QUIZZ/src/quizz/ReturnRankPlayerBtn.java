@@ -17,14 +17,14 @@ import static quizz.QUIZZ.playerRankQuizzScreen;
  *
  * @author Arc
  */
-public class PlayerRankQuizzBtn extends JButton implements ActionListener{
-    PlayerRankQuizzBtn(String str)
+public class ReturnRankPlayerBtn extends JButton implements ActionListener{
+    ReturnRankPlayerBtn(String str)
     {
         super(str);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        playerRankQuizzScreen.setVisible(true);
-        accueilPlayerScreen.setVisible(false);
+        accueilPlayerScreen.setVisible(true);
+        playerRankQuizzScreen.setVisible(false);
     }
 }
