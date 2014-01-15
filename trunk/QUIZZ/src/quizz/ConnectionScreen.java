@@ -35,7 +35,7 @@ public class ConnectionScreen extends JFrame
     public JRadioButton radioUser = new JRadioButton(" Joueur ", true);
     public JRadioButton radioAdmin = new JRadioButton("Administrateur", false);
     public ConnectionBtn btnConnection = new ConnectionBtn("se connecter");
-    
+   
     ConnectionScreen()
     {
         /** mise en forme des éléments de la page */

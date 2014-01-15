@@ -35,7 +35,7 @@ public class QuizzStatJoueurScreen extends JFrame
     public JPanel bottomRight = new JPanel();
     public JPanel underBottom = new JPanel();
   
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
+    public ReturnStatPlayerBtn btnRetour = new ReturnStatPlayerBtn("Retour");
     public LeaveToAdminBtn btnDeconnexion = new LeaveToAdminBtn("Deconnexion");
     String[] entetes = {"       ","Facile","Moyen","Difficile","Total"};
     Object [][] donnees ={
@@ -55,7 +55,8 @@ public class QuizzStatJoueurScreen extends JFrame
         
         underBottom.add(new JLabel(""));
         bottom.setLayout (new BorderLayout());
-        bottom.add(BorderLayout.EAST,btnQuitter);
+        bottom.add(BorderLayout.EAST,btnRetour);
+        btnRetour.addActionListener(btnRetour);
         
         /**Création de la table*/
         JTable tableau = new JTable (donnees,entetes);
