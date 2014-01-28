@@ -23,9 +23,9 @@ public class QuizzScreenFinish extends JFrame
     public JPanel PlayerScore = new JPanel();
     public JPanel PlayerTime = new JPanel();
     
-    public ToCorrectionBtn btnCorrection = new ToCorrectionBtn("Voir Correction");
-    public ToRankingBtn btnRanking = new ToRankingBtn("Classement");
-    public JButton btnQuitter = new JButton("Quitter");
+    public QuizzBtn btnToCorrection = new QuizzBtn("Voir Correction");
+    public QuizzBtn btnToRanking = new QuizzBtn("Classement");
+    public QuizzBtn btnQuitterPlayer = new QuizzBtn("Quitter");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -61,11 +61,11 @@ public class QuizzScreenFinish extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(new JLabel("                                  "));
-        theBottom.add(btnCorrection);
+        theBottom.add(btnToCorrection);
         theBottom.add(new JLabel("   "));
-        theBottom.add(btnRanking);
+        theBottom.add(btnToRanking);
         theBottom.add(new JLabel("   "));
-        theBottom.add(btnQuitter);
+        theBottom.add(btnQuitterPlayer);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);

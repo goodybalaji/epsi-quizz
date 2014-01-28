@@ -27,8 +27,8 @@ public class QuizzScreenCreation extends JFrame
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
     public JTextField txtTemp = new JTextField();
-    public JButton btnQuitter = new JButton("Quitter");
-    public QuizzBtnQuestionCreation btnNext = new QuizzBtnQuestionCreation("Suivant");
+    public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
+    public QuizzBtn btnNextQuestion = new QuizzBtn("Suivant");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -75,9 +75,9 @@ public class QuizzScreenCreation extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(new JLabel("                                                                                                                                                                          "));
-        theBottom.add(btnQuitter);
+        theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel(" "));
-        theBottom.add(btnNext);
+        theBottom.add(btnNextQuestion);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);

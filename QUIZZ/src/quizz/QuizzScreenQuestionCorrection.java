@@ -29,9 +29,9 @@ public class QuizzScreenQuestionCorrection extends JFrame
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
-    public JButton btnQuitter = new JButton("Quitter");
-    public QuizzBtnQuestionValidation btnNext = new QuizzBtnQuestionValidation("  Suivant  ");    
-    public QuizzBtnQuestionValidation btnPrevious = new QuizzBtnQuestionValidation("Précédent");
+    public QuizzBtn btnQuitterPlayer = new QuizzBtn("Quitter");
+    public QuizzBtn btnNextCorrection = new QuizzBtn("  Suivant  ");    
+    public QuizzBtn btnPreviousCorrection = new QuizzBtn("Précédent");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -102,11 +102,11 @@ public class QuizzScreenQuestionCorrection extends JFrame
         center.add(panelCenterRep3);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));     
           
-        theBottom.add(btnQuitter);
+        theBottom.add(btnQuitterPlayer);
         theBottom.add(new JLabel("                                                                                                                                     "));
-        theBottom.add(btnPrevious);
+        theBottom.add(btnPreviousCorrection);
         theBottom.add(new JLabel(" "));
-        theBottom.add(btnNext);
+        theBottom.add(btnNextCorrection);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);
