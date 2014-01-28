@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  *
  * @author Arc
  */
-public class AccueilAdminScreen extends JFrame
+public class AdminScreenHome extends JFrame
 {
     public JLabel lbl1 = new JLabel("Accueil [AdminName]");
     public JButton btnDeco = new JButton("Deconnexion");
@@ -59,7 +59,7 @@ public class AccueilAdminScreen extends JFrame
     public JPanel bottomDelBtn = new JPanel();
     public JPanel bottomNewBtn = new JPanel();
     
-    AccueilAdminScreen()
+    AdminScreenHome()
     {
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));

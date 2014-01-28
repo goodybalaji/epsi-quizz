@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ import javax.swing.SwingConstants;
  *
  * @author Mama
  */
-public class QuestionCreationScreen extends JFrame
+public class QuizzScreenQuestionCreation extends JFrame
 {
     public int numQuestion = 1;
     public JLabel lbl1 = new JLabel("Création de QUIZZ - Ajout de question");
@@ -40,9 +41,9 @@ public class QuestionCreationScreen extends JFrame
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
     public JCheckBox cbxQ5 = new JCheckBox();
-    public LeaveToJoueurBtn btnQuitter = new LeaveToJoueurBtn("Quitter");
-    public QuestionValidationBtn btnNext = new QuestionValidationBtn("  Suivant  ");    
-    public QuestionValidationBtn btnPrevious = new QuestionValidationBtn("Précédent");
+    public JButton btnQuitter = new JButton("Quitter");
+    public QuizzBtnQuestionValidation btnNext = new QuizzBtnQuestionValidation("  Suivant  ");    
+    public QuizzBtnQuestionValidation btnPrevious = new QuizzBtnQuestionValidation("Précédent");
     
     
     public JPanel top = new JPanel();
@@ -62,7 +63,7 @@ public class QuestionCreationScreen extends JFrame
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
     
-    QuestionCreationScreen()
+    QuizzScreenQuestionCreation()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
         txtQuestion.setPreferredSize(new Dimension( 550, 25));

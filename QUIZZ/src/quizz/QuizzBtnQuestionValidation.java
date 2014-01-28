@@ -1,20 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package quizz;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
  * @author Mama
  */
-public class LeaveToJoueurBtn extends JButton implements ActionListener{
+public class QuizzBtnQuestionValidation extends JButton implements ActionListener
+{
 
-    LeaveToJoueurBtn(String str)
+    QuizzBtnQuestionValidation(String str)
     {
         super(str);
     }
