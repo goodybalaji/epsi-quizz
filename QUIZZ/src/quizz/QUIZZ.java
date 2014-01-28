@@ -11,21 +11,21 @@ package quizz;
 public class QUIZZ
 {
 
+
     static public QuizzScreenQuestionCreation questionCreationScreen;
     static public QuizzScreenCreation quizzCreationScreen;
     static public PlayerScreenHome accueilPlayerScreen;
     static public AdminScreenHome accueilAdminScreen;
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
-    static public PlayerScreenRankQuizz playerRankQuizzScreen;
     static public PlayerScreenStat quizzStatPlayerScreen;  
-
-    static public QuizzScreenAnswer connectionScreen;
-
+    static public ConnectionScreen connectionScreen;
+    static public PlayerScreenRankQuizz playerScreenRankQuizz;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args)
     {
+
 
 
         //questionCreationScreen = new QuestionCreationScreen();
@@ -34,8 +34,15 @@ public class QUIZZ
         //quizzCreationScreen = new QuizzCreationScreen();
         //quizzCreationScreen.setVisible(true);
         
+
+        connectionScreen = new ConnectionScreen();
+        connectionScreen.setVisible(true);
+        
+        /*
         accueilPlayerScreen = new PlayerScreenHome();
         accueilPlayerScreen.setVisible(true);
+         */
+
         
         //accueilAdminScreen = new AccueilAdminScreen();
         //accueilAdminScreen.setVisible(true);
@@ -46,10 +53,11 @@ public class QUIZZ
         //connectionScreen = new AnswerQuizzScreen();
         //connectionScreen.setVisible(true);
         
-        playerRankQuizzScreen = new PlayerScreenRankQuizz();
+        playerScreenRankQuizz = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
         
         quizzStatPlayerScreen = new PlayerScreenStat();
+
 
     }
 }

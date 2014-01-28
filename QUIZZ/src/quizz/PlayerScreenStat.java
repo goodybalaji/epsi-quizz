@@ -36,7 +36,7 @@ public class PlayerScreenStat extends JFrame
     public JPanel bottomRight = new JPanel();
     public JPanel underBottom = new JPanel();
   
-    public PlayerBtnReturnStat btnRetour = new PlayerBtnReturnStat("Retour");
+    public PlayerBtn btnRetour = new PlayerBtn("Retour");
     public JButton btnDeconnexion = new JButton("Deconnexion");
     String[] entetes = {"       ","Facile","Moyen","Difficile","Total"};
     Object [][] donnees ={
