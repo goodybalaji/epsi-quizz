@@ -35,6 +35,7 @@ public class ConnectionScreen extends JFrame
     public JRadioButton radioUser = new JRadioButton(" Joueur ", true);
     public JRadioButton radioAdmin = new JRadioButton("Administrateur", false);
     public ConnectionBtn btnConnection = new ConnectionBtn("se connecter");
+    public JButton btnCreationCompte = new JButton("Créer un nouveau compte");
    
     ConnectionScreen()
     {
@@ -64,8 +65,10 @@ public class ConnectionScreen extends JFrame
         bottomRadio.add(lbl4);
         bottomRadio.add(radioUser);
         bottomRadio.add(radioAdmin);
-        bottomConnection.add(new JLabel("                                                                "));
+        bottomConnection.add(new JLabel("   "));
+        bottomConnection.add(btnCreationCompte);
         bottomConnection.add(btnConnection);
+        
         bottom.add(bottomRadio);
         bottom.add(bottomConnection);        
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
