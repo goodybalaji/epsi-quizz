@@ -7,7 +7,8 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-
+import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.connectionScreen;
 /**
  *
  * @author Mama
@@ -22,6 +23,16 @@ public class ConnectionBtn extends JButton implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if ("btnConnection".equals(this.getName()))
+        {
+            playerScreenHome.setVisible(true);
+            connectionScreen.setVisible(false);
+        }
+        else if ("btnDeco".equals(this.getName()))
+        {
+            connectionScreen.setVisible(true);
+            playerScreenHome.setVisible(false);
+            
+        }
     }
 }
