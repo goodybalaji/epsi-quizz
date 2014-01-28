@@ -28,11 +28,11 @@ public class QuizzScreenAnswer extends JFrame {
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
-    public JButton btnQuitter = new JButton("Abandonner");
-    public JButton btnValideQuizzBtn = new JButton("Valider Quizz");
-    public JButton btnValideQuestionBtn = new JButton("Valider Question");
-    public QuizzBtnQuestionValidation btnNext = new QuizzBtnQuestionValidation("  Suivant  ");    
-    public QuizzBtnQuestionValidation btnPrevious = new QuizzBtnQuestionValidation("Précédent");
+    public JButton btnQuitterPlayer = new JButton("Abandonner");
+    public JButton btnValideQuizz = new JButton("Valider Quizz");
+    public JButton btnValideQuestion = new JButton("Valider Question");
+    public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");    
+    public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
     
     public JPanel top = new JPanel();
     public JPanel topCenter = new JPanel();
@@ -79,7 +79,7 @@ public class QuizzScreenAnswer extends JFrame {
         topCenterC.add(lblNbQuestion);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
         topCenter.add(topCenterC);
-        topEastC.add(btnQuitter);
+        topEastC.add(btnQuitterPlayer);
         topEast.add(topEastC);
         topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
         for(i=0; i<=20; i++)
@@ -119,13 +119,13 @@ public class QuizzScreenAnswer extends JFrame {
         center.add(panelCenterRep3);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));     
           
-        theBottom.add(btnValideQuizzBtn);
+        theBottom.add(btnValideQuizz);
         theBottom.add(new JLabel("                                                                         "));
-        theBottom.add(btnPrevious);
+        theBottom.add(btnPreviousAnswer);
         theBottom.add(new JLabel(" "));
-        theBottom.add(btnValideQuestionBtn);
+        theBottom.add(btnValideQuestion);
         theBottom.add(new JLabel(" "));
-        theBottom.add(btnNext);
+        theBottom.add(btnNextAnswer);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);

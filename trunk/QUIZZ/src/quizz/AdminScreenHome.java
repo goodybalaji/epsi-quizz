@@ -30,10 +30,10 @@ public class AdminScreenHome extends JFrame
     String[] head = {"Nom", "Theme", "Difficulté", "Date Création", "Date Maj"};
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
-    public JButton classAdminBtn = new JButton("Classement");
-    public JButton modifAdminBtn = new JButton("Modifier");
-    public JButton delAdminBtn = new JButton("Supprimer");
-    public JButton newAdminBtn = new JButton("Nouveau");
+    public AdminBtn btnClassAdmin = new AdminBtn("Classement");
+    public AdminBtn btnModifAdmin = new AdminBtn("Modifier");
+    public AdminBtn btnDelAdmin = new AdminBtn("Supprimer");
+    public AdminBtn btnNewAdmin = new AdminBtn("Nouveau");
     
     public JPanel top = new JPanel();
     public JPanel topEast = new JPanel();
@@ -117,15 +117,15 @@ public class AdminScreenHome extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         //BOTTOM
-        classAdminBtn.setPreferredSize(new Dimension( 120, 50));
-        modifAdminBtn.setPreferredSize(new Dimension( 120, 50));
-        delAdminBtn.setPreferredSize(new Dimension( 120, 50));
-        newAdminBtn.setPreferredSize(new Dimension( 120, 50));
+        btnClassAdmin.setPreferredSize(new Dimension( 120, 50));
+        btnModifAdmin.setPreferredSize(new Dimension( 120, 50));
+        btnDelAdmin.setPreferredSize(new Dimension( 120, 50));
+        btnNewAdmin.setPreferredSize(new Dimension( 120, 50));
         
-        bottomClassBtn.add(classAdminBtn);
-        bottomModifBtn.add(modifAdminBtn);
-        bottomDelBtn.add(delAdminBtn);
-        bottomNewBtn.add(newAdminBtn);
+        bottomClassBtn.add(btnClassAdmin);
+        bottomModifBtn.add(btnModifAdmin);
+        bottomDelBtn.add(btnDelAdmin);
+        bottomNewBtn.add(btnNewAdmin);
         
         bottom.add(bottomClassBtn);
         bottom.add(bottomModifBtn);

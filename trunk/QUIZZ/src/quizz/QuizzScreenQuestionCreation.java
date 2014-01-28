@@ -41,9 +41,9 @@ public class QuizzScreenQuestionCreation extends JFrame
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
     public JCheckBox cbxQ5 = new JCheckBox();
-    public JButton btnQuitter = new JButton("Quitter");
-    public QuizzBtnQuestionValidation btnNext = new QuizzBtnQuestionValidation("  Suivant  ");    
-    public QuizzBtnQuestionValidation btnPrevious = new QuizzBtnQuestionValidation("Précédent");
+    public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
+    public QuizzBtn btnNextQuestionCreation = new QuizzBtn("  Suivant  ");    
+    public QuizzBtn btnPreviousQuestionCreation = new QuizzBtn("Précédent");
     
     
     public JPanel top = new JPanel();
@@ -109,11 +109,11 @@ public class QuizzScreenQuestionCreation extends JFrame
         center.add(panelCenterRep5); 
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
-        theBottom.add(btnQuitter);
+        theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel("                                                                                                                                     "));
-        theBottom.add(btnPrevious);
+        theBottom.add(btnPreviousQuestionCreation);
         theBottom.add(new JLabel(" "));
-        theBottom.add(btnNext);
+        theBottom.add(btnNextQuestionCreation);
         underBottom.add(new JLabel(""));
         bottom.add(theBottom);
         bottom.add(underBottom);
