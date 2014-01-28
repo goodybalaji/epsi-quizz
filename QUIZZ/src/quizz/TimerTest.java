@@ -29,8 +29,8 @@ public class TimerTest extends JFrame
     TimerTest()
     {
         delai = 1000; //milliseconds
-        seconde = 0;
-        minute = 0;
+        seconde = 50;
+        minute = 9;
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
         center.add(lbl1);
        
@@ -52,6 +52,12 @@ public class TimerTest extends JFrame
                         {
                             lbl1.setText("0"+String.valueOf(minute)+":0"+String.valueOf(seconde));
                         }
+                        //test
+                        if(minute > 9)
+                        {
+                            lbl1.setText(String.valueOf(minute)+":0"+String.valueOf(seconde));
+                        }
+                        
                     }
                 else
                 {
