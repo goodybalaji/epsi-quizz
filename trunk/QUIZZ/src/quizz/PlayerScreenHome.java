@@ -37,9 +37,9 @@ public class PlayerScreenHome extends JFrame
     String[] head = {"Nom", "Theme", "Difficulté", "Date Création", "Date Maj"};
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
-    public PlayerBtnStatQuizz statPlayer = new PlayerBtnStatQuizz("Statistiques");
-    public PlayerBtnRankQuizz rankPlayer = new PlayerBtnRankQuizz("Classement");
-    public JButton playPlayer = new JButton("Jouer");
+    public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
+    public PlayerBtn btnRankPlayer = new PlayerBtn("Classement");
+    public PlayerBtn btnPlayPlayer = new PlayerBtn("Jouer");
     
     public JPanel top = new JPanel();
     public JPanel center = new JPanel();
@@ -148,15 +148,15 @@ public class PlayerScreenHome extends JFrame
         
         
         //BOTTOM
-        statPlayer.setPreferredSize(new Dimension( 120, 50));
-        statPlayer.addActionListener(statPlayer);
-        rankPlayer.setPreferredSize(new Dimension( 120, 50));
-        rankPlayer.addActionListener(rankPlayer);
-        playPlayer.setPreferredSize(new Dimension( 120, 50));
+        btnStatPlayer.setPreferredSize(new Dimension( 120, 50));
+        btnStatPlayer.addActionListener(btnStatPlayer);
+        btnRankPlayer.setPreferredSize(new Dimension( 120, 50));
+        btnRankPlayer.addActionListener(btnRankPlayer);
+        btnPlayPlayer.setPreferredSize(new Dimension( 120, 50));
         
-        bottomBtnStat.add(statPlayer);
-        bottomBtnClass.add(rankPlayer);
-        bottomBtnPlay.add(playPlayer);
+        bottomBtnStat.add(btnStatPlayer);
+        bottomBtnClass.add(btnRankPlayer);
+        bottomBtnPlay.add(btnPlayPlayer);
         
         bottom.add(bottomBtnStat);
         bottom.add(bottomBtnClass);

@@ -31,7 +31,7 @@ public class PlayerScreenRankQuizz extends JFrame
     public JPanel PlayerGameDate = new JPanel();
     public JPanel PlayersRank = new JPanel();
     
-    public PlayerBtnReturnRank btnRetour = new PlayerBtnReturnRank("Retour");
+    public PlayerBtn btnRetour = new PlayerBtn("Retour");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
