@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author Llauron
  */
-public class GameFinishScreen extends JFrame
+public class QuizzScreenFinish extends JFrame
 {
     public JLabel lbl1 = new JLabel("Félicitation !");
     public JLabel lbl2 = new JLabel("Votre Score : Score_Joueur");
@@ -25,7 +25,7 @@ public class GameFinishScreen extends JFrame
     
     public ToCorrectionBtn btnCorrection = new ToCorrectionBtn("Voir Correction");
     public ToRankingBtn btnRanking = new ToRankingBtn("Classement");
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
+    public JButton btnQuitter = new JButton("Quitter");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -39,7 +39,7 @@ public class GameFinishScreen extends JFrame
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
     
-    GameFinishScreen()
+    QuizzScreenFinish()
     {
         
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));

@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  *
  * @author Arc
  */
-public class AccueilJoueurScreen extends JFrame
+public class PlayerScreenHome extends JFrame
 {
     public JLabel lbl1 = new JLabel("Accueil [PlayerName]");
     public JButton btnDeco = new JButton("Deconnexion");
@@ -37,8 +37,8 @@ public class AccueilJoueurScreen extends JFrame
     String[] head = {"Nom", "Theme", "Difficulté", "Date Création", "Date Maj"};
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
-    public PlayerStatQuizzBtn statPlayer = new PlayerStatQuizzBtn("Statistiques");
-    public PlayerRankQuizzBtn rankPlayer = new PlayerRankQuizzBtn("Classement");
+    public PlayerBtnStatQuizz statPlayer = new PlayerBtnStatQuizz("Statistiques");
+    public PlayerBtnRankQuizz rankPlayer = new PlayerBtnRankQuizz("Classement");
     public JButton playPlayer = new JButton("Jouer");
     
     public JPanel top = new JPanel();
@@ -75,7 +75,7 @@ public class AccueilJoueurScreen extends JFrame
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
     
-    AccueilJoueurScreen()
+    PlayerScreenHome()
     {   
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));

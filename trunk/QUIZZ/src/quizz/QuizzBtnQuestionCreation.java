@@ -12,14 +12,13 @@ import javax.swing.JButton;
  *
  * @author Mama
  */
-public class LeaveToAdminBtn extends JButton implements ActionListener
+public class QuizzBtnQuestionCreation extends JButton implements ActionListener
 {
-
-    LeaveToAdminBtn(String str)
+    QuizzBtnQuestionCreation(String str)
     {
         super(str);
     }
-       
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");

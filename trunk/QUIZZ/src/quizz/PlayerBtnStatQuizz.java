@@ -11,20 +11,19 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static quizz.QUIZZ.accueilPlayerScreen;
-import static quizz.QUIZZ.playerRankQuizzScreen;
-
+import static quizz.QUIZZ.quizzStatPlayerScreen;
 /**
  *
  * @author Arc
  */
-public class ReturnRankPlayerBtn extends JButton implements ActionListener{
-    ReturnRankPlayerBtn(String str)
+public class PlayerBtnStatQuizz extends JButton implements ActionListener{
+    PlayerBtnStatQuizz(String str)
     {
         super(str);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        accueilPlayerScreen.setVisible(true);
-        playerRankQuizzScreen.setVisible(false);
+        quizzStatPlayerScreen.setVisible(true);
+        accueilPlayerScreen.setVisible(false);
     }
 }

@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author Llauron
  */
-public class PlayerRankQuizzScreen extends JFrame 
+public class PlayerScreenRankQuizz extends JFrame 
 {
     
     public JLabel lbl1 = new JLabel("Classement");
@@ -31,7 +31,7 @@ public class PlayerRankQuizzScreen extends JFrame
     public JPanel PlayerGameDate = new JPanel();
     public JPanel PlayersRank = new JPanel();
     
-    public ReturnRankPlayerBtn btnRetour = new ReturnRankPlayerBtn("Retour");
+    public PlayerBtnReturnRank btnRetour = new PlayerBtnReturnRank("Retour");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -51,7 +51,7 @@ public class PlayerRankQuizzScreen extends JFrame
     
     
  
-    PlayerRankQuizzScreen()
+    PlayerScreenRankQuizz()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         PlayerNumber.setPreferredSize(new Dimension( 50, 25));

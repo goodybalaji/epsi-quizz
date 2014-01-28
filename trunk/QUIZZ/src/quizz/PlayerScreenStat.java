@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,7 +22,7 @@ import javax.swing.JScrollPane;
  *
  * @author Pierre 
  */
-public class QuizzStatJoueurScreen extends JFrame
+public class PlayerScreenStat extends JFrame
 {
     String utilisateur;
     public JLabel lbl1 = new JLabel("Statistiques [User]");
@@ -35,8 +36,8 @@ public class QuizzStatJoueurScreen extends JFrame
     public JPanel bottomRight = new JPanel();
     public JPanel underBottom = new JPanel();
   
-    public ReturnStatPlayerBtn btnRetour = new ReturnStatPlayerBtn("Retour");
-    public LeaveToAdminBtn btnDeconnexion = new LeaveToAdminBtn("Deconnexion");
+    public PlayerBtnReturnStat btnRetour = new PlayerBtnReturnStat("Retour");
+    public JButton btnDeconnexion = new JButton("Deconnexion");
     String[] entetes = {"       ","Facile","Moyen","Difficile","Total"};
     Object [][] donnees ={
         {"NbQuizz","","","",""},
@@ -44,7 +45,7 @@ public class QuizzStatJoueurScreen extends JFrame
         {"Score","","","",""}
     };
     
-    QuizzStatJoueurScreen()
+    PlayerScreenStat()
     {
         
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));

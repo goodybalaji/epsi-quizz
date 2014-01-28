@@ -11,15 +11,15 @@ package quizz;
 public class QUIZZ
 {
 
-    static public QuestionCreationScreen questionCreationScreen;
-    static public QuizzCreationScreen quizzCreationScreen;
-    static public AccueilJoueurScreen accueilPlayerScreen;
-    static public AccueilAdminScreen accueilAdminScreen;
-    static public QuestionCorrectionScreen questionCorrectionScreen;
-    static public PlayerRankQuizzScreen playerRankQuizzScreen;
-    static public QuizzStatJoueurScreen quizzStatJoueurScreen;  
+    static public QuizzScreenQuestionCreation questionCreationScreen;
+    static public QuizzScreenCreation quizzCreationScreen;
+    static public PlayerScreenHome accueilPlayerScreen;
+    static public AdminScreenHome accueilAdminScreen;
+    static public QuizzScreenQuestionCorrection questionCorrectionScreen;
+    static public PlayerScreenRankQuizz playerRankQuizzScreen;
+    static public PlayerScreenStat quizzStatPlayerScreen;  
 
-    static public AnswerQuizzScreen connectionScreen;
+    static public QuizzScreenAnswer connectionScreen;
 
     /**
      * @param args the command line arguments
@@ -30,28 +30,26 @@ public class QUIZZ
 
         //questionCreationScreen = new QuestionCreationScreen();
         //questionCreationScreen.setVisible(true);
-        
+
         //quizzCreationScreen = new QuizzCreationScreen();
         //quizzCreationScreen.setVisible(true);
         
-        accueilPlayerScreen = new AccueilJoueurScreen();
+        accueilPlayerScreen = new PlayerScreenHome();
         accueilPlayerScreen.setVisible(true);
         
         //accueilAdminScreen = new AccueilAdminScreen();
         //accueilAdminScreen.setVisible(true);
 
-        
         //questionCorrectionScreen = new QuestionCorrectionScreen();
         //questionCorrectionScreen.setVisible(true);
-
 
         //connectionScreen = new AnswerQuizzScreen();
         //connectionScreen.setVisible(true);
         
-        playerRankQuizzScreen = new PlayerRankQuizzScreen();
+        playerRankQuizzScreen = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
         
-        quizzStatJoueurScreen = new QuizzStatJoueurScreen();
+        quizzStatPlayerScreen = new PlayerScreenStat();
 
     }
 }

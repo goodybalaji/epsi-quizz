@@ -6,22 +6,25 @@
 
 package quizz;
 
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import static quizz.QUIZZ.accueilPlayerScreen;
+import static quizz.QUIZZ.playerRankQuizzScreen;
+
 /**
  *
  * @author Arc
  */
-public class NewQuizzBtn extends JButton implements ActionListener
-{
-    NewQuizzBtn(String str)
+public class PlayerBtnRankQuizz extends JButton implements ActionListener{
+    PlayerBtnRankQuizz(String str)
     {
         super(str);
     }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        playerRankQuizzScreen.setVisible(true);
+        accueilPlayerScreen.setVisible(false);
     }
 }

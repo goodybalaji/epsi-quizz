@@ -16,7 +16,7 @@ import javax.swing.*;
  * Le nombre de question par QUIZZ sera compté par le soft et on valide la création avec le nombre de question.
  * 
  */
-public class QuizzCreationScreen extends JFrame
+public class QuizzScreenCreation extends JFrame
 {
     public JLabel lbl1 = new JLabel("Création du QUIZZ");
     public JLabel lbl2 = new JLabel("Nom du QUIZZ : ");
@@ -27,8 +27,8 @@ public class QuizzCreationScreen extends JFrame
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
     public JTextField txtTemp = new JTextField();
-    public LeaveToAdminBtn btnQuitter = new LeaveToAdminBtn("Quitter");
-    public QuestionCreationBtn btnNext = new QuestionCreationBtn("Suivant");
+    public JButton btnQuitter = new JButton("Quitter");
+    public QuizzBtnQuestionCreation btnNext = new QuizzBtnQuestionCreation("Suivant");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -45,7 +45,7 @@ public class QuizzCreationScreen extends JFrame
     public JPanel underBottom = new JPanel();
     
     
-    QuizzCreationScreen()
+    QuizzScreenCreation()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         txtNameQuizz.setPreferredSize(new Dimension( 200, 25));
