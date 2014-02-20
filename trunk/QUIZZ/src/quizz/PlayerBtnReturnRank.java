@@ -10,7 +10,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static quizz.QUIZZ.accueilPlayerScreen;
+import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerRankQuizzScreen;
 
 /**
@@ -24,7 +24,7 @@ public class PlayerBtnReturnRank extends JButton implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        accueilPlayerScreen.setVisible(true);
+        playerScreenHome.setVisible(false);
         playerRankQuizzScreen.setVisible(false);
     }
 }

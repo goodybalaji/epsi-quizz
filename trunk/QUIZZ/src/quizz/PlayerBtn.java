@@ -7,6 +7,10 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import static quizz.QUIZZ.playerRankQuizzScreen;
+import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.playerScreenStat;
+
 
 /**
  *
@@ -21,17 +25,15 @@ public class PlayerBtn extends JButton implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(this.getName().equalsIgnoreCase("btnStatPlayer"))
+        if("btnStatPlayer".equals(this.getName()))
         {
-            
+            playerScreenStat.setVisible(true);
+            playerScreenHome.setVisible(false);
         }
         else if(this.getName().equalsIgnoreCase("btnRankPlayer"))
         {
-            
-        }
-        else if(this.getName().equalsIgnoreCase("btnRetour"))
-        {
-            
+            playerScreenHome.setVisible(false);
+            playerRankQuizzScreen.setVisible(false);
         }
         else if(this.getName().equalsIgnoreCase("btnPlayPlayer"))
         {

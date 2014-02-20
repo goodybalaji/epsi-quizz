@@ -23,7 +23,7 @@ public class ConnectionBtn extends JButton implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if ("btnConnection".equals(this.getName()))
+       if ("btnConnection".equals(this.getName()))
         {
             playerScreenHome.setVisible(true);
             connectionScreen.setVisible(false);
