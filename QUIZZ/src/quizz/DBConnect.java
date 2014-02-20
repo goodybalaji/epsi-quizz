@@ -9,6 +9,7 @@ package quizz;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -16,16 +17,16 @@ import java.sql.SQLException;
  */
 public class DBConnect {
     public static final String DBURL = "jdbc:oracle:thin:@//193.252.48.189:1521/XE";
-    public static final String DBUSER = "b3a_groupe_2";
+    public static final String DBUSER = "b3i_groupe_2";
     public static final String DBPASS = "123Soleil";
 
-    public static void main(String[] args) throws SQLException
+    public final static Statement DBConnect() throws SQLException
     {
         // Load Oracle JDBC Driver
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         Connection con = DriverManager.getConnection(DBURL, DBUSER, DBPASS); 
         java.sql.Statement statement = con.createStatement();
-        
+        return statement;
        // ResultSet rs = statement.executeQuery("SELECT * from TABLE1222");
     }
 }
