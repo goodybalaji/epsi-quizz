@@ -14,12 +14,19 @@ public class QUIZZ
 
     static public QuizzScreenQuestionCreation questionCreationScreen;
     static public QuizzScreenCreation quizzCreationScreen;
-    static public PlayerScreenHome accueilPlayerScreen;
-    static public AdminScreenHome accueilAdminScreen;
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
-    static public PlayerScreenStat quizzStatPlayerScreen;  
+    static public QuizzScreenAnswer quizzScreenAnswer;
+    
+    static public PlayerScreenHome playerScreenHome;
+    static public PlayerScreenRankQuizz playerRankQuizzScreen;
+    static public PlayerScreenStat playerScreenStat; 
+    
+    static public AdminScreenHome accueilAdminScreen;
+    static public AdminScreenAddAdmin adminScreenAddAdmin;
+    
+    static public ConnectionScreenAddUser connectionAddUser;
     static public ConnectionScreen connectionScreen;
-    static public PlayerScreenRankQuizz playerScreenRankQuizz;
+
     /**
      * @param args the command line arguments
      */
@@ -36,12 +43,12 @@ public class QUIZZ
         
 
         connectionScreen = new ConnectionScreen();
-        connectionScreen.setVisible(true);
+        //connectionScreen.setVisible(true);
         
-        /*
-        accueilPlayerScreen = new PlayerScreenHome();
-        accueilPlayerScreen.setVisible(true);
-         */
+        
+        playerScreenHome = new PlayerScreenHome();
+        playerScreenHome.setVisible(true);
+         
 
         
         //accueilAdminScreen = new AccueilAdminScreen();
@@ -53,11 +60,20 @@ public class QUIZZ
         //connectionScreen = new AnswerQuizzScreen();
         //connectionScreen.setVisible(true);
         
-        playerScreenRankQuizz = new PlayerScreenRankQuizz();
+        playerRankQuizzScreen = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
         
-        quizzStatPlayerScreen = new PlayerScreenStat();
-
+        playerScreenStat = new PlayerScreenStat();
+        //quizzStatPlayerScreen.setVisible(true);
+        
+        connectionAddUser = new ConnectionScreenAddUser();
+        //connectionAddUser.setVisible(true);
+        
+        connectionScreen = new ConnectionScreen();
+        //connectionScreen.setVisible(true);
+        
+        adminScreenAddAdmin = new AdminScreenAddAdmin();
+        //adminScreenAddAdmin.setVisible(true);
 
     }
 }
