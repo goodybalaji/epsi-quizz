@@ -20,7 +20,7 @@ public class DBConnect {
     public static final String DBUSER = "b3i_groupe_2";
     public static final String DBPASS = "123Soleil";
 
-    public final static Statement DBConnect() throws SQLException
+    public final static Statement Connect() throws SQLException
     {
         // Load Oracle JDBC Driver
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());

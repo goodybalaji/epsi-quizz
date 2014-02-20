@@ -26,8 +26,8 @@ public class ConnectionScreenAddUser extends JFrame{
     public JTextField txtUser = new JTextField();
     public JPasswordField txtPwd = new JPasswordField();
     public JPasswordField txtPwd2 = new JPasswordField();
-    public JButton btnCreationCompte = new JButton("Créer");
-    public JButton btnReturn = new JButton("Retour");
+    public ConnectionBtn btnCreationCompte = new ConnectionBtn("Créer");
+    public ConnectionBtn btnReturn = new ConnectionBtn("Retour");
     
     public JPanel center = new JPanel();
     public JPanel centerUser = new JPanel();
