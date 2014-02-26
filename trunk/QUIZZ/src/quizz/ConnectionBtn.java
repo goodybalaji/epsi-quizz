@@ -6,26 +6,19 @@ package quizz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< .mine
-import java.awt.*;
-import javax.swing.ButtonModel;
-=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-import javax.swing.JRadioButton;
 
-import static quizz.QUIZZ.connectionAddUser;
 
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.connectionScreen;
 
 import static quizz.QUIZZ.connectionScreenAddUser;
-import static quizz.QUIZZ.adminScreenHome;
 
 
 
@@ -40,12 +33,8 @@ public class ConnectionBtn extends JButton implements ActionListener {
         super(str);
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-    
-       if ("Connexion".equals(this.getText()))
-        {
-
+  
+    @Override
     public void actionPerformed(ActionEvent e) {
         if ("btnConnection".equals(this.getName())) {
 
@@ -63,15 +52,38 @@ public class ConnectionBtn extends JButton implements ActionListener {
                 final java.sql.Statement statement = DBConnect.Connect();
                 ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne from PERSONNE  where PERSONNE.idPersonne = JOUEUR.idJoueur");
                 while(rs.next() == true){
-                    if (rs.getCharacterStream("loginPersonne").toString().equals(connectionAddUser.txtUser.getText()))
+                    if (rs.getCharacterStream("loginPersonne").toString().equals(connectionScreenAddUser.txtUser.getText()))
                     {
                         creation = false;
                     }
+                    else
+                    {
+                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Login utilisé, veuilliez en choisir un autre.");
+                        connectionScreenAddUser.txtUser.setText("");
+                        connectionScreenAddUser.txtPwd.setText("");
+                        connectionScreenAddUser.txtPwd2.setText("");
+                    }
                 }
                 if (creation == true)
-                {
+                {   
                     // TO DO !!!!!!!!!!!!
-                    //ResultSet rsCrea = Statement.executeQuery("Insert Into PERSONNE ( ")
+                    String query = "Insert Into PERSONNE (IDPERSONNE, LOGINPERSONNE, MDPPERSONNE) "
+                                                + "VALIUES (increment_personne_seq.NEXTVAL, " + connectionScreenAddUser.txtUser.getText() +", " 
+                                                + connectionScreenAddUser.txtPwd.getPassword().toString() + ");";
+                    ResultSet rsCrea = statement.executeQuery(query);
+                    if (rsCrea.rowInserted() == true)
+                    {
+                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Votre utilisateur à bien été créer, vous pouvez maintenant vous connecter.");
+                        connectionScreenAddUser.dispose();
+                        connectionScreen.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Une erreur est survenue l'or de la création de votre compte. Celui-ci n'a pas été crée");
+                        connectionScreenAddUser.txtUser.setText("");
+                        connectionScreenAddUser.txtPwd.setText("");
+                        connectionScreenAddUser.txtPwd2.setText("");
+                    }
                 }
             }
             catch (SQLException ex)
@@ -79,9 +91,9 @@ public class ConnectionBtn extends JButton implements ActionListener {
                 Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if ("Retour".equals(this.getText())) {
+       } else if ("Retour".equals(this.getText())) {
 
-        }
+       }
        else if("Créer un nouveau compte".equals(this.getText()))
        {
            connectionScreenAddUser.setVisible(true);
