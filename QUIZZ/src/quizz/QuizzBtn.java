@@ -7,6 +7,12 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.quizzScreenAnswer;
+import static quizz.QUIZZ.quizzScreenCreation;
+import static quizz.QUIZZ.quizzScreenFinish;
 
 /**
  *
@@ -21,57 +27,31 @@ public class QuizzBtn extends JButton implements ActionListener
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.getName().equalsIgnoreCase("btnQuitterPlayer"))
+        if("Abandonner".equals(this.getText()))
         {
-            
+            int reponse = JOptionPane.showConfirmDialog(this,
+                "Voulez-vous abandonner le quizz ?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		if(reponse == JOptionPane.YES_OPTION ){
+			playerScreenHome.setVisible(true);
+                        quizzScreenAnswer.dispose();
+		}
         }
-        else if (this.getName().equalsIgnoreCase("btnValideQuizz"))
+        else if("Valider Quizz".equals(this.getText()))
         {
-            
+                int reponse = JOptionPane.showConfirmDialog(this,
+                "Voulez-vous valider votre quizz ?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		if(reponse == JOptionPane.YES_OPTION ){
+			quizzScreenFinish.setVisible(true);
+                        quizzScreenAnswer.dispose();
+		}
         }
-        else if (this.getName().equalsIgnoreCase("btnValideQuestion"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnNextAnswer"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnPreviousAnswer"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnQuitterAdmin"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnNextQuestion"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnNextCorrection"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnPreviousCorrection"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnNextQuestionCreation"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnPreviousQuestionCreation"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnToCorrection"))
-        {
-            
-        }
-        else if (this.getName().equalsIgnoreCase("btnToRanking"))
-        {
-            
-        }        
     }    
 }

@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public class PlayerScreenHome extends JFrame
 {
     public JLabel lbl1 = new JLabel("Accueil [PlayerName]");
-    public JButton btnDeco = new JButton("Deconnexion");
+    public PlayerBtn btnDeco = new PlayerBtn("Deconnexion");
     public JLabel lbl2 = new JLabel("Nom : ");
     public JTextField txtNameQuizz = new JTextField();
     public JLabel lbl3 = new JLabel("Theme : ");
@@ -153,6 +153,8 @@ public class PlayerScreenHome extends JFrame
         btnRankPlayer.setPreferredSize(new Dimension( 120, 50));
         btnRankPlayer.addActionListener(btnRankPlayer);
         btnPlayPlayer.setPreferredSize(new Dimension( 120, 50));
+        btnPlayPlayer.addActionListener(btnPlayPlayer);
+        btnDeco.addActionListener(btnDeco);
         
         bottomBtnStat.add(btnStatPlayer);
         bottomBtnClass.add(btnRankPlayer);

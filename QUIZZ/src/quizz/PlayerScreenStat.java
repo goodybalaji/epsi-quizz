@@ -36,7 +36,7 @@ public class PlayerScreenStat extends JFrame
     public JPanel bottomRight = new JPanel();
     public JPanel underBottom = new JPanel();
   
-    public PlayerBtn btnRetour = new PlayerBtn("Retour");
+    public PlayerBtn PlayerBtn = new PlayerBtn("Retour");
     public JButton btnDeconnexion = new JButton("Deconnexion");
     String[] entetes = {"       ","Facile","Moyen","Difficile","Total"};
     Object [][] donnees ={
@@ -56,8 +56,8 @@ public class PlayerScreenStat extends JFrame
         
         underBottom.add(new JLabel(""));
         bottom.setLayout (new BorderLayout());
-        bottom.add(BorderLayout.EAST,btnRetour);
-        btnRetour.addActionListener(btnRetour);
+        bottom.add(BorderLayout.EAST,PlayerBtn);
+        PlayerBtn.addActionListener(PlayerBtn);
         
         /**Création de la table*/
         JTable tableau = new JTable (donnees,entetes);

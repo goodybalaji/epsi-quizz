@@ -11,20 +11,20 @@ package quizz;
 public class QUIZZ
 {
 
-
     static public QuizzScreenQuestionCreation questionCreationScreen;
-    static public QuizzScreenCreation quizzCreationScreen;
+    static public QuizzScreenCreation quizzScreenCreation;
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
+    static public QuizzScreenFinish quizzScreenFinish;
     
     static public PlayerScreenHome playerScreenHome;
-    static public PlayerScreenRankQuizz playerRankQuizzScreen;
+    static public PlayerScreenRankQuizz playerScreenRankQuizz;
     static public PlayerScreenStat playerScreenStat; 
     
-    static public AdminScreenHome accueilAdminScreen;
+    static public AdminScreenHome adminScreenHome;
     static public AdminScreenAddAdmin adminScreenAddAdmin;
     
-    static public ConnectionScreenAddUser connectionAddUser;
+    static public ConnectionScreenAddUser connectionScreenAddUser;
     static public ConnectionScreen connectionScreen;
 
     /**
@@ -32,45 +32,32 @@ public class QUIZZ
      */
     public static void main(String[] args)
     {
-
-
-
-        //questionCreationScreen = new QuestionCreationScreen();
+         questionCreationScreen = new QuizzScreenQuestionCreation();
         //questionCreationScreen.setVisible(true);
 
-        //quizzCreationScreen = new QuizzCreationScreen();
+        quizzScreenCreation = new QuizzScreenCreation();
         //quizzCreationScreen.setVisible(true);
         
 
         connectionScreen = new ConnectionScreen();
-        //connectionScreen.setVisible(true);
+        connectionScreen.setVisible(true);
         
+        quizzScreenAnswer = new QuizzScreenAnswer();
+        
+        quizzScreenFinish = new QuizzScreenFinish();
         
         playerScreenHome = new PlayerScreenHome();
-        playerScreenHome.setVisible(true);
-         
-
+        //playerScreenHome.setVisible(true);
         
-        //accueilAdminScreen = new AccueilAdminScreen();
-        //accueilAdminScreen.setVisible(true);
-
-        //questionCorrectionScreen = new QuestionCorrectionScreen();
-        //questionCorrectionScreen.setVisible(true);
-
-        //connectionScreen = new AnswerQuizzScreen();
-        //connectionScreen.setVisible(true);
-        
-        playerRankQuizzScreen = new PlayerScreenRankQuizz();
+        playerScreenRankQuizz = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
         
         playerScreenStat = new PlayerScreenStat();
         //quizzStatPlayerScreen.setVisible(true);
         
-        connectionAddUser = new ConnectionScreenAddUser();
-        //connectionAddUser.setVisible(true);
+        connectionScreenAddUser = new ConnectionScreenAddUser();
+        //connectionScreenAddUser.setVisible(true);
         
-        connectionScreen = new ConnectionScreen();
-        //connectionScreen.setVisible(true);
         
         adminScreenAddAdmin = new AdminScreenAddAdmin();
         //adminScreenAddAdmin.setVisible(true);

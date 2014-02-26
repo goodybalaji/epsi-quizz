@@ -7,10 +7,11 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import static quizz.QUIZZ.playerRankQuizzScreen;
+import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
-
+import static quizz.QUIZZ.connectionScreen;
+import static quizz.QUIZZ.quizzScreenAnswer;
 
 /**
  *
@@ -25,20 +26,32 @@ public class PlayerBtn extends JButton implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if("btnStatPlayer".equals(this.getName()))
+       if("Statistiques".equals(this.getText()))
         {
             playerScreenStat.setVisible(true);
             playerScreenHome.setVisible(false);
         }
-        else if(this.getName().equalsIgnoreCase("btnRankPlayer"))
+        else if("Classement".equals(this.getText()))
         {
             playerScreenHome.setVisible(false);
-            playerRankQuizzScreen.setVisible(false);
+            playerScreenRankQuizz.setVisible(true);
         }
-        else if(this.getName().equalsIgnoreCase("btnPlayPlayer"))
+       else if("Deconnexion".equals(this.getText()))
         {
-            
+            playerScreenHome.setVisible(false);
+            connectionScreen.setVisible(true);
+        }
+       else if("Retour".equals(this.getText()))
+        {
+            playerScreenRankQuizz.setVisible(false);
+            playerScreenStat.setVisible(false);
+            playerScreenHome.setVisible(true);
+        }
+        else if("Jouer".equals(this.getText()))
+        {
+            playerScreenHome.setVisible(false);
+            quizzScreenAnswer.setVisible(true);
         }
     }
-    
+
 }

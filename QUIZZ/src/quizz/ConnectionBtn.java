@@ -6,14 +6,28 @@ package quizz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< .mine
+import java.awt.*;
+import javax.swing.ButtonModel;
+=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JButton;
+
+import javax.swing.JRadioButton;
+
 import static quizz.QUIZZ.connectionAddUser;
+
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.connectionScreen;
+
+import static quizz.QUIZZ.connectionScreenAddUser;
+import static quizz.QUIZZ.adminScreenHome;
+
+
 
 /**
  *
@@ -26,14 +40,23 @@ public class ConnectionBtn extends JButton implements ActionListener {
         super(str);
     }
 
-    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+    
+       if ("Connexion".equals(this.getText()))
+        {
+
     public void actionPerformed(ActionEvent e) {
         if ("btnConnection".equals(this.getName())) {
-            playerScreenHome.setVisible(true);
+
             connectionScreen.setVisible(false);
+
+            playerScreenHome.setVisible(true);
+
         } else if ("btnDeco".equals(this.getName())) {
             connectionScreen.setVisible(true);
             playerScreenHome.setVisible(false);
+
         } else if ("Créer".equals(this.getText())) {
             try
             {
@@ -59,6 +82,17 @@ public class ConnectionBtn extends JButton implements ActionListener {
         } else if ("Retour".equals(this.getText())) {
 
         }
+       else if("Créer un nouveau compte".equals(this.getText()))
+       {
+           connectionScreenAddUser.setVisible(true);
+           connectionScreen.setVisible(false);
+       }
+       else if("Retour".equals(this.getText()))
+       {
+           connectionScreenAddUser.setVisible(false);
+           connectionScreen.setVisible(true);
+       }
+  
     }
 
 }

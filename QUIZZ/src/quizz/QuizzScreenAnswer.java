@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -28,9 +30,9 @@ public class QuizzScreenAnswer extends JFrame {
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
-    public JButton btnQuitterPlayer = new JButton("Abandonner");
-    public JButton btnValideQuizz = new JButton("Valider Quizz");
-    public JButton btnValideQuestion = new JButton("Valider Question");
+    public QuizzBtn btnQuitterPlayer = new QuizzBtn("Abandonner");
+    public QuizzBtn btnValideQuizz = new QuizzBtn("Valider Quizz");
+    public QuizzBtn btnValideQuestion = new QuizzBtn("Valider Question");
     public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");    
     public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
     
@@ -57,6 +59,13 @@ public class QuizzScreenAnswer extends JFrame {
     
     QuizzScreenAnswer()
     {
+        /*
+        addWindowListener( new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				fermer();
+			}
+		});
+        */
         for(i=1; i<=41; i++)
         {
             JButton btn = new JButton("" + i);
@@ -131,7 +140,13 @@ public class QuizzScreenAnswer extends JFrame {
         bottom.add(underBottom);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
         
-        this.setTitle("QUIZZ : Corection du QUIZZ");
+        btnQuitterPlayer.addActionListener(btnQuitterPlayer);
+        btnValideQuizz.addActionListener(btnValideQuizz);
+        btnValideQuestion.addActionListener(btnValideQuestion);
+        btnNextAnswer.addActionListener(btnNextAnswer);
+        btnPreviousAnswer.addActionListener(btnPreviousAnswer);
+                
+        this.setTitle("QUIZZ : Answer");
         this.setSize(700,400);  
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
@@ -141,4 +156,17 @@ public class QuizzScreenAnswer extends JFrame {
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    
+    /*public void fermer() {
+		int reponse = JOptionPane.showConfirmDialog(this,
+                "Voulez-vous quitter l'application",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		if(reponse == JOptionPane.YES_OPTION ){
+			dispose();
+		}
+	}
+    */
 }
