@@ -26,7 +26,7 @@ public class ConnectionScreenAddUser extends JFrame{
     public JTextField txtUser = new JTextField();
     public JPasswordField txtPwd = new JPasswordField();
     public JPasswordField txtPwd2 = new JPasswordField();
-    public ConnectionBtn btnCreationCompte = new ConnectionBtn("Créer");
+    public JButton btnCreationCompte = new JButton("Créer");
     public ConnectionBtn btnReturn = new ConnectionBtn("Retour");
     
     public JPanel center = new JPanel();
@@ -67,6 +67,7 @@ public class ConnectionScreenAddUser extends JFrame{
 
         bottomConnection.add(btnCreationCompte);
         bottomReturn.add(btnReturn);
+        btnReturn.addActionListener(btnReturn);
         bottom.add(bottomReturn);
         bottom.add(bottomConnection); 
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));

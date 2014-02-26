@@ -24,7 +24,6 @@ public class ConnectionScreen extends JFrame
     public JPanel topLbl = new JPanel();
     public JPanel bottom = new JPanel(new GridLayout(1, 3));
     public JPanel bottomConnection = new JPanel();
-    public ButtonGroup radioGroup = new ButtonGroup();
     public JPanel bottomRadio = new JPanel();
     public JLabel lbl1 = new JLabel("Bienvenue !");
     public JLabel lbl2 = new JLabel("nom d'utilisateur : ");
@@ -32,10 +31,8 @@ public class ConnectionScreen extends JFrame
     public JLabel lbl4 = new JLabel("type d'utilisateur :");
     public JTextField txtUser = new JTextField();
     public JPasswordField txtPwd = new JPasswordField();
-    public JRadioButton radioUser = new JRadioButton(" Joueur ", true);
-    public JRadioButton radioAdmin = new JRadioButton("Administrateur", false);
-    public ConnectionBtn btnConnection = new ConnectionBtn("se connecter");
-    public JButton btnCreationCompte = new JButton("Créer un nouveau compte");
+    public ConnectionBtn btnConnection = new ConnectionBtn("Connexion");
+    public ConnectionBtn btnCreationCompte = new ConnectionBtn("Créer un nouveau compte");
    
     ConnectionScreen()
     {
@@ -44,10 +41,7 @@ public class ConnectionScreen extends JFrame
         txtUser.setPreferredSize(new Dimension( 200, 25));
         txtPwd.setPreferredSize(new Dimension( 200, 25));
         
-        /** création du groupe de radioBtn */
-        radioGroup.add(radioUser);
-        radioGroup.add(radioAdmin);
-        
+       
         /** création des Panel et sous panel */
         topLbl.add(lbl1);
         top.add(topLbl);
@@ -61,18 +55,17 @@ public class ConnectionScreen extends JFrame
         center.add(centerUser);
         center.add(centerPwd);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
-        
-        bottomRadio.add(lbl4);
-        bottomRadio.add(radioUser);
-        bottomRadio.add(radioAdmin);
+
         bottomConnection.add(new JLabel("   "));
         bottomConnection.add(btnCreationCompte);
         bottomConnection.add(btnConnection);
         
-        bottom.add(bottomRadio);
+        
         bottom.add(bottomConnection);        
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.Y_AXIS));
         
+        btnCreationCompte.addActionListener(btnCreationCompte);
+        btnConnection.addActionListener(btnConnection);
         
         
         /** Spécification de la page */
