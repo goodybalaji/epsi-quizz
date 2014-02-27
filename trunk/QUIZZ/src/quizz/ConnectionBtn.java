@@ -6,19 +6,18 @@ package quizz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.ButtonModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-
-
+import javax.swing.JRadioButton;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.connectionScreen;
-
 import static quizz.QUIZZ.connectionScreenAddUser;
+import static quizz.QUIZZ.adminScreenHome;
 
 
 
@@ -33,16 +32,19 @@ public class ConnectionBtn extends JButton implements ActionListener {
         super(str);
     }
 
-  
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if ("btnConnection".equals(this.getName())) {
+    public void actionPerformed(ActionEvent e)
+    {
+    
+       if ("Connexion".equals(this.getText()))
+        {
+
+        
 
             connectionScreen.setVisible(false);
 
             playerScreenHome.setVisible(true);
-
-        } else if ("btnDeco".equals(this.getName())) {
+        }
+        else if ("btnDeco".equals(this.getName())) {
             connectionScreen.setVisible(true);
             playerScreenHome.setVisible(false);
 
@@ -56,34 +58,11 @@ public class ConnectionBtn extends JButton implements ActionListener {
                     {
                         creation = false;
                     }
-                    else
-                    {
-                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Login utilisé, veuilliez en choisir un autre.");
-                        connectionScreenAddUser.txtUser.setText("");
-                        connectionScreenAddUser.txtPwd.setText("");
-                        connectionScreenAddUser.txtPwd2.setText("");
-                    }
                 }
                 if (creation == true)
-                {   
+                {
                     // TO DO !!!!!!!!!!!!
-                    String query = "Insert Into PERSONNE (IDPERSONNE, LOGINPERSONNE, MDPPERSONNE) "
-                                                + "VALIUES (increment_personne_seq.NEXTVAL, " + connectionScreenAddUser.txtUser.getText() +", " 
-                                                + connectionScreenAddUser.txtPwd.getPassword().toString() + ");";
-                    ResultSet rsCrea = statement.executeQuery(query);
-                    if (rsCrea.rowInserted() == true)
-                    {
-                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Votre utilisateur à bien été créer, vous pouvez maintenant vous connecter.");
-                        connectionScreenAddUser.dispose();
-                        connectionScreen.setVisible(true);
-                    }
-                    else
-                    {
-                        JOptionPane.showConfirmDialog(connectionScreenAddUser, "Une erreur est survenue l'or de la création de votre compte. Celui-ci n'a pas été crée");
-                        connectionScreenAddUser.txtUser.setText("");
-                        connectionScreenAddUser.txtPwd.setText("");
-                        connectionScreenAddUser.txtPwd2.setText("");
-                    }
+                    //ResultSet rsCrea = Statement.executeQuery("Insert Into PERSONNE ( ")
                 }
             }
             catch (SQLException ex)
@@ -91,9 +70,9 @@ public class ConnectionBtn extends JButton implements ActionListener {
                 Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-       } else if ("Retour".equals(this.getText())) {
+        } else if ("Retour".equals(this.getText())) {
 
-       }
+        }
        else if("Créer un nouveau compte".equals(this.getText()))
        {
            connectionScreenAddUser.setVisible(true);
