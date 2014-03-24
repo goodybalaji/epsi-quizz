@@ -6,13 +6,10 @@
 
 package quizz;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.border.Border;
 /**
  *
  * @author Arc
@@ -26,7 +23,7 @@ public class ConnectionScreenAddUser extends JFrame{
     public JTextField txtUser = new JTextField();
     public JPasswordField txtPwd = new JPasswordField();
     public JPasswordField txtPwd2 = new JPasswordField();
-    public JButton btnCreationCompte = new JButton("Créer");
+    public ConnectionBtn btnCreate = new ConnectionBtn("Créer");
     public ConnectionBtn btnReturn = new ConnectionBtn("Retour");
     
     public JPanel center = new JPanel();
@@ -47,6 +44,7 @@ public class ConnectionScreenAddUser extends JFrame{
         txtPwd.setPreferredSize(new Dimension( 200, 25));
         txtPwd2.setPreferredSize(new Dimension( 200, 25));
         
+        
         /** création des Panel et sous panel */
         topLbl.add(lbl1);
         top.add(topLbl);
@@ -65,9 +63,10 @@ public class ConnectionScreenAddUser extends JFrame{
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
 
-        bottomConnection.add(btnCreationCompte);
+        bottomConnection.add(btnCreate);
         bottomReturn.add(btnReturn);
         btnReturn.addActionListener(btnReturn);
+        btnCreate.addActionListener(btnCreate);
         bottom.add(bottomReturn);
         bottom.add(bottomConnection); 
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
