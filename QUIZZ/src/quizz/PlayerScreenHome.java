@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public class PlayerScreenHome extends JFrame
 {
     public JLabel lbl1 = new JLabel("Accueil [PlayerName]");
-    public PlayerBtn btnDeco = new PlayerBtn("Deconnexion");
+    public PlayerBtn btnDeco = new PlayerBtn("Déconnexion");
     public JLabel lbl2 = new JLabel("Nom : ");
     public JTextField txtNameQuizz = new JTextField();
     public JLabel lbl3 = new JLabel("Theme : ");
@@ -29,12 +29,12 @@ public class PlayerScreenHome extends JFrame
     public JRadioButton radioNormal = new JRadioButton(" Normal ", true);
     public JRadioButton radioHard = new JRadioButton(" Difficle ", true);
     public JLabel lbl4 = new JLabel("Nom du Quizz");
-    public JLabel lbl5 = new JLabel("Theme");
-    public JLabel lbl6 = new JLabel("Date Creation");
+    public JLabel lbl5 = new JLabel("Thème");
+    public JLabel lbl6 = new JLabel("Date Création");
     public JLabel lbl7 = new JLabel("Date MaJ");
     public JLabel lbl8 = new JLabel("[listeQuizz]");
     public JLabel lbl9 = new JLabel("Difficulté");
-    String[] head = {"Nom", "Theme", "Difficulté", "Date Création", "Date Maj"};
+    String[] head = {"Nom", "Thème", "Difficulté", "Date Création", "Date Maj"};
     Object[][] data = {};
     public JTable quizzTable = new JTable(data, head);
     public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
@@ -68,6 +68,7 @@ public class PlayerScreenHome extends JFrame
     public JPanel bottomBtnStat = new JPanel();
     public JPanel bottomBtnClass = new JPanel();
     public JPanel bottomBtnPlay = new JPanel();
+    public JPanel background = new JPanel();
     
     public void mouseClicked(MouseEvent e) {}
     public void mousePressed(MouseEvent e) {}
@@ -77,21 +78,28 @@ public class PlayerScreenHome extends JFrame
     
     PlayerScreenHome()
     {   
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
         
-        topCenterC.add(lbl1);
+        topCenterC.add(new JLabel(" "));
+        topCenterC.add(new JLabel(" "));
+        topCenterC.setOpaque(false);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
         topCenter.add(topCenterC);
+        topCenter.setOpaque(false);
         topEastC.add(btnDeco);
+        topEastC.setOpaque(false);
         topEast.add(topEastC);
+        topEast.setOpaque(false);
         topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
        
-        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
         topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
+        topSouth.setOpaque(false);
         
         topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
         topEast.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        topWest.setOpaque(false);
         
         
         top.setLayout(new BorderLayout());        
@@ -99,20 +107,30 @@ public class PlayerScreenHome extends JFrame
         top.add(BorderLayout.SOUTH, topSouth);
         top.add(BorderLayout.WEST, topWest);
         top.add(BorderLayout.EAST, topEast);
+        top.setOpaque(false);
+        
+        btnDeco.addActionListener(btnDeco);
         
         //CENTER
         txtNameQuizz.setPreferredSize(new Dimension( 150, 25));
         cbxTheme.setPreferredSize(new Dimension( 120, 25));
         centerTopName.add(lbl2);
         centerTopName.add(txtNameQuizz);
+        centerTopName.setOpaque(false);
         centerTopTheme.add(lbl3);
         centerTopTheme.add(cbxTheme);
+        centerTopTheme.setOpaque(false);
         centerTopCheck.add(radioEasy);
         centerTopCheck.add(radioNormal);
         centerTopCheck.add(radioHard);
+        radioEasy.setOpaque(false);
+        radioNormal.setOpaque(false);
+        radioHard.setOpaque(false);
+        centerTopCheck.setOpaque(false);
         centerTop.add(centerTopName);
         centerTop.add(centerTopTheme);
         centerTop.add(centerTopCheck);
+        centerTop.setOpaque(false);
         
         JPlbl4.add(lbl4);
         JPlbl5.add(lbl5);
@@ -135,16 +153,18 @@ public class PlayerScreenHome extends JFrame
         centerBottom.add(JPlbl9);
         centerBottom.add(JPlbl6);
         centerBottom.add(JPlbl7);
+        centerBottom.setOpaque(false);
         
         JPlbl8.setPreferredSize(new Dimension( 670, 180));
         JPlbl8.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         centerUnderBottom.add(JPlbl8);
+        centerUnderBottom.setOpaque(false);
 
         center.add(centerTop);
         center.add(centerBottom);
         center.add(centerUnderBottom);
-        center.add(new JSeparator(SwingConstants.HORIZONTAL));
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.setOpaque(false);
         
         
         //BOTTOM
@@ -157,15 +177,26 @@ public class PlayerScreenHome extends JFrame
         btnDeco.addActionListener(btnDeco);
         
         bottomBtnStat.add(btnStatPlayer);
+        bottomBtnStat.setOpaque(false);
         bottomBtnClass.add(btnRankPlayer);
+        bottomBtnClass.setOpaque(false);
         bottomBtnPlay.add(btnPlayPlayer);
+        bottomBtnPlay.setOpaque(false);
         
         bottom.add(bottomBtnStat);
         bottom.add(bottomBtnClass);
         bottom.add(bottomBtnPlay);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+        bottom.setOpaque(false);
         
-        this.setTitle("QUIZZ : Création du QUIZZ");
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
+        
+        
+        this.setTitle("QUIZZ : Accueil");
+        setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);

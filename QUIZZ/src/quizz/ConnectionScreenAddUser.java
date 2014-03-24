@@ -40,7 +40,7 @@ public class ConnectionScreenAddUser extends JFrame{
     ConnectionScreenAddUser()
     {
         /** mise en forme des éléments de la page */
-        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\accountBG.png"))));
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\AccountBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(25.0f));
         txtUser.setPreferredSize(new Dimension( 200, 25));
         txtPwd.setPreferredSize(new Dimension( 200, 25));

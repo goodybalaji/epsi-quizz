@@ -10,22 +10,24 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.*;
 
+
 /**
  *
  * @author Mathieu 'Triboulet' RONDOT
  */
 public class ConnectionScreen extends JFrame
 {
+    
+    
     /** parametre de la Frame */
+    public JPanel top = new JPanel();
     public JPanel center = new JPanel();
     public JPanel centerUser = new JPanel();
     public JPanel centerPwd = new JPanel();
-    public JPanel top = new JPanel();
-    public JPanel topLbl = new JPanel();
     public JPanel bottom = new JPanel(new GridLayout(1, 3));
     public JPanel bottomConnection = new JPanel();
     public JPanel bottomRadio = new JPanel();
-    public JLabel lbl1 = new JLabel("Bienvenue !");
+    public JPanel background = new JPanel();
     public JLabel lbl2 = new JLabel("nom d'utilisateur : ");
     public JLabel lbl3 = new JLabel("mot de passe :       ");
     public JLabel lbl4 = new JLabel("type d'utilisateur :");
@@ -36,16 +38,19 @@ public class ConnectionScreen extends JFrame
    
     ConnectionScreen()
     {
+        
         /** mise en forme des éléments de la page */
-        lbl1.setFont(lbl1.getFont().deriveFont(48.0f));
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\ConnectionBG.png"))));
         txtUser.setPreferredSize(new Dimension( 200, 25));
         txtPwd.setPreferredSize(new Dimension( 200, 25));
         
        
         /** création des Panel et sous panel */
-        topLbl.add(lbl1);
-        top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
+        top.add(new JLabel("   "));
+        top.add(new JLabel("   "));
+        top.add(new JLabel("   "));
+        top.add(new JLabel("   "));
+        top.add(new JLabel("   "));
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
         
         centerUser.add(lbl2);
@@ -67,14 +72,29 @@ public class ConnectionScreen extends JFrame
         btnCreationCompte.addActionListener(btnCreationCompte);
         btnConnection.addActionListener(btnConnection);
         
+        top.setOpaque(false);
+        centerUser.setOpaque(false);
+        centerPwd.setOpaque(false);
+        center.setOpaque(false);
+        bottomConnection.setOpaque(false);
+        bottomRadio.setOpaque(false);
+        bottom.setOpaque(false);
+        
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
+
         
         /** Spécification de la page */
+        setLayout(new BorderLayout());
         this.setResizable(false);
-        this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.NORTH, top);
+        this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.CENTER, center);
-        this.setTitle("QUIZZ : Ecran de connection");
+        this.setTitle("QUIZZ : Ecran de connexion");
         this.setSize(400,245);
+        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
