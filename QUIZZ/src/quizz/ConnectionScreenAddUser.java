@@ -16,7 +16,7 @@ import javax.swing.*;
  */
 public class ConnectionScreenAddUser extends JFrame{
 
-    public JLabel lbl1 = new JLabel("Creer un nouveau compte");
+    public JLabel lbl1 = new JLabel("  ");
     public JLabel lbl2 = new JLabel("nom d'utilisateur : ");
     public JLabel lbl3 = new JLabel("mot de passe :       ");
     public JLabel lbl4 = new JLabel("confirmer :             ");
@@ -35,10 +35,12 @@ public class ConnectionScreenAddUser extends JFrame{
     public JPanel bottom = new JPanel(new GridLayout(1, 3));
     public JPanel bottomConnection = new JPanel();
     public JPanel bottomReturn = new JPanel();
+    public JPanel background = new JPanel();
     
     ConnectionScreenAddUser()
     {
         /** mise en forme des éléments de la page */
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\accountBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(25.0f));
         txtUser.setPreferredSize(new Dimension( 200, 25));
         txtPwd.setPreferredSize(new Dimension( 200, 25));
@@ -47,13 +49,17 @@ public class ConnectionScreenAddUser extends JFrame{
         
         /** création des Panel et sous panel */
         topLbl.add(lbl1);
+        topLbl.setOpaque(false);
         top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        top.setOpaque(false);
         
         centerUser.add(lbl2);
-        centerPwd.add(lbl3);     
+        centerUser.setOpaque(false);
+        centerPwd.add(lbl3);
+        centerPwd.setOpaque(false);
         centerPwd2.add(lbl4);
+        centerPwd2.setOpaque(false);
         centerUser.add(txtUser);
         centerPwd.add(txtPwd);    
         centerPwd2.add(txtPwd2); 
@@ -61,19 +67,28 @@ public class ConnectionScreenAddUser extends JFrame{
         center.add(centerPwd);
         center.add(centerPwd2);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.setOpaque(false);
         
 
         bottomConnection.add(btnCreate);
+        bottomConnection.setOpaque(false);
         bottomReturn.add(btnReturn);
         btnReturn.addActionListener(btnReturn);
+        bottomReturn.setOpaque(false);
         btnCreate.addActionListener(btnCreate);
         bottom.add(bottomReturn);
         bottom.add(bottomConnection); 
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+        bottom.setOpaque(false);
         
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
         
         /** Spécification de la page */
-        this.setTitle("QUIZZ : Création du QUIZZ");
+        setLayout(new BorderLayout());
+        this.setTitle("QUIZZ : Création de compte");
         this.setSize(400,245);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
