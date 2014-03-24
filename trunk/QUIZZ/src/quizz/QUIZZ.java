@@ -44,7 +44,14 @@ public class QUIZZ
         
         quizzScreenAnswer = new QuizzScreenAnswer();
         
+
+        playerScreenHome = new PlayerScreenHome();
+        //playerScreenHome.setVisible(true);
+         
+
+
         quizzScreenFinish = new QuizzScreenFinish();
+
         
         playerScreenHome = new PlayerScreenHome();
         //playerScreenHome.setVisible(true);
@@ -55,8 +62,13 @@ public class QUIZZ
         playerScreenStat = new PlayerScreenStat();
         //quizzStatPlayerScreen.setVisible(true);
         
+
         connectionScreenAddUser = new ConnectionScreenAddUser();
         //connectionScreenAddUser.setVisible(true);
+
+        connectionScreenAddUser = new ConnectionScreenAddUser();
+        //connectionScreenAddUser.setVisible(true);
+
         
         
         adminScreenAddAdmin = new AdminScreenAddAdmin();
