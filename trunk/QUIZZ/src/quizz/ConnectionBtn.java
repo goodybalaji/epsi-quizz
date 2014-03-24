@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.connectionScreenAddUser;
+import static quizz.QUIZZ.player;
 
 
 
@@ -42,10 +43,13 @@ public class ConnectionBtn extends JButton implements ActionListener {
                                                     + "AND PERSONNE.mdpPersonne = " + String.valueOf(pwd));
                 if (rs.next() == true)
                 {
-                    
+                    player = new Player(rs.getCharacterStream("loginPersonne").toString(), rs.getInt(1));
                 }
                 else
                 {
+                    JOptionPane.showMessageDialog(connectionScreen, "Connexion imposible, veuillez vérifier vos identifiants");
+                    connectionScreen.txtUser.setText("");
+                    connectionScreen.txtPwd.setText("");
                     
                 }
             } catch (SQLException ex) {
