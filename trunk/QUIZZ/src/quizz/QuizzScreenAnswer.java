@@ -5,9 +5,12 @@
 package quizz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -19,9 +22,10 @@ import javax.swing.*;
  */
 public class QuizzScreenAnswer extends JFrame {
     public ArrayList<JButton> questionBtnList = new ArrayList<JButton>();
-    public int i;    
+    public int i;
+    public static int numQuestion = 1;
     public JLabel lblQuizzName = new JLabel("[Nom du QUIZZ]");
-    public JLabel lblNbQuestion = new JLabel("Question : X/Y");
+    public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/40");
     public JLabel lblQuestion= new JLabel("Question : [ ... ] ");
     public JLabel lblRep1 = new JLabel("Solution 1 : [ ... ] ");
     public JLabel lblRep2 = new JLabel("Solution 2 : [ ... ] ");
@@ -33,8 +37,8 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnQuitterPlayer = new QuizzBtn("Abandonner");
     public QuizzBtn btnValideQuizz = new QuizzBtn("Valider Quizz");
     public QuizzBtn btnValideQuestion = new QuizzBtn("Valider Question");
-    public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");    
-    public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
+    public SwitchBtn btnNextAnswer = new SwitchBtn("  Suivant  ");    
+    public SwitchBtn btnPreviousAnswer = new SwitchBtn("Précédent");
     
     public JPanel top = new JPanel();
     public JPanel topCenter = new JPanel();
@@ -66,6 +70,7 @@ public class QuizzScreenAnswer extends JFrame {
 			}
 		});
         */
+        
         for(i=1; i<=41; i++)
         {
             JButton btn = new JButton("" + i);
@@ -157,16 +162,20 @@ public class QuizzScreenAnswer extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    /*public void fermer() {
-		int reponse = JOptionPane.showConfirmDialog(this,
-                "Voulez-vous quitter l'application",
-                "Confirmation",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
-                this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		if(reponse == JOptionPane.YES_OPTION ){
-			dispose();
-		}
-	}
-    */
+    public class SwitchBtn extends JButton implements ActionListener
+    {
+        SwitchBtn(String str)
+        {
+            super(str);
+        }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if("  Suivant  ".equals(this.getText()))
+        {
+            numQuestion++;
+            this.repaint();
+        }
+        }
+    }
 }
