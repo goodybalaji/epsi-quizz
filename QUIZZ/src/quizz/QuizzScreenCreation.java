@@ -74,6 +74,9 @@ public class QuizzScreenCreation extends JFrame
         center.add(panelCenterTemp);        
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
+        btnQuitterAdmin.addActionListener(btnQuitterAdmin);
+        btnNextQuestion.addActionListener(btnNextQuestion);
+        
         theBottom.add(new JLabel("                                                                                                                                                                          "));
         theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel(" "));

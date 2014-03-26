@@ -11,7 +11,7 @@ package quizz;
 public class QUIZZ
 {
 
-    static public QuizzScreenQuestionCreation questionCreationScreen;
+    static public QuizzScreenQuestionCreation quizzScreenQuestionCreation;
     static public QuizzScreenCreation quizzScreenCreation;
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
@@ -33,7 +33,7 @@ public class QUIZZ
      */
     public static void main(String[] args)
     {
-         questionCreationScreen = new QuizzScreenQuestionCreation();
+         quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
         //questionCreationScreen.setVisible(true);
 
         quizzScreenCreation = new QuizzScreenCreation();
@@ -56,7 +56,7 @@ public class QUIZZ
 
         
         playerScreenHome = new PlayerScreenHome();
-        //playerScreenHome.setVisible(true);
+        playerScreenHome.setVisible(true);
         
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
@@ -75,6 +75,9 @@ public class QUIZZ
         
         adminScreenAddAdmin = new AdminScreenAddAdmin();
         //adminScreenAddAdmin.setVisible(true);
+        
+        adminScreenHome = new AdminScreenHome();
+        //adminScreenHome.setVisible(true);
 
     }
 }

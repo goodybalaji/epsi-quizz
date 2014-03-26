@@ -7,7 +7,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +41,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public JCheckBox cbxQ4 = new JCheckBox();
     public JCheckBox cbxQ5 = new JCheckBox();
     public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
-    public QuizzBtn btnNextQuestionCreation = new QuizzBtn("  Suivant  ");    
+    public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
     public QuizzBtn btnPreviousQuestionCreation = new QuizzBtn("Précédent");
     
     
@@ -108,6 +107,9 @@ public class QuizzScreenQuestionCreation extends JFrame
         panelCenterRep5.add(cbxQ5);
         center.add(panelCenterRep5); 
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        
+        btnQuitterAdmin.addActionListener(btnQuitterAdmin);
+        btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
         
         theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel("                                                                                                                                     "));
