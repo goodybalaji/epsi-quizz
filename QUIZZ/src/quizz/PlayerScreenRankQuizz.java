@@ -5,12 +5,12 @@
  */
 
 package quizz;
-
+    
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.*;
-
+    
 /**
  *
  * @author Llauron
@@ -50,7 +50,7 @@ public class PlayerScreenRankQuizz extends JFrame
     public JPanel underBottom = new JPanel();
     
     
- 
+    
     PlayerScreenRankQuizz()
     {
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));

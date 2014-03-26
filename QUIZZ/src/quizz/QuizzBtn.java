@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.quizzScreenAnswer;
-import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.quizzScreenFinish;
+import static quizz.QuizzScreenAnswer.numQuestion;
 
 /**
  *
@@ -20,6 +20,7 @@ import static quizz.QUIZZ.quizzScreenFinish;
  */
 public class QuizzBtn extends JButton implements ActionListener
 {
+  
     QuizzBtn(String str)
     {
         super(str);
@@ -52,6 +53,17 @@ public class QuizzBtn extends JButton implements ActionListener
 			quizzScreenFinish.setVisible(true);
                         quizzScreenAnswer.dispose();
 		}
+        }
+        else if("  Suivant  ".equals(this.getText()))
+        {
+            numQuestion++;
+        }
+        else if("Précédent".equals(this.getText()))
+        {
+            if(numQuestion>1)
+            {
+                numQuestion--;
+            }
         }
     }    
 }
