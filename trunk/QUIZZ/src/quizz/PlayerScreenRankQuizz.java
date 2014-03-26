@@ -18,7 +18,7 @@ import javax.swing.*;
 public class PlayerScreenRankQuizz extends JFrame 
 {
     
-    public JLabel lbl1 = new JLabel("Classement");
+    public JLabel lbl1 = new JLabel("  ");
     public JLabel lbl2 = new JLabel("N° ");
     public JLabel lbl3 = new JLabel("Pseudo Joueur ");
     public JLabel lbl4 = new JLabel("Score ");
@@ -44,6 +44,7 @@ public class PlayerScreenRankQuizz extends JFrame
     public JPanel panelCenterPlayerTime = new JPanel();
     public JPanel panelCenterPlayerGameDate = new JPanel();
     public JPanel panelCenterPlayersRank = new JPanel();
+    public JPanel background = new JPanel();
     
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
@@ -53,6 +54,9 @@ public class PlayerScreenRankQuizz extends JFrame
     
     PlayerScreenRankQuizz()
     {
+        
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\RankBG.png"))));
+        
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         PlayerNumber.setPreferredSize(new Dimension( 50, 25));
         PlayerNumber.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -68,12 +72,15 @@ public class PlayerScreenRankQuizz extends JFrame
         PlayersRank.setBorder(BorderFactory.createEtchedBorder());
         
         topLbl.add(lbl1);
+        topLbl.setOpaque(false);
         top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
+        top.setOpaque(false);
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
         
         panelCenterSpace.add(new JLabel(""));
+        panelCenterSpace.setOpaque(false);
         center.add(panelCenterSpace);
+        center.setOpaque(false);
         PlayerNumber.add(lbl2);
         panelCenterSpace.add(PlayerNumber);        
         PlayerName.add(lbl3);
@@ -90,13 +97,22 @@ public class PlayerScreenRankQuizz extends JFrame
         
         theBottom.add(new JLabel("                                                                                                                                                                          "));
         theBottom.add(btnBack);
+        theBottom.setOpaque(false);
         btnBack.addActionListener(btnBack);
         underBottom.add(new JLabel(""));
+        underBottom.setOpaque(false);
         bottom.add(theBottom);
         bottom.add(underBottom);
+        bottom.setOpaque(false);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
         
-        this.setTitle("QUIZZ : Classement du QUIZZ");
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
+        
+        this.setTitle("QWIZZ : Classement du Quiz");
+        setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);

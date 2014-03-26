@@ -56,6 +56,7 @@ public class QuizzScreenAnswer extends JFrame {
     public JPanel panelCenterRep1 = new JPanel();
     public JPanel panelCenterRep2 = new JPanel();
     public JPanel panelCenterRep3 = new JPanel();
+    public JPanel background = new JPanel();
     
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
@@ -63,6 +64,7 @@ public class QuizzScreenAnswer extends JFrame {
     
     QuizzScreenAnswer()
     {
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizAnswer.png"))));
         /*
         addWindowListener( new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -81,33 +83,42 @@ public class QuizzScreenAnswer extends JFrame {
             questionBtnList.add(btn);               
         }
         
+        
         lblQuizzName.setFont(lblQuizzName.getFont().deriveFont(20.0f));
         lblNbQuestion.setFont(lblNbQuestion.getFont().deriveFont(18.0f));
         lblQuestion.setFont(lblQuestion.getFont().deriveFont(16.0f));
         lblTimer.setFont(lblTimer.getFont().deriveFont(16.0f));
         
         topWestC.add(lblTimer);
+        topWestC.setOpaque(false);
         topWest.add(topWestC);
+        topWest.setOpaque(false);
         topWestC.setLayout(new BoxLayout(topWestC, BoxLayout.Y_AXIS));
         topCenterC.add(lblQuizzName);
         topCenterC.add(lblNbQuestion);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
+        topCenterC.setOpaque(false);
         topCenter.add(topCenterC);
+        topCenter.setOpaque(false);
         topEastC.add(btnQuitterPlayer);
+        topEastC.setOpaque(false);
         topEast.add(topEastC);
+        topEast.setOpaque(false);
         topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
         for(i=0; i<=20; i++)
         {
             topQuestionList1.add(questionBtnList.get(i));
+            topQuestionList1.setOpaque(false);
         }
         for(i=20; i<=39; i++)
         {
             topQuestionList2.add(questionBtnList.get(i));
+            topQuestionList2.setOpaque(false);
         }
-        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+
         topSouth.add(topQuestionList1);
         topSouth.add(topQuestionList2);
-        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
+        topSouth.setOpaque(false);
         topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
         
         topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
@@ -119,19 +130,28 @@ public class QuizzScreenAnswer extends JFrame {
         top.add(BorderLayout.SOUTH, topSouth);
         top.add(BorderLayout.WEST, topWest);
         top.add(BorderLayout.EAST, topEast);
+        top.setOpaque(false);
      
         panelCenterQuestion.add(lblQuestion);
+        panelCenterQuestion.setOpaque(false);
         center.add(panelCenterQuestion);
         panelCenterRep1.add(lblRep1);
         panelCenterRep1.add(cbxQ1);
+        cbxQ1.setOpaque(false);
+        panelCenterRep1.setOpaque(false);
         center.add(panelCenterRep1);
         panelCenterRep2.add(lblRep2);
         panelCenterRep2.add(cbxQ2);
+        cbxQ2.setOpaque(false);
+        panelCenterRep2.setOpaque(false);
         center.add(panelCenterRep2);
         panelCenterRep3.add(lblRep3);
         panelCenterRep3.add(cbxQ3);
+        cbxQ3.setOpaque(false);
+        panelCenterRep3.setOpaque(false);
         center.add(panelCenterRep3);
-        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));     
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.setOpaque(false);
           
         theBottom.add(btnValideQuizz);
         theBottom.add(new JLabel("                                                                         "));
@@ -140,18 +160,27 @@ public class QuizzScreenAnswer extends JFrame {
         theBottom.add(btnValideQuestion);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNextAnswer);
+        theBottom.setOpaque(false);
         underBottom.add(new JLabel(""));
+        underBottom.setOpaque(false);
         bottom.add(theBottom);
         bottom.add(underBottom);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+        bottom.setOpaque(false);
         
         btnQuitterPlayer.addActionListener(btnQuitterPlayer);
         btnValideQuizz.addActionListener(btnValideQuizz);
         btnValideQuestion.addActionListener(btnValideQuestion);
         btnNextAnswer.addActionListener(btnNextAnswer);
         btnPreviousAnswer.addActionListener(btnPreviousAnswer);
+        
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
                 
-        this.setTitle("QUIZZ : Answer");
+        this.setTitle("QWIZZ : Answer");
+        setLayout(new BorderLayout());
         this.setSize(700,400);  
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);

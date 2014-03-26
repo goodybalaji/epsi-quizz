@@ -195,7 +195,7 @@ public class PlayerScreenHome extends JFrame
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
         
         
-        this.setTitle("QUIZZ : Accueil");
+        this.setTitle("QWIZZ : Accueil");
         setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
