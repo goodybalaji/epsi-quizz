@@ -6,18 +6,16 @@
 
 package quizz;
 import java.util.ArrayList;
-import quizz.Question;
-
+import quizz.Answer;
 /**
  *
  * @author Arc
  */
-public class Quiz {    
-    private ArrayList listQuestion;
+public class Question {
+    private String nameQuestion;    
+    private ArrayList listAnswer;
     
-    Quiz(){
-        listQuestion = new ArrayList();
+    Question(){
+        listAnswer = new ArrayList();
     }
-    
-   
 }

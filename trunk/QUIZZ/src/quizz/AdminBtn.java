@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.adminScreenHome;
+import static quizz.QUIZZ.quizzScreenCreation;
 
 /**
  *
@@ -40,6 +41,11 @@ public class AdminBtn extends JButton implements ActionListener
         else if(this.getName().equalsIgnoreCase("btnNewAdmin"))
         {
             
+        }
+        else if("Nouveau".equals(this.getText()))
+        {
+            quizzScreenCreation.setVisible(true);
+            adminScreenHome.setVisible(false);
         }
     }
     
