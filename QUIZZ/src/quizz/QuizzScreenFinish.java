@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class QuizzScreenFinish extends JFrame
 {
-    public JLabel lbl1 = new JLabel("Félicitation !");
+    public JLabel lbl1 = new JLabel("   ");
     public JLabel lbl2 = new JLabel("Votre Score : Score_Joueur");
     public JLabel lbl3 = new JLabel("Votre Temps : Temps_Joueur");
     public JPanel PlayerScore = new JPanel();
@@ -34,6 +34,7 @@ public class QuizzScreenFinish extends JFrame
     public JPanel panelCenterSpace = new JPanel();
     public JPanel panelCenterPlayerScore = new JPanel();
     public JPanel panelCenterPlayerTime = new JPanel();
+    public JPanel background = new JPanel();
     
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
@@ -42,21 +43,28 @@ public class QuizzScreenFinish extends JFrame
     QuizzScreenFinish()
     {
         
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizFinishBG.png"))));
+        
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         PlayerScore.setPreferredSize(new Dimension( 200, 25));
         PlayerTime.setPreferredSize(new Dimension( 200, 25));
 
         
         topLbl.add(lbl1);
+        topLbl.setOpaque(false);
         top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        top.setOpaque(false);
         
         panelCenterSpace.add(new JLabel(""));
+        panelCenterSpace.setOpaque(false);
         center.add(panelCenterSpace);
+        center.setOpaque(false);
         panelCenterPlayerScore.add(lbl2);
+        panelCenterPlayerScore.setOpaque(false);
         center.add(panelCenterPlayerScore);
         panelCenterPlayerTime.add(lbl3);
+        panelCenterPlayerTime.setOpaque(false);
         center.add(panelCenterPlayerTime);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
@@ -66,12 +74,21 @@ public class QuizzScreenFinish extends JFrame
         theBottom.add(btnToRanking);
         theBottom.add(new JLabel("   "));
         theBottom.add(btnQuitterPlayer);
+        theBottom.setOpaque(false);
         underBottom.add(new JLabel(""));
+        underBottom.setOpaque(false);
         bottom.add(theBottom);
         bottom.add(underBottom);
+        bottom.setOpaque(false);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
         
-        this.setTitle("QUIZZ : Fin du QUIZZ");
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
+        
+        this.setTitle("QWIZZ : Fin du Quiz");
+        setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);

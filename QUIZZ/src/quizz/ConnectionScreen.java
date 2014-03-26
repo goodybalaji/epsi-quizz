@@ -92,7 +92,7 @@ public class ConnectionScreen extends JFrame
         this.getContentPane().add(BorderLayout.NORTH, top);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.CENTER, center);
-        this.setTitle("QUIZZ : Ecran de connexion");
+        this.setTitle("QWIZZ : Ecran de connexion");
         this.setSize(400,245);
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
