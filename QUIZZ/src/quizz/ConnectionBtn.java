@@ -25,7 +25,7 @@ import static quizz.QUIZZ.player;
  */
 public class ConnectionBtn extends JButton implements ActionListener {
     
-    boolean creation = false;
+    boolean creation = true;
     ConnectionBtn(String str) {
         super(str);
     }
@@ -46,10 +46,11 @@ public class ConnectionBtn extends JButton implements ActionListener {
                     {
                         //création de la variable de connexion
                         final java.sql.Statement statement = DBConnect.Connect();
-                        ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne, mdpPersonne from PERSONNNE, JOUEUR where PERSONNE.idPersonne = JOUEUR.idJoueur "
-                                + "AND PERSONNE.loginPersonne =" + connectionScreen.txtUser.toString()
-                                + "AND PERSONNE.mdpPersonne = " + String.valueOf(pwd));
-                  //si il y a un retour c'est que les identifants sont valide
+                        ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne, mdpPersonne from PERSONNE, JOUEUR where idPersonne = idJoueur "
+                                + "AND loginPersonne ='" + connectionScreen.txtUser.getText().toString() + "' "
+                                + "AND mdpPersonne = '" + String.valueOf(pwd) + "'");
+                        
+                  //si il y a un retour c'est que les identifiants sont valide
                         //création de l'utilisateur et l'on affiche la page suivante.
                         if (rs.next() == true)
                         {
@@ -97,16 +98,12 @@ public class ConnectionBtn extends JButton implements ActionListener {
                         //si disponible
                         if (rs.getCharacterStream("loginPersonne").toString().equals(connectionScreenAddUser.txtUser.getText()))
                         {
-                            creation = true;
-                        }
-                        //si pas disponible
-                        else
-                        {
+                            creation = false;
                             JOptionPane.showMessageDialog(connectionScreenAddUser, "Login utilisé, veuilliez en choisir un autre.");
                             connectionScreenAddUser.txtUser.setText("");
                             connectionScreenAddUser.txtPwd.setText("");
                             connectionScreenAddUser.txtPwd2.setText("");
-                        }
+                        }          
                     }
                     //création du nouvel utilisateur
                     if (creation == true)
