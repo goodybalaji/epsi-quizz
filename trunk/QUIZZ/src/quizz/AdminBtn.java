@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.quizzScreenCreation;
+import static quizz.QUIZZ.admin;
 
 /**
  *
@@ -27,8 +28,9 @@ public class AdminBtn extends JButton implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if("Deconnexion".equals(this.getText()))
         {
+            admin = null;
             adminScreenHome.setVisible(false);
-            connectionScreen.setVisible(true);
+            connectionScreen.setVisible(true);            
         }
         else if(this.getName().equalsIgnoreCase("btnModifAdmin"))
         {
