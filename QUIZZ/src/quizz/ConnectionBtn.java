@@ -58,15 +58,15 @@ public class ConnectionBtn extends JButton implements ActionListener {
                         {
                             String login = rs.getString("loginPersonne");
                             int id = rs.getInt(1);
-                            System.out.println("personne");
-                            System.out.println(login);
-                            System.out.println(id);
+                            //System.out.println("personne");
+                            //System.out.println(login);
+                            //System.out.println(id);
                             ResultSet rsPlayer = statement.executeQuery("Select * FROM JOUEUR where idJoueur = " + id);
                             if (rsPlayer.next() == true)
                             {
-                                System.out.println("joueur");
+                                //System.out.println("joueur");
                                 player = new Player(login, id);
-                                System.out.println("player créé");
+                                //System.out.println("player créé");
                                 connectionScreen.setVisible(false);
                                 playerScreenHome.setVisible(true); 
                             }
@@ -75,7 +75,7 @@ public class ConnectionBtn extends JButton implements ActionListener {
                                 ResultSet rsAdmin = statement.executeQuery("Select * FROM ADMIN where idAdmin = " + id);
                                 if (rsAdmin.next() == true)
                                 {
-                                    System.out.println("admin");
+                                    //System.out.println("admin");
                                     admin = new Admin(login, id);
                                     connectionScreen.setVisible(false);
                                     adminScreenHome.setVisible(true);
