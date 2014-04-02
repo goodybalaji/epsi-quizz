@@ -16,6 +16,8 @@ import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.connectionScreenAddUser;
 import static quizz.QUIZZ.player;
+import static quizz.QUIZZ.admin;
+import static quizz.QUIZZ.adminScreenHome;
 
 
 
@@ -46,17 +48,40 @@ public class ConnectionBtn extends JButton implements ActionListener {
                     {
                         //création de la variable de connexion
                         final java.sql.Statement statement = DBConnect.Connect();
-                        ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne, mdpPersonne from PERSONNE, JOUEUR where idPersonne = idJoueur "
-                                + "AND loginPersonne ='" + connectionScreen.txtUser.getText().toString() + "' "
+                        ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne, mdpPersonne from PERSONNE "
+                                + "WHERE loginPersonne ='" + connectionScreen.txtUser.getText().toString() + "' "
                                 + "AND mdpPersonne = '" + String.valueOf(pwd) + "'");
                         
                   //si il y a un retour c'est que les identifiants sont valide
                         //création de l'utilisateur et l'on affiche la page suivante.
                         if (rs.next() == true)
                         {
-                            player = new Player(rs.getCharacterStream("loginPersonne").toString(), rs.getInt(1));
-                            connectionScreen.setVisible(false);
-                            playerScreenHome.setVisible(true);                            
+                            String login = rs.getString("loginPersonne");
+                            int id = rs.getInt(1);
+                            System.out.println("personne");
+                            System.out.println(login);
+                            System.out.println(id);
+                            ResultSet rsPlayer = statement.executeQuery("Select * FROM JOUEUR where idJoueur = " + id);
+                            if (rsPlayer.next() == true)
+                            {
+                                System.out.println("joueur");
+                                player = new Player(login, id);
+                                System.out.println("player créé");
+                                connectionScreen.setVisible(false);
+                                playerScreenHome.setVisible(true); 
+                            }
+                            else
+                            {
+                                ResultSet rsAdmin = statement.executeQuery("Select * FROM ADMIN where idAdmin = " + id);
+                                if (rsAdmin.next() == true)
+                                {
+                                    System.out.println("admin");
+                                    admin = new Admin(login, id);
+                                    connectionScreen.setVisible(false);
+                                    adminScreenHome.setVisible(true);
+                                }
+                            }
+                                                        
                         }
                         //envoi du message d'erreur et réhinitialisation des champs à vide
                         else

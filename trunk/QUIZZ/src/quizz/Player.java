@@ -18,24 +18,17 @@ import java.util.logging.Logger;
 public class Player {
   static String login;
   static int nbEasy;
-  static int nbMidle;
+  static int nbMiddle;
   static int nbHard;
   static int id;
    
-
-    /**
-     *
-     * @param log
-     * @param identifier
-     */
     public Player(String log, int identifier)
     {
         nbEasy = 0;
-        nbMidle = 0;
+        nbMiddle = 0;
         nbHard = 0;
         login = log;
         id = identifier;
-        Player.setQuizNb();
     }
    
    void setLogin(String log)
@@ -48,19 +41,23 @@ public class Player {
        return login;
    }
    
-   static void setQuizNb()
+   static void setQuizNb(int iden)
    {
         try 
         {
            final java.sql.Statement statement = DBConnect.Connect();
            ResultSet rs = statement.executeQuery("SELECT NBFACILE, NBMOYEN, NBDIFFICILE from NB_QUIZ_JOUEUR, JOUEUR" +
-                                                 "WHERE JOUEUR.IDJOUEUR = " + id + "AND JOUEUR.IDNBQUIZ=NB_QUIZ_JOUEUR.IDNBQUIZ");
-           rs.next();
-           
+                                                 "WHERE JOUEUR.IDJOUEUR = " + iden + "AND JOUEUR.IDNBQUIZ=NB_QUIZ_JOUEUR.IDNBQUIZ");
+           if (rs.next() == true)
+           {
+            nbEasy = rs.getInt(1);
+            nbMiddle = rs.getInt(2);
+            nbHard = rs.getInt(3);
+           }
         }
         catch (SQLException ex)
         {
            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }    
    }   
 }

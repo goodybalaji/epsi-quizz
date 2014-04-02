@@ -28,6 +28,7 @@ public class QUIZZ
     static public ConnectionScreen connectionScreen;
 
     static public Player player;
+    static public Admin admin;
     /**
      * @param args the command line arguments
      */
