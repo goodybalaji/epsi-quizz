@@ -12,14 +12,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import javax.swing.border.Border;
+import static quizz.QUIZZ.player;
 /**
  *
  * @author Arc
  */
 public class PlayerScreenHome extends JFrame
 {
-    public JLabel lbl1 = new JLabel("Accueil [PlayerName]");
+    public JLabel lblHome = new JLabel("Accueil [PlayerName]");
     public PlayerBtn btnDeco = new PlayerBtn("Déconnexion");
     public JLabel lbl2 = new JLabel("Nom : ");
     public JTextField txtNameQuizz = new JTextField();
@@ -80,7 +80,8 @@ public class PlayerScreenHome extends JFrame
     {   
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
         //TOP
-        lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
+        lblHome.setFont(lblHome.getFont().deriveFont(18.0f));
+        lblHome.setText("Bienvenue " + player.getLogin()); 
         
         topCenterC.add(new JLabel(" "));
         topCenterC.add(new JLabel(" "));
@@ -205,7 +206,5 @@ public class PlayerScreenHome extends JFrame
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
     }
 }
