@@ -35,10 +35,10 @@ public class QUIZZ
     public static void main(String[] args)
     {
          quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
-        //questionCreationScreen.setVisible(true);
+        //quizzScreenQuestionCreation.setVisible(true);
 
         quizzScreenCreation = new QuizzScreenCreation();
-        //quizzCreationScreen.setVisible(true);
+        //quizzScreenCreation.setVisible(true);
         
 
         connectionScreen = new ConnectionScreen();
@@ -57,7 +57,7 @@ public class QUIZZ
 
         
         playerScreenHome = new PlayerScreenHome();
-        playerScreenHome.setVisible(true);
+        //playerScreenHome.setVisible(true);
         
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
