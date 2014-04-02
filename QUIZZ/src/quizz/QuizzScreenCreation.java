@@ -23,7 +23,7 @@ public class QuizzScreenCreation extends JFrame
     public JLabel lbl3 = new JLabel("Thème :               ");
     public JLabel lbl4 = new JLabel("Difficulté :            ");
     public JLabel lbl5 = new JLabel("Temps (en min) : ");
-    public JTextField txtNameQuizz = new JTextField();
+    public static JTextField txtNameQuizz = new JTextField();
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
     public JTextField txtTemp = new JTextField();
@@ -97,7 +97,4 @@ public class QuizzScreenCreation extends JFrame
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    
-    
 }

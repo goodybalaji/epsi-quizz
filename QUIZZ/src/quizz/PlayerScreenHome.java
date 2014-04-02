@@ -81,7 +81,7 @@ public class PlayerScreenHome extends JFrame
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
         //TOP
         lblHome.setFont(lblHome.getFont().deriveFont(18.0f));
-        lblHome.setText("Bienvenue " + player.getLogin()); 
+        
         
         topCenterC.add(new JLabel(" "));
         topCenterC.add(new JLabel(" "));
