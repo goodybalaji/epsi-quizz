@@ -22,8 +22,8 @@ public class AdminScreenAddAdmin extends JFrame
     public JTextField txtUser = new JTextField();
     public JPasswordField txtPwd = new JPasswordField();
     public JPasswordField txtPwd2 = new JPasswordField();
-    public JButton btnCreate = new JButton("Créer");
-    public JButton btnReturn = new JButton("Retour");
+    public AdminBtn btnCreate = new AdminBtn("Créer");
+    public AdminBtn btnReturn = new AdminBtn("Retour");
     
     public JPanel center = new JPanel();
     public JPanel centerUser = new JPanel();
@@ -68,7 +68,9 @@ public class AdminScreenAddAdmin extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
         
-
+        btnCreate.addActionListener(btnCreate);
+        btnReturn.addActionListener(btnReturn);
+        
         bottomConnection.add(btnCreate);
         bottomConnection.setOpaque(false);
         bottomReturn.add(btnReturn);
