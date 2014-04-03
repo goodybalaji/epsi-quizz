@@ -6,6 +6,7 @@
 
 package quizz;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -13,9 +14,13 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.quizzScreenQuestionCreation;
+import static quizz.QUIZZ.quizzScreenQuestionCreationBis;
 import static quizz.QuizzScreenCreation.txtNameQuizz;
 
 /**
@@ -23,6 +28,11 @@ import static quizz.QuizzScreenCreation.txtNameQuizz;
  * @author Arc
  */
 public class QuizzCreationBtn extends JButton implements ActionListener{
+    
+    public JLabel lbl,lbl1;
+    public int indiceReponse;
+    public JTextField txtRep;
+    public JCheckBox cbx;
     
     QuizzCreationBtn(String str)
     {
@@ -49,6 +59,25 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                     {
                         Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                     } 
+        }
+       else if ("Ajouter Reponse".equals(this.getText()))
+        {
+            //création d'une nouvelle ligne réponse
+            lbl = new JLabel ("Réponse n°");
+            lbl1 = new JLabel("");
+            indiceReponse =3;
+            lbl1.setText(lbl+Integer.toString(indiceReponse)+" : ");
+            
+            txtRep = new JTextField();
+            txtRep.setPreferredSize(new Dimension( 500, 25));
+            cbx = new JCheckBox();
+            //insertion de la ligne réponse
+            quizzScreenQuestionCreationBis.panelCenterRep4.add(lbl1);
+            quizzScreenQuestionCreationBis.panelCenterRep4.add(txtRep);
+            quizzScreenQuestionCreationBis.panelCenterRep4.add(cbx);
+            quizzScreenQuestionCreationBis.center.add(quizzScreenQuestionCreationBis.panelCenterRep4);
+            
+            //quizzScreenQuestionCreationBis.repaint();
         }
     }
 }
