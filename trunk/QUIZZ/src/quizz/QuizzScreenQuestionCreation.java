@@ -43,7 +43,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
     public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
     public QuizzBtn btnPreviousQuestionCreation = new QuizzBtn("Précédent");
-    
+    public QuizzCreationBtn btnAddAnswer = new QuizzCreationBtn("Ajouter Reponse");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -103,13 +103,16 @@ public class QuizzScreenQuestionCreation extends JFrame
         panelCenterRep4.add(cbxQ4);
         center.add(panelCenterRep4); 
         panelCenterRep5.add(lbl7);
-        panelCenterRep5.add(txtRep5);
+        /*panelCenterRep5.add(txtRep5);
         panelCenterRep5.add(cbxQ5);
-        center.add(panelCenterRep5); 
-        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.add(panelCenterRep5);*/ 
         
         btnQuitterAdmin.addActionListener(btnQuitterAdmin);
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
+        
+        panelCenterRep3.add(btnAddAnswer);
+        center.add(panelCenterRep3);
+        center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel("                                                                                                                                     "));
