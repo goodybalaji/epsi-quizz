@@ -27,8 +27,8 @@ public class QuizzScreenCreation extends JFrame
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
     public JTextField txtTemp = new JTextField();
-    public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
-    public QuizzBtn btnNextQuestion = new QuizzBtn("Suivant");
+    public AdminBtn btnQuitterAdmin = new AdminBtn("Quitter");
+    public AdminBtn btnNextQuestion = new AdminBtn("Suivant");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();

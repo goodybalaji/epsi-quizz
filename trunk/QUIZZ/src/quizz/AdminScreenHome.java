@@ -34,6 +34,7 @@ public class AdminScreenHome extends JFrame
     public AdminBtn btnModifAdmin = new AdminBtn("Modifier");
     public AdminBtn btnDelAdmin = new AdminBtn("Supprimer");
     public AdminBtn btnNewAdmin = new AdminBtn("Nouveau");
+    public AdminBtn btnAddAdmin = new AdminBtn("Ajouter Admin");
     
     public JPanel top = new JPanel();
     public JPanel topEast = new JPanel();
@@ -42,6 +43,7 @@ public class AdminScreenHome extends JFrame
     public JPanel topCenterC = new JPanel();
     public JPanel topSouth = new JPanel();
     public JPanel topWest = new JPanel();
+    public JPanel topWestC = new JPanel();
     public JPanel center = new JPanel();
     public JPanel centerTop = new JPanel();
     public JPanel centerBottom = new JPanel();
@@ -78,6 +80,11 @@ public class AdminScreenHome extends JFrame
         topEast.add(topEastC);
         topEast.setOpaque(false);
         topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
+        topWestC.add(btnAddAdmin);
+        topWestC.setOpaque(false);
+        topWest.add(topWestC);
+        topWest.setOpaque(false);
+        topWestC.setLayout(new BoxLayout(topWestC, BoxLayout.Y_AXIS));
        
         topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
         topSouth.setOpaque(false);
@@ -132,6 +139,7 @@ public class AdminScreenHome extends JFrame
         btnClassAdmin.addActionListener(btnClassAdmin);
         btnModifAdmin.addActionListener(btnModifAdmin);
         btnDelAdmin.addActionListener(btnDelAdmin);
+        btnAddAdmin.addActionListener(btnAddAdmin);
         btnClassAdmin.setPreferredSize(new Dimension( 120, 50));
         btnModifAdmin.setPreferredSize(new Dimension( 120, 50));
         btnDelAdmin.setPreferredSize(new Dimension( 120, 50));
