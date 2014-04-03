@@ -32,18 +32,6 @@ public class AdminBtn extends JButton implements ActionListener
             adminScreenHome.setVisible(false);
             connectionScreen.setVisible(true);            
         }
-        else if(this.getName().equalsIgnoreCase("btnModifAdmin"))
-        {
-            
-        }
-        else if(this.getName().equalsIgnoreCase("btnDelAdmin"))
-        {
-            
-        }
-        else if(this.getName().equalsIgnoreCase("btnNewAdmin"))
-        {
-            
-        }
         else if("Nouveau".equals(this.getText()))
         {
             quizzScreenCreation.setVisible(true);
