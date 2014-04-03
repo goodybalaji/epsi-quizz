@@ -6,7 +6,9 @@ package quizz;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import static java.awt.Color.WHITE;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,16 +17,18 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.*;
-
+import quizz.CustomFont;
 /**
  *
  * @author Mama
  */
 public class QuizzScreenAnswer extends JFrame {
+
+    public static CustomFont CustomFont;
     public ArrayList<JButton> questionBtnList = new ArrayList<JButton>();
     public int i;
     public static int numQuestion = 1;
-    public JLabel lblQuizzName = new JLabel("[Nom du QUIZZ]");
+    public JLabel lblQuizzName = new JLabel("Nom du Qwizz");
     public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/40");
     public JLabel lblQuestion= new JLabel("Question : [ ... ] ");
     public JLabel lblRep1 = new JLabel("Solution 1 : [ ... ] ");
@@ -39,6 +43,7 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnValideQuestion = new QuizzBtn("Valider Question");
     public SwitchBtn btnNextAnswer = new SwitchBtn("  Suivant  ");    
     public SwitchBtn btnPreviousAnswer = new SwitchBtn("Précédent");
+    public Font CFont;
     
     public JPanel top = new JPanel();
     public JPanel topCenter = new JPanel();
@@ -65,6 +70,9 @@ public class QuizzScreenAnswer extends JFrame {
     QuizzScreenAnswer()
     {
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizAnswer.png"))));
+        
+        CustomFont = new CustomFont();
+        CFont = CustomFont.getFont("Hanged Letters.ttf");
         /*
         addWindowListener( new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -84,7 +92,8 @@ public class QuizzScreenAnswer extends JFrame {
         }
         
         
-        lblQuizzName.setFont(lblQuizzName.getFont().deriveFont(20.0f));
+        lblQuizzName.setForeground(WHITE);
+        lblQuizzName.setFont(CFont.deriveFont(20.0f));
         lblNbQuestion.setFont(lblNbQuestion.getFont().deriveFont(18.0f));
         lblQuestion.setFont(lblQuestion.getFont().deriveFont(16.0f));
         lblTimer.setFont(lblTimer.getFont().deriveFont(16.0f));
