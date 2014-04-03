@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class QuizzScreenCreation extends JFrame
 {
-    public JLabel lbl1 = new JLabel("Création du QUIZZ");
+    public JLabel lbl1 = new JLabel(" ");
     public JLabel lbl2 = new JLabel("Nom du QUIZZ : ");
     public JLabel lbl3 = new JLabel("Thème :               ");
     public JLabel lbl4 = new JLabel("Difficulté :            ");
@@ -39,6 +39,7 @@ public class QuizzScreenCreation extends JFrame
     public JPanel panelCenterTheme = new JPanel();
     public JPanel panelCenterLevel = new JPanel();
     public JPanel panelCenterTemp = new JPanel();
+    public JPanel background = new JPanel();
     
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
@@ -47,6 +48,7 @@ public class QuizzScreenCreation extends JFrame
     
     QuizzScreenCreation()
     {
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizCreationBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         txtNameQuizz.setPreferredSize(new Dimension( 200, 25));
         txtTemp.setPreferredSize(new Dimension( 200, 25));
@@ -54,25 +56,32 @@ public class QuizzScreenCreation extends JFrame
         cbxTheme.setPreferredSize(new Dimension( 198, 25));
         
         topLbl.add(lbl1);
+        topLbl.setOpaque(false);
         top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
+        top.setOpaque(false);
         
         panelCenterSpace.add(new JLabel(""));
+        panelCenterSpace.setOpaque(false);
         center.add(panelCenterSpace);
         panelCenterName.add(lbl2);
         panelCenterName.add(txtNameQuizz);
+        panelCenterName.setOpaque(false);
         center.add(panelCenterName);        
         panelCenterTheme.add(lbl3);
         panelCenterTheme.add(cbxTheme);
+        panelCenterTheme.setOpaque(false);
         center.add(panelCenterTheme);        
         panelCenterLevel.add(lbl4);
         panelCenterLevel.add(cbxLevel);
+        panelCenterLevel.setOpaque(false);
         center.add(panelCenterLevel);        
         panelCenterTemp.add(lbl5);
         panelCenterTemp.add(txtTemp);
+        panelCenterTemp.setOpaque(false);
         center.add(panelCenterTemp);        
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.setOpaque(false);
         
         btnQuitterAdmin.addActionListener(btnQuitterAdmin);
         btnNextQuestion.addActionListener(btnNextQuestion);
@@ -81,13 +90,21 @@ public class QuizzScreenCreation extends JFrame
         theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNextQuestion);
+        theBottom.setOpaque(false);
         underBottom.add(new JLabel(""));
+        underBottom.setOpaque(false);
         bottom.add(theBottom);
         bottom.add(underBottom);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+        bottom.setOpaque(false);
         
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
         
         this.setTitle("QUIZZ : Création du QUIZZ");
+        setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
