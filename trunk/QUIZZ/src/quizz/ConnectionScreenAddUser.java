@@ -88,7 +88,7 @@ public class ConnectionScreenAddUser extends JFrame{
         
         /** Spécification de la page */
         setLayout(new BorderLayout());
-        this.setTitle("QUIZZ : Création de compte");
+        this.setTitle("QWIZZ : Création de compte");
         this.setSize(400,245);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);

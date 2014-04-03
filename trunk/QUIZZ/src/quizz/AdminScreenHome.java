@@ -19,8 +19,8 @@ import javax.swing.border.Border;
  */
 public class AdminScreenHome extends JFrame
 {
-    public JLabel lbl1 = new JLabel("Accueil [AdminName]");
-    public JButton btnDeco = new JButton("Deconnexion");
+    public JLabel lbl1 = new JLabel(" ");
+    public JButton btnDeco = new JButton("Déconnexion");
     public JLabel lbl4 = new JLabel("Nom du Quizz");
     public JLabel lbl5 = new JLabel("Theme");
     public JLabel lbl6 = new JLabel("Date Creation");
@@ -46,6 +46,7 @@ public class AdminScreenHome extends JFrame
     public JPanel centerTop = new JPanel();
     public JPanel centerBottom = new JPanel();
     public JPanel bottom = new JPanel();
+    public JPanel background = new JPanel();
     
     public JPanel JPlbl1 = new JPanel();
     public JPanel JPlbl4 = new JPanel();
@@ -59,30 +60,38 @@ public class AdminScreenHome extends JFrame
     public JPanel bottomDelBtn = new JPanel();
     public JPanel bottomNewBtn = new JPanel();
     
+
+    
     AdminScreenHome()
     {
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\AdminHome.png"))));
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
         
         topCenterC.add(lbl1);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
+        topCenterC.setOpaque(false);
         topCenter.add(topCenterC);
+        topCenter.setOpaque(false);
         topEastC.add(btnDeco);
+        topEastC.setOpaque(false);
         topEast.add(topEastC);
+        topEast.setOpaque(false);
         topEastC.setLayout(new BoxLayout(topEastC, BoxLayout.Y_AXIS));
        
-        topSouth.add(new JSeparator(SwingConstants.HORIZONTAL));
         topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
+        topSouth.setOpaque(false);
         
         topWest.setPreferredSize(new Dimension(150, topCenter.getSize().height));
+        topWest.setOpaque(false);
         topEast.setPreferredSize(new Dimension(150, topCenter.getSize().height));
-        
         
         top.setLayout(new BorderLayout());        
         top.add(BorderLayout.CENTER, topCenter);
         top.add(BorderLayout.SOUTH, topSouth);
         top.add(BorderLayout.WEST, topWest);
         top.add(BorderLayout.EAST, topEast);
+        top.setOpaque(false);
         
         //CENTER       
         JPlbl4.add(lbl4);
@@ -106,15 +115,17 @@ public class AdminScreenHome extends JFrame
         centerTop.add(JPlbl9);
         centerTop.add(JPlbl6);
         centerTop.add(JPlbl7);
+        centerTop.setOpaque(false);
         
         JPlbl8.setPreferredSize(new Dimension( 670, 230));
         JPlbl8.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         centerBottom.add(JPlbl8);
+        centerBottom.setOpaque(false);
 
         center.add(centerTop);
         center.add(centerBottom);
-        center.add(new JSeparator(SwingConstants.HORIZONTAL));
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
+        center.setOpaque(false);
         
         //BOTTOM
         btnNewAdmin.addActionListener(btnNewAdmin);
@@ -127,17 +138,28 @@ public class AdminScreenHome extends JFrame
         btnNewAdmin.setPreferredSize(new Dimension( 120, 50));
         
         bottomClassBtn.add(btnClassAdmin);
+        bottomClassBtn.setOpaque(false);
         bottomModifBtn.add(btnModifAdmin);
+        bottomModifBtn.setOpaque(false);
         bottomDelBtn.add(btnDelAdmin);
+        bottomDelBtn.setOpaque(false);
         bottomNewBtn.add(btnNewAdmin);
+        bottomNewBtn.setOpaque(false);
         
         bottom.add(bottomClassBtn);
         bottom.add(bottomModifBtn);
         bottom.add(bottomDelBtn);
         bottom.add(bottomNewBtn);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
+        bottom.setOpaque(false);
         
-        this.setTitle("QUIZZ : ACCUEIL Admin");
+        background.add(top);
+        background.add(center);
+        background.add(bottom);
+        background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
+        
+        this.setTitle("QWIZZ : ACCUEIL Admin");
+        setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
