@@ -117,6 +117,10 @@ public class AdminScreenHome extends JFrame
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         //BOTTOM
+        btnNewAdmin.addActionListener(btnNewAdmin);
+        btnClassAdmin.addActionListener(btnClassAdmin);
+        btnModifAdmin.addActionListener(btnModifAdmin);
+        btnDelAdmin.addActionListener(btnDelAdmin);
         btnClassAdmin.setPreferredSize(new Dimension( 120, 50));
         btnModifAdmin.setPreferredSize(new Dimension( 120, 50));
         btnDelAdmin.setPreferredSize(new Dimension( 120, 50));
