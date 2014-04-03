@@ -19,7 +19,7 @@ import javax.swing.*;
 public class QuizzScreenCreation extends JFrame
 {
     public JLabel lbl1 = new JLabel(" ");
-    public JLabel lbl2 = new JLabel("Nom du QUIZZ : ");
+    public JLabel lbl2 = new JLabel("Nom du Qwizz : ");
     public JLabel lbl3 = new JLabel("Thème :               ");
     public JLabel lbl4 = new JLabel("Difficulté :            ");
     public JLabel lbl5 = new JLabel("Temps (en min) : ");
