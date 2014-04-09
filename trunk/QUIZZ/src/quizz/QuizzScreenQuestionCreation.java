@@ -6,14 +6,15 @@ package quizz;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -24,12 +25,15 @@ public class QuizzScreenQuestionCreation extends JFrame
     public int numQuestion = 1;
     public JLabel lbl1 = new JLabel("Création de QUIZZ - Ajout de question");
     public JLabel lbl2 = new JLabel("Question N° "+ numQuestion + " : ");
+    public JLabel lblImage = new JLabel("Image (facultatif) : ");
+    public JLabel lblNB = new JLabel(" Cochez la réponse correcte ! ");
     public JLabel lbl3 = new JLabel("Réponse n°1 : ");
     public JLabel lbl4 = new JLabel("Réponse n°2 : ");
     public JLabel lbl5 = new JLabel("Réponse N°3 : ");
     public JLabel lbl6 = new JLabel("Réponse N°4 : ");
     public JLabel lbl7 = new JLabel("Réponse N°5 : ");
     public JTextField txtQuestion = new JTextField();
+    public JTextField imageQuestion = new JTextField("http://");
     public JTextField txtRep1 = new JTextField();
     public JTextField txtRep2 = new JTextField();
     public JTextField txtRep3 = new JTextField();
@@ -43,7 +47,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
     public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
     public QuizzBtn btnPreviousQuestionCreation = new QuizzBtn("Précédent");
-    public QuizzCreationBtn btnAddAnswer = new QuizzCreationBtn("Ajouter Reponse");
+    public QuizzCreationBtn btnAddURL = new QuizzCreationBtn("Valider");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -66,26 +70,32 @@ public class QuizzScreenQuestionCreation extends JFrame
     {
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
         txtQuestion.setPreferredSize(new Dimension( 550, 25));
+        imageQuestion.setPreferredSize(new Dimension( 350, 25));
         txtRep1.setPreferredSize(new Dimension( 500, 25));
         txtRep2.setPreferredSize(new Dimension( 500, 25));
         txtRep3.setPreferredSize(new Dimension( 500, 25));
         txtRep4.setPreferredSize(new Dimension( 500, 25));
         txtRep5.setPreferredSize(new Dimension( 500, 25));
         
+        imageQuestion.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                imageQuestion.setText("");
+            }
+        });
+        
         topLbl.add(lbl1); 
         top.add(topLbl);
-        top.add(new JSeparator(SwingConstants.HORIZONTAL));
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
-        
-        panelCenterSpace.add(new JLabel(""));
-        center.add(panelCenterSpace);
         
         panelCenterQuestion.add(lbl2);
         panelCenterQuestion.add(txtQuestion);
-        center.add(panelCenterQuestion); 
-        panelCenterValidateLbl.add(new JLabel("                                                                                                                                                                                                    "));
-        panelCenterValidateLbl.add(new JLabel("V"));
-        center.add(panelCenterValidateLbl);
+        panelCenterQuestion.add(lblImage);
+        panelCenterQuestion.add(imageQuestion);
+        panelCenterQuestion.add(btnAddURL);
+        panelCenterQuestion.add(lblNB);
+        panelCenterQuestion.setBorder(new EmptyBorder(0,0,60,0));
+        center.add(panelCenterQuestion);
         panelCenterRep1.add(lbl3);
         panelCenterRep1.add(txtRep1);
         panelCenterRep1.add(cbxQ1);
@@ -102,7 +112,7 @@ public class QuizzScreenQuestionCreation extends JFrame
         panelCenterRep4.add(txtRep4);
         panelCenterRep4.add(cbxQ4);
         center.add(panelCenterRep4); 
-        panelCenterRep5.add(lbl7);
+        panelCenterRep5.setBorder(new EmptyBorder(0,0,100,0));
         /*panelCenterRep5.add(txtRep5);
         panelCenterRep5.add(cbxQ5);
         center.add(panelCenterRep5);*/ 
@@ -110,8 +120,7 @@ public class QuizzScreenQuestionCreation extends JFrame
         btnQuitterAdmin.addActionListener(btnQuitterAdmin);
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
         
-        panelCenterRep3.add(btnAddAnswer);
-        center.add(panelCenterRep3);
+        center.add(panelCenterRep5);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         
         theBottom.add(btnQuitterAdmin);
@@ -134,5 +143,6 @@ public class QuizzScreenQuestionCreation extends JFrame
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
   
 }
