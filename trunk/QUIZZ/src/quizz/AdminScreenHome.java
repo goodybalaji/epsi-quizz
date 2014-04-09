@@ -33,7 +33,7 @@ public class AdminScreenHome extends JFrame
     public AdminBtn btnClassAdmin = new AdminBtn("Classement");
     public AdminBtn btnModifAdmin = new AdminBtn("Modifier");
     public AdminBtn btnDelAdmin = new AdminBtn("Supprimer");
-    public AdminBtn btnNewAdmin = new AdminBtn("Nouveau");
+    public AdminBtn btnNewAdmin = new AdminBtn("Nouveau Quizz");
     public AdminBtn btnAddAdmin = new AdminBtn("Ajouter Admin");
     
     public JPanel top = new JPanel();

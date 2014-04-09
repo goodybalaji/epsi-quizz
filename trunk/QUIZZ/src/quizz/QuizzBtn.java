@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.quizzScreenShowImage;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import static quizz.QUIZZ.quizzScreenFinish;
 import static quizz.QuizzScreenAnswer.numQuestion;
@@ -65,5 +66,8 @@ public class QuizzBtn extends JButton implements ActionListener
                 numQuestion--;
             }
         }
+        else if ("Masquer".equals(this.getText())){
+           quizzScreenShowImage.setVisible(false);
+       }
     }    
 }
