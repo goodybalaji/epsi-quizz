@@ -4,6 +4,8 @@
  */
 package quizz;
 
+import java.net.MalformedURLException;
+
 /**
  *
  * @author Mathieu 'Triboulet' RONDOT
@@ -16,7 +18,8 @@ public class QUIZZ
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
     static public QuizzScreenFinish quizzScreenFinish;
-    
+    static public QuizzScreenAddImage quizzScreenAddImage;
+    static public QuizzScreenShowImage quizzScreenShowImage;
     static public PlayerScreenHome playerScreenHome;
     static public PlayerScreenRankQuizz playerScreenRankQuizz;
     static public PlayerScreenStat playerScreenStat; 
@@ -32,22 +35,27 @@ public class QUIZZ
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
-    {
-         quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
+    public static void main(String[] args) throws MalformedURLException
+    {   
+        quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
         //quizzScreenQuestionCreation.setVisible(true);
-
+        
         quizzScreenCreation = new QuizzScreenCreation();
         //quizzScreenCreation.setVisible(true);
         
-
+        quizzScreenAddImage = new QuizzScreenAddImage();
+        //quizzScreenAddImage.setVisible(true);
+        
+        quizzScreenShowImage = new QuizzScreenShowImage();
+        quizzScreenShowImage.setVisible(true);
+        
         connectionScreen = new ConnectionScreen();
-        connectionScreen.setVisible(true);
+        //connectionScreen.setVisible(true);
         
         quizzScreenAnswer = new QuizzScreenAnswer();
         //quizzScreenAnswer.setVisible(true);
         
-
+        
         playerScreenHome = new PlayerScreenHome();
         //playerScreenHome.setVisible(true);
          

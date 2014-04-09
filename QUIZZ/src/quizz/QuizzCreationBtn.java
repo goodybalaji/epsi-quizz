@@ -19,8 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.quizzScreenCreation;
+import static quizz.QUIZZ.quizzScreenAddImage;
 import static quizz.QUIZZ.quizzScreenQuestionCreation;
-import static quizz.QUIZZ.quizzScreenQuestionCreationBis;
+//import static quizz.QUIZZ.quizzScreenQuestionCreationBis;
 import static quizz.QuizzScreenCreation.txtNameQuizz;
 
 /**
@@ -62,7 +63,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
         }
        else if ("Ajouter Reponse".equals(this.getText()))
         {
-            //création d'une nouvelle ligne réponse
+            /*//création d'une nouvelle ligne réponse
             lbl = new JLabel ("Réponse n°");
             lbl1 = new JLabel("");
             indiceReponse =3;
@@ -76,8 +77,12 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
             quizzScreenQuestionCreationBis.panelCenterRep4.add(txtRep);
             quizzScreenQuestionCreationBis.panelCenterRep4.add(cbx);
             quizzScreenQuestionCreationBis.center.add(quizzScreenQuestionCreationBis.panelCenterRep4);
-            
+            */
             //quizzScreenQuestionCreationBis.repaint();
         }
+       else if ("Annuler".equals(this.getText())){
+           quizzScreenAddImage.setVisible(false);
+       }
+       
     }
 }
