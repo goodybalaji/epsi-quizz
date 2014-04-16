@@ -33,12 +33,13 @@ public class QUIZZ
 
     static public ConnectionScreen connectionScreen;
     static public Player player;
-
     static public Admin admin;
-    
+    static public Quiz quiz;    
     static public CustomFont customFont;
+
     /**
      * @param args the command line arguments
+     * @throws java.net.MalformedURLException
      */
     public static void main(String[] args) throws MalformedURLException
     {   

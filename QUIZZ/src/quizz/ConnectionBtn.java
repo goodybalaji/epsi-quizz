@@ -47,7 +47,7 @@ public class ConnectionBtn extends JButton implements ActionListener {
                     try
                     {
                         //création de la variable de connexion
-                        final java.sql.Statement statement = DBConnect.Connect();
+                        java.sql.Statement statement = DBConnect.Connect();
                         ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne, mdpPersonne from PERSONNE "
                                 + "WHERE loginPersonne ='" + connectionScreen.txtUser.getText().toString() + "' "
                                 + "AND mdpPersonne = '" + String.valueOf(pwd) + "'");
@@ -66,7 +66,7 @@ public class ConnectionBtn extends JButton implements ActionListener {
                             {
                                 //System.out.println("joueur");
                                 player = new Player(login, id);
-                                //System.out.println("player créé");
+                                rsPlayer = null;
                                 connectionScreen.setVisible(false);
                                 playerScreenHome.setVisible(true); 
                             }
@@ -77,11 +77,14 @@ public class ConnectionBtn extends JButton implements ActionListener {
                                 {
                                     //System.out.println("admin");
                                     admin = new Admin(login, id);
+                                    rsAdmin = null;
                                     connectionScreen.setVisible(false);
                                     adminScreenHome.setVisible(true);
+                                    
                                 }
                             }
-                                                        
+                            rs = null;
+                            statement = null;
                         }
                         //envoi du message d'erreur et réhinitialisation des champs à vide
                         else
@@ -116,7 +119,7 @@ public class ConnectionBtn extends JButton implements ActionListener {
                 try
                 {
                     //création de la variable de connexion
-                    final java.sql.Statement statement = DBConnect.Connect();
+                    java.sql.Statement statement = DBConnect.Connect();
                     //vérification de la disponbilité du login du nouvel utilisateur
                     ResultSet rs = statement.executeQuery("SELECT idPersonne, loginPersonne from PERSONNE, JOUEUR where PERSONNE.idPersonne = JOUEUR.idJoueur");
                     while(rs.next() == true){
@@ -167,7 +170,10 @@ public class ConnectionBtn extends JButton implements ActionListener {
                         if (creation == true)
                         {
                             JOptionPane.showMessageDialog(connectionScreenAddUser, "Votre utilisateur à bien été créer, vous pouvez maintenant vous connecter.");
-                            connectionScreenAddUser.dispose();
+                            rs = null;
+                            rsSelectId = null;
+                            statement = null;
+                            connectionScreenAddUser.dispose();                            
                             connectionScreen.setVisible(true);
                         }
                         else

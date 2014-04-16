@@ -55,16 +55,6 @@ public class AdminBtn extends JButton implements ActionListener
         {
             adminScreenAddAdmin.setVisible(false);
         }
-        else if ("Suivant".equals(this.getText()))
-        {
-            quizzScreenCreation.setVisible(false);
-            quizzScreenQuestionCreation.setVisible(true);
-        }
-        else if ("Quitter".equals(this.getText()))
-        {
-            quizzScreenCreation.setVisible(false);
-            adminScreenHome.setVisible(true);
-        }
         else if ("Créer".equals(this.getText()))
         {   
             //création des variable de verification du mdp
