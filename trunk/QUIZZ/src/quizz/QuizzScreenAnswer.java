@@ -20,15 +20,28 @@ import javax.swing.*;
 import quizz.CustomFont;
 /**
  *
- * @author Mama
+ * @author Mama  
  */
 public class QuizzScreenAnswer extends JFrame {
 
+    
+    static public QuizzTimer quizzTimer;
+    
+
+
     public static CustomFont CustomFont;
+
     public ArrayList<JButton> questionBtnList = new ArrayList<JButton>();
-    public int i;
+
+    public int i; 
+
     public static int numQuestion = 1;
-    public JLabel lblQuizzName = new JLabel("Nom du Qwizz");
+
+
+    public JLabel lblQuizzName = new JLabel("[Nom du QUIZZ]");
+
+   // public JLabel lblQuizzName = new JLabel("Nom du Qwizz");
+
     public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/40");
     public JLabel lblQuestion= new JLabel("Question : [ ... ] ");
     public JLabel lblRep1 = new JLabel("Solution 1 : [ ... ] ");
@@ -67,12 +80,20 @@ public class QuizzScreenAnswer extends JFrame {
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
     
+    
     QuizzScreenAnswer()
     {
+
+        quizzTimer = new QuizzTimer();     
+        lblTimer = quizzTimer.lbl1;
+        
+
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizAnswer.png"))));
+
+
         
         CustomFont = new CustomFont();
-        CFont = CustomFont.getFont("Hanged Letters.ttf");
+        CFont = CustomFont.getFont("Hanged Letters.ttf"); 
         /*
         addWindowListener( new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -80,7 +101,7 @@ public class QuizzScreenAnswer extends JFrame {
 			}
 		});
         */
-        
+
         for(i=1; i<=41; i++)
         {
             JButton btn = new JButton("" + i);
