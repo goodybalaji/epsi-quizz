@@ -15,6 +15,8 @@ public class QUIZZ
 
     static public QuizzScreenQuestionCreation quizzScreenQuestionCreation;
     static public QuizzScreenCreation quizzScreenCreation;
+    
+
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
     static public QuizzScreenFinish quizzScreenFinish;
@@ -28,32 +30,40 @@ public class QUIZZ
     static public AdminScreenAddAdmin adminScreenAddAdmin;
     
     static public ConnectionScreenAddUser connectionScreenAddUser;
-    static public ConnectionScreen connectionScreen;
 
+    static public ConnectionScreen connectionScreen;
     static public Player player;
+
     static public Admin admin;
+    
+    static public CustomFont customFont;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws MalformedURLException
     {   
         quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
-        //quizzScreenQuestionCreation.setVisible(true);
+       //quizzScreenQuestionCreation.setVisible(true);
         
         quizzScreenCreation = new QuizzScreenCreation();
         //quizzScreenCreation.setVisible(true);
-        
         quizzScreenAddImage = new QuizzScreenAddImage();
         //quizzScreenAddImage.setVisible(true);
         
         quizzScreenShowImage = new QuizzScreenShowImage();
         quizzScreenShowImage.setVisible(true);
         
+
         connectionScreen = new ConnectionScreen();
+
         //connectionScreen.setVisible(true);
-        
+
+
+
+        //connectionScreen.setVisible(true);
+
         quizzScreenAnswer = new QuizzScreenAnswer();
-        //quizzScreenAnswer.setVisible(true);
+        quizzScreenAnswer.setVisible(true);
         
         
         playerScreenHome = new PlayerScreenHome();
@@ -62,11 +72,15 @@ public class QUIZZ
 
 
         quizzScreenFinish = new QuizzScreenFinish();
+        playerScreenHome = new PlayerScreenHome();
+        //playerScreenHome.setVisible(true);
+
 
         
         playerScreenHome = new PlayerScreenHome();
         //playerScreenHome.setVisible(true);
         
+
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
         //playerRankQuizzScreen.setVisible(true);
         
@@ -87,6 +101,8 @@ public class QUIZZ
         
         adminScreenHome = new AdminScreenHome();
         //adminScreenHome.setVisible(true);
+        
+        customFont = new CustomFont();
 
     }
 }
