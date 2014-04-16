@@ -17,6 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import quizz.CustomFont;
 /**
  *
@@ -38,11 +39,11 @@ public class QuizzScreenAnswer extends JFrame {
     public static int numQuestion = 1;
 
 
-    public JLabel lblQuizzName = new JLabel("[Nom du QUIZZ]");
+    public JLabel lblQuizzName = new JLabel("[Nom du Qwizz]", JLabel.CENTER);
 
    // public JLabel lblQuizzName = new JLabel("Nom du Qwizz");
 
-    public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/40");
+    public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/40", JLabel.CENTER);
     public JLabel lblQuestion= new JLabel("Question : [ ... ] ");
     public JLabel lblRep1 = new JLabel("Solution 1 : [ ... ] ");
     public JLabel lblRep2 = new JLabel("Solution 2 : [ ... ] ");
@@ -114,7 +115,7 @@ public class QuizzScreenAnswer extends JFrame {
         
         
         lblQuizzName.setForeground(WHITE);
-        lblQuizzName.setFont(CFont.deriveFont(20.0f));
+        lblQuizzName.setFont(CFont.deriveFont(32.0f));
         lblNbQuestion.setFont(lblNbQuestion.getFont().deriveFont(18.0f));
         lblQuestion.setFont(lblQuestion.getFont().deriveFont(16.0f));
         lblTimer.setFont(lblTimer.getFont().deriveFont(16.0f));
@@ -125,6 +126,7 @@ public class QuizzScreenAnswer extends JFrame {
         topWest.setOpaque(false);
         topWestC.setLayout(new BoxLayout(topWestC, BoxLayout.Y_AXIS));
         topCenterC.add(lblQuizzName);
+        topCenterC.setBorder(new EmptyBorder(-10,0,0,0));
         topCenterC.add(lblNbQuestion);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
         topCenterC.setOpaque(false);
@@ -139,6 +141,7 @@ public class QuizzScreenAnswer extends JFrame {
         {
             topQuestionList1.add(questionBtnList.get(i));
             topQuestionList1.setOpaque(false);
+            topQuestionList1.setBorder(new EmptyBorder(0,0,-3,0));
         }
         for(i=20; i<=39; i++)
         {
@@ -161,6 +164,7 @@ public class QuizzScreenAnswer extends JFrame {
         top.add(BorderLayout.WEST, topWest);
         top.add(BorderLayout.EAST, topEast);
         top.setOpaque(false);
+        top.setBorder(new EmptyBorder(-2,0,0,0));
      
         panelCenterQuestion.add(lblQuestion);
         panelCenterQuestion.setOpaque(false);
