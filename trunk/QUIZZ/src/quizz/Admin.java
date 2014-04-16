@@ -40,4 +40,9 @@ public class Admin
            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
+
+    int getId()
+    {
+         return id;
+    }
 }

@@ -8,6 +8,10 @@ package quizz;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -23,12 +27,12 @@ public class QuizzScreenCreation extends JFrame
     public JLabel lbl3 = new JLabel("Thème :               ");
     public JLabel lbl4 = new JLabel("Difficulté :            ");
     public JLabel lbl5 = new JLabel("Temps (en min) : ");
-    public static JTextField txtNameQuizz = new JTextField();
+    public JTextField txtNameQuizz = new JTextField();
     public JComboBox cbxTheme = new JComboBox();
     public JComboBox cbxLevel = new JComboBox();
-    public JTextField txtTemp = new JTextField();
-    public AdminBtn btnQuitterAdmin = new AdminBtn("Quitter");
-    public AdminBtn btnNextQuestion = new AdminBtn("Suivant");
+    public JTextField txtTemps = new JTextField();
+    public QuizzCreationBtn btnQuitterAdmin = new QuizzCreationBtn("Quitter");
+    public QuizzCreationBtn btnNextQuestion = new QuizzCreationBtn("Suivant");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -51,7 +55,7 @@ public class QuizzScreenCreation extends JFrame
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizCreationBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         txtNameQuizz.setPreferredSize(new Dimension( 200, 25));
-        txtTemp.setPreferredSize(new Dimension( 200, 25));
+        txtTemps.setPreferredSize(new Dimension( 200, 25));
         cbxLevel.setPreferredSize(new Dimension( 198, 25));
         cbxTheme.setPreferredSize(new Dimension( 198, 25));
         
@@ -60,7 +64,29 @@ public class QuizzScreenCreation extends JFrame
         top.add(topLbl);
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
         top.setOpaque(false);
-        
+
+try 
+        {
+            java.sql.Statement statement = DBConnect.Connect();
+            ResultSet rs = statement.executeQuery("Select * from THEME");
+            while(rs.next() == true)
+            {
+                cbxTheme.addItem(rs.getString("lblTheme"));
+            }
+            rs = statement.executeQuery("Select * from Difficulte");
+            while(rs.next() == true)
+            {
+                cbxLevel.addItem(rs.getString("lblDifficulte"));
+            }
+            rs = null;
+            statement = null;
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(QuizzScreenCreation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        txtTemps.setText("20");
         panelCenterSpace.add(new JLabel(""));
         panelCenterSpace.setOpaque(false);
         center.add(panelCenterSpace);
@@ -77,7 +103,7 @@ public class QuizzScreenCreation extends JFrame
         panelCenterLevel.setOpaque(false);
         center.add(panelCenterLevel);        
         panelCenterTemp.add(lbl5);
-        panelCenterTemp.add(txtTemp);
+        panelCenterTemp.add(txtTemps);
         panelCenterTemp.setOpaque(false);
         center.add(panelCenterTemp);        
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));

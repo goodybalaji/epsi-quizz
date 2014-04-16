@@ -12,14 +12,12 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import static quizz.QUIZZ.player;
 /**
  *
  * @author Arc
  */
 public class PlayerScreenHome extends JFrame
 {
-    public JLabel lblHome = new JLabel("Accueil [PlayerName]");
     public PlayerBtn btnDeco = new PlayerBtn("Déconnexion");
     public JLabel lbl2 = new JLabel("Nom : ");
     public JTextField txtNameQuizz = new JTextField();
@@ -79,9 +77,7 @@ public class PlayerScreenHome extends JFrame
     PlayerScreenHome()
     {   
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
-        //TOP
-        lblHome.setFont(lblHome.getFont().deriveFont(18.0f));
-        
+
         
         topCenterC.add(new JLabel(" "));
         topCenterC.add(new JLabel(" "));
