@@ -55,8 +55,8 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnQuitterPlayer = new QuizzBtn("Abandonner");
     public QuizzBtn btnValideQuizz = new QuizzBtn("Valider Quizz");
     public QuizzBtn btnValideQuestion = new QuizzBtn("Valider Question");
-    public SwitchBtn btnNextAnswer = new SwitchBtn("  Suivant  ");    
-    public SwitchBtn btnPreviousAnswer = new SwitchBtn("Précédent");
+    public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");    
+    public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
     public Font CFont;
     
     public JPanel top = new JPanel();
@@ -88,7 +88,7 @@ public class QuizzScreenAnswer extends JFrame {
         quizzTimer = new QuizzTimer();     
         lblTimer = quizzTimer.lbl1;
         
-
+        
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizAnswer.png"))));
 
 
@@ -212,7 +212,7 @@ public class QuizzScreenAnswer extends JFrame {
         background.add(center);
         background.add(bottom);
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
-                
+        
         this.setTitle("QWIZZ !");
         setLayout(new BorderLayout());
         this.setSize(700,400);  
@@ -224,21 +224,5 @@ public class QuizzScreenAnswer extends JFrame {
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    public class SwitchBtn extends JButton implements ActionListener
-    {
-        SwitchBtn(String str)
-        {
-            super(str);
-        }
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if("  Suivant  ".equals(this.getText()))
-        {
-            numQuestion++;
-            this.repaint();
-        }
-        }
-    }
+
 }

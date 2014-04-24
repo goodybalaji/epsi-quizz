@@ -15,12 +15,16 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QuizzScreenShowImage.scaleImage;
+import static quizz.QuizzCreationBtn.icon;
 
 /**
  *
@@ -30,11 +34,14 @@ public class QuizzScreenAddImage extends JFrame{
     
     public QuizzCreationBtn btnSave = new QuizzCreationBtn("Sauvegarder");
     public QuizzCreationBtn btnReturn = new QuizzCreationBtn("Annuler");
+   
     
     public JPanel image = new JPanel();
     public JPanel bottom = new JPanel();
+   
     
-    QuizzScreenAddImage() throws MalformedURLException {
+    
+    QuizzScreenAddImage(){
         
         bottom.add(btnReturn);
         bottom.add(btnSave);
@@ -42,12 +49,16 @@ public class QuizzScreenAddImage extends JFrame{
         btnSave.addActionListener(btnSave);
         btnReturn.addActionListener(btnReturn);
         
-        ImageIcon icon = new ImageIcon(new ImageIcon(new URL("http://blog.fysiki.com/wp-content/uploads/2010/07/biere.jpg")).getImage());
-        Image zoom = scaleImage(icon.getImage(), 450);
-        Icon iconScaled = new ImageIcon(zoom);
-        JLabel img = new JLabel(iconScaled);
-       image.add(img);
-       
+        
+         
+          if(icon != null) {
+             Image zoom = scaleImage(icon.getImage(), 450);
+            Icon iconScaled = new ImageIcon(zoom);
+            JLabel img = new JLabel(iconScaled);
+            image.add(img);
+          }
+           
+        
     /** Spécification de la page */
         this.setTitle("Ajout d'une image");
         setLayout(new BorderLayout());

@@ -16,7 +16,7 @@ public class QUIZZ
     static public QuizzScreenQuestionCreation quizzScreenQuestionCreation;
     static public QuizzScreenCreation quizzScreenCreation;
     
-
+    
     static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
     static public QuizzScreenFinish quizzScreenFinish;
@@ -59,11 +59,10 @@ public class QUIZZ
         
 
         connectionScreen = new ConnectionScreen();
-
-        connectionScreen.setVisible(true);
+        //connectionScreen.setVisible(true);
 
         quizzScreenAnswer = new QuizzScreenAnswer();
-        //quizzScreenAnswer.setVisible(true);
+        quizzScreenAnswer.setVisible(true);
         
         
         playerScreenHome = new PlayerScreenHome();
@@ -72,6 +71,8 @@ public class QUIZZ
 
 
         quizzScreenFinish = new QuizzScreenFinish();
+        //quizzScreenFinish.setVisible(true);
+        
         playerScreenHome = new PlayerScreenHome();
         //playerScreenHome.setVisible(true);
 
