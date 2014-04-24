@@ -6,7 +6,6 @@
 
 package quizz;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -60,7 +59,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                 {
                     idDifficulte = 3;
                 }
-                int idThema = 0;
+                int idThema = 1;
                 if (quizzScreenCreation.cbxTheme.getSelectedObjects().toString().equals("Sport"))
                 {
                     idThema = 1;
@@ -77,21 +76,19 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                 {
                     idThema = 4;
                 }
-                DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-                String laDate = date.format(new Date());
                 try
                 {
                     //création de la variable de connexion
                     final java.sql.Statement statement = DBConnect.Connect();
-                    ResultSet rs = statement.executeQuery("INSERT INTO QUIZ"
+                    System.out.println();
+                    ResultSet rs = statement.executeQuery("INSERT INTO QUIZ "
                     + "VALUES (inc_quiz_seq.NEXTVAL," + idDifficulte + ", " + idThema + ", "
-                    + admin.getId() +", "+ quizzScreenCreation.txtNameQuizz.getText().toString() + ", 0,"
-                    + quizzScreenCreation.txtTemps.getText().toString() +", "+ laDate +", 0)");
+                    + admin.getId() +", '"+ quizzScreenCreation.txtNameQuizz.getText().toString() + "', 0,'"
+                    + quizzScreenCreation.txtTemps.getText().toString() +"', sysdate, 0)");
                     
                     rs = statement.executeQuery("Select Max(idQuiz) from QUIZ");
                     int idQuiz = rs.getInt(1);
-                    quiz = new Quiz(idQuiz);
-                    
+                    quiz = new Quiz(idQuiz);                    
                 }
                 catch (SQLException ex)
                 {
@@ -114,6 +111,19 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
         }
        else if ("Annuler".equals(this.getText())){
            quizzScreenAddImage.setVisible(false);
+       }
+       else if ("  Suivant  ".equals(this.getText())){
+           quiz.incNbQuestion();
+           if (!quizzScreenQuestionCreation.txtQuestion.toString().isEmpty() && !quizzScreenQuestionCreation.txtRep1.toString().isEmpty()
+              && !quizzScreenQuestionCreation.txtRep2.toString().isEmpty())
+           {
+              /* if(quizzScreenQuestionCreation.cbxQ1.)*/
+           }
+           else
+           {
+               JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer un question avec deux question au minimum pour qu'elle soit valide");
+           }
+           
        }
        
     }

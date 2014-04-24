@@ -52,19 +52,19 @@ public class QUIZZ
         //quizzScreenAddImage.setVisible(true);
         
         quizzScreenShowImage = new QuizzScreenShowImage();
-        quizzScreenShowImage.setVisible(true);
+        //quizzScreenShowImage.setVisible(true);
         
 
         connectionScreen = new ConnectionScreen();
 
-        //connectionScreen.setVisible(true);
+        connectionScreen.setVisible(true);
 
 
 
         //connectionScreen.setVisible(true);
 
         quizzScreenAnswer = new QuizzScreenAnswer();
-        quizzScreenAnswer.setVisible(true);
+        //quizzScreenAnswer.setVisible(true);
         
         
         playerScreenHome = new PlayerScreenHome();
@@ -90,12 +90,7 @@ public class QUIZZ
         
 
         connectionScreenAddUser = new ConnectionScreenAddUser();
-        //connectionScreenAddUser.setVisible(true);
-
-        connectionScreenAddUser = new ConnectionScreenAddUser();
-        //connectionScreenAddUser.setVisible(true);
-
-        
+        //connectionScreenAddUser.setVisible(true);        
         
         adminScreenAddAdmin = new AdminScreenAddAdmin();
         //adminScreenAddAdmin.setVisible(true);

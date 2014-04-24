@@ -13,14 +13,11 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.adminScreenAddAdmin;
 import static quizz.QUIZZ.quizzScreenCreation;
-import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QUIZZ.admin;
 import static quizz.QUIZZ.connectionScreen;
-import static quizz.QUIZZ.connectionScreenAddUser;
 
 /**
  *
@@ -42,7 +39,7 @@ public class AdminBtn extends JButton implements ActionListener
             adminScreenHome.setVisible(false);
             connectionScreen.setVisible(true);            
         }
-        else if("Nouveau".equals(this.getText()))
+        else if("Nouveau Quizz".equals(this.getText()))
         {
             quizzScreenCreation.setVisible(true);
             adminScreenHome.setVisible(false);
