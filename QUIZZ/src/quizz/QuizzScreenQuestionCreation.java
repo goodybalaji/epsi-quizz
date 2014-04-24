@@ -34,7 +34,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public JLabel lbl6 = new JLabel("Réponse N°4 : ");
     public JLabel lbl7 = new JLabel("Réponse N°5 : ");
     public JTextField txtQuestion = new JTextField();
-    public JTextField imageQuestion = new JTextField("http://");
+    public JTextField imageQuestion = new JTextField();
     public JTextField txtRep1 = new JTextField();
     public JTextField txtRep2 = new JTextField();
     public JTextField txtRep3 = new JTextField();
@@ -45,9 +45,9 @@ public class QuizzScreenQuestionCreation extends JFrame
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
     public JCheckBox cbxQ5 = new JCheckBox();
-    public QuizzBtn btnQuitterAdmin = new QuizzBtn("Quitter");
+    public QuizzCreationBtn btnQuitterAdmin = new QuizzCreationBtn("Quitter");
     public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
-    public QuizzBtn btnPreviousQuestionCreation = new QuizzBtn("Précédent");
+    public QuizzCreationBtn btnPreviousQuestionCreation = new QuizzCreationBtn("Précédent");
     public QuizzCreationBtn btnAddURL = new QuizzCreationBtn("Valider");
     
     public JPanel top = new JPanel();
@@ -131,6 +131,7 @@ public class QuizzScreenQuestionCreation extends JFrame
         
         btnQuitterAdmin.addActionListener(btnQuitterAdmin);
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
+        btnAddURL.addActionListener(btnAddURL);
         
         center.add(panelCenterRep5);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
