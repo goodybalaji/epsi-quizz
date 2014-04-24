@@ -213,7 +213,7 @@ public class QuizzScreenAnswer extends JFrame {
         background.add(bottom);
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
                 
-        this.setTitle("QWIZZ : Answer");
+        this.setTitle("QWIZZ !");
         setLayout(new BorderLayout());
         this.setSize(700,400);  
         this.setResizable(false);
