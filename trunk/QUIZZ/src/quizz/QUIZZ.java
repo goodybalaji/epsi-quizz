@@ -36,7 +36,8 @@ public class QUIZZ
     static public Admin admin;
     static public Quiz quiz;    
     static public CustomFont customFont;
-
+    static public CalculScore calculScore;
+    
     /**
      * @param args the command line arguments
      * @throws java.net.MalformedURLException
@@ -45,6 +46,8 @@ public class QUIZZ
     {   
         quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
        //quizzScreenQuestionCreation.setVisible(true);
+        questionCorrectionScreen = new QuizzScreenQuestionCorrection();
+       //questionCorrectionScreen.setVisible(true);
         
         quizzScreenCreation = new QuizzScreenCreation();
         //quizzScreenCreation.setVisible(true);
@@ -58,10 +61,6 @@ public class QUIZZ
         connectionScreen = new ConnectionScreen();
 
         connectionScreen.setVisible(true);
-
-
-
-        //connectionScreen.setVisible(true);
 
         quizzScreenAnswer = new QuizzScreenAnswer();
         //quizzScreenAnswer.setVisible(true);
@@ -83,10 +82,10 @@ public class QUIZZ
         
 
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
-        //playerRankQuizzScreen.setVisible(true);
+       // playerScreenRankQuizz.setVisible(true);
         
         playerScreenStat = new PlayerScreenStat();
-        //quizzStatPlayerScreen.setVisible(true);
+       //playerScreenStat.setVisible(true);
         
 
         connectionScreenAddUser = new ConnectionScreenAddUser();
@@ -99,6 +98,9 @@ public class QUIZZ
         //adminScreenHome.setVisible(true);
         
         customFont = new CustomFont();
+        
+        calculScore = new CalculScore();
+        
 
     }
 }
