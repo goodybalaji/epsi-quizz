@@ -56,28 +56,29 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
             if (quizzScreenCreation.txtNameQuizz.getText().toString().isEmpty() != true)
             {
                 int idDifficulte = 1;
-                if (quizzScreenCreation.cbxLevel.getSelectedObjects().toString().equals("Moyen"))
+                if (quizzScreenCreation.cbxLevel.getSelectedItem().toString().equals("Moyen"))
                 {
                     idDifficulte = 2;
                 }
-                else if (quizzScreenCreation.cbxLevel.getSelectedObjects().toString().equals("Difficile"))
+                else if (quizzScreenCreation.cbxLevel.getSelectedItem().toString().equals("Difficile"))
                 {
                     idDifficulte = 3;
                 }
                 int idThema = 1;
-                if (quizzScreenCreation.cbxTheme.getSelectedObjects().toString().equals("Sport"))
+                
+                if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Sport"))
                 {
                     idThema = 1;
                 }
-                else if (quizzScreenCreation.cbxTheme.getSelectedObjects().toString().equals("Cinema"))
+                else if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Cinema"))
                 {
                     idThema = 2;
                 }
-                else if (quizzScreenCreation.cbxTheme.getSelectedObjects().toString().equals("Serie"))
+                else if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Serie"))
                 {
                     idThema = 3;
                 }
-                else if (quizzScreenCreation.cbxTheme.getSelectedObjects().toString().equals("Histoire"))
+                else if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Histoire"))
                 {
                     idThema = 4;
                 }
@@ -143,6 +144,10 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer un question avec deux question au minimum pour qu'elle soit valide");
            }
            
+       }
+       else if("Finir".equals(this.getText())){
+           quizzScreenCreation.setVisible(false);
+           adminScreenHome.setVisible(true);
        }
 
        
