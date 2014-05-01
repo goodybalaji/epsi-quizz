@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import quizz.CustomFont;
+import static quizz.QuizzScreenAnswer.quizzTimer;
 /**
  *
  * @author Mama  
@@ -26,7 +27,7 @@ import quizz.CustomFont;
 public class QuizzScreenAnswer extends JFrame {
 
     
-    static public QuizzTimer quizzTimer;
+    static public QuizzTimer quizzTimer = new QuizzTimer(); 
     
 
 
@@ -85,7 +86,7 @@ public class QuizzScreenAnswer extends JFrame {
     QuizzScreenAnswer()
     {
 
-        quizzTimer = new QuizzTimer();     
+            
         lblTimer = quizzTimer.lbl1;
         
         
@@ -105,11 +106,12 @@ public class QuizzScreenAnswer extends JFrame {
 
         for(i=1; i<=41; i++)
         {
-            JButton btn = new JButton("" + i);
+            NumBtn btn = new NumBtn("" + i);
             btn.setPreferredSize(new Dimension(28, 28));
             btn.setMargin(new Insets(0, 0, 0, 0));
             btn.setFont(btn.getFont().deriveFont(12.0f));
             //listener
+            btn.addActionListener(btn);
             questionBtnList.add(btn);               
         }
         

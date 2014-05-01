@@ -23,6 +23,7 @@ import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QuizzCreationBtn.icon;
 import static quizz.QuizzScreenAnswer.numQuestion;
 
+
 /**
  *
  * @author Mama
@@ -65,9 +66,12 @@ public class QuizzBtn extends JButton implements ActionListener
         }
         else if("  Suivant  ".equals(this.getText()))
         {
+            if(numQuestion<40)
+            {
             numQuestion++;
+            quizzScreenAnswer.dispose();
             quizzScreenAnswer = new QuizzScreenAnswer();
-               if(true){
+               if(false){
                    try {
                         icon = new ImageIcon(new ImageIcon(new URL("http://blog.fysiki.com/wp-content/uploads/2010/07/biere.jpg")).getImage());
                         quizzScreenShowImage = new QuizzScreenShowImage();
@@ -76,18 +80,34 @@ public class QuizzBtn extends JButton implements ActionListener
                     }
                     quizzScreenShowImage.setVisible(true);
                }
+               quizzScreenAnswer.setVisible(true);
+            }
         }
         else if("Précédent".equals(this.getText()))
         {
             if(numQuestion>1)
             {
-
+                   numQuestion--;
+                    quizzScreenAnswer.dispose();
+                    quizzScreenAnswer = new QuizzScreenAnswer();
+               if(false){
+                   try {
+                        icon = new ImageIcon(new ImageIcon(new URL("http://blog.fysiki.com/wp-content/uploads/2010/07/biere.jpg")).getImage());
+                        quizzScreenShowImage = new QuizzScreenShowImage();
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    quizzScreenShowImage.setVisible(true);
+               }
+               quizzScreenAnswer.setVisible(true);
             }
         }
         else if("Masquer".equals(this.getText()))
         {
             quizzScreenShowImage.setVisible(false);
+            
         }
+        
         
     }    
 }
