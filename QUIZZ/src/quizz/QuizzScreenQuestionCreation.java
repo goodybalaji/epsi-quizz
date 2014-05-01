@@ -21,9 +21,12 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Mama
  */
+
+
+
 public class QuizzScreenQuestionCreation extends JFrame
 {
-    public int numQuestion = 1;
+    public static int numQuestion = 1;
     public JLabel lbl1 = new JLabel(" ");
     public JLabel lbl2 = new JLabel("Question N° "+ numQuestion + " : ");
     public JLabel lblImage = new JLabel("Image (facultatif) : ");
