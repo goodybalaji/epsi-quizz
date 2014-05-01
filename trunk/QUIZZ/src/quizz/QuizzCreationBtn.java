@@ -128,7 +128,8 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
            quizzScreenAddImage.setVisible(true);
        }
 
-       else if ("  Suivant  ".equals(this.getText())){
+       else if ("  Suivant  ".equals(this.getText()))
+       {
            quiz.incNbQuestion();
            if (quizzScreenQuestionCreation.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionCreation.txtRep1.getText().isEmpty() == false
               && quizzScreenQuestionCreation.txtRep2.getText().isEmpty() == false)
@@ -214,6 +215,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                             quizzScreenQuestionCreation.dispose();
                             numQuestion++;
                             quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
+                            quizzScreenQuestionCreation.setVisible(true);
                       }
                       catch (SQLException ex)
                       {
@@ -287,14 +289,16 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                                         + roping(quizzScreenQuestionCreation.txtRep4.getText().toString())+"', "+idQuestion+", "
                                         +state+")"); 
                             }
+                            quizzScreenQuestionCreation.dispose();
+                            numQuestion++;
+                            quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
+                            quizzScreenQuestionCreation.setVisible(true);
                       }
                       catch (SQLException ex)
                       {
                             Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                       } 
-                      quizzScreenQuestionCreation.dispose();
-                      numQuestion++;
-                      quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
+                      
                   }                  
               }
               else
@@ -307,20 +311,197 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
            }           
        }
-       else if("Finir Quizz".equals(this.getText())){
+       else if("Finir Quizz".equals(this.getText()))
+       {
            int reponse = JOptionPane.showConfirmDialog(this,
-                "Avez-vous terminé votre quizz ?",
+                "Avez-vous terminé votre Qwizz ?",
                 "Confirmation",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
                 quizzScreenQuestionCreation.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		if(reponse == JOptionPane.YES_OPTION ){
-			adminScreenHome.setVisible(true);
-                        quizzScreenQuestionCreation.dispose();
+			
+                    quiz.incNbQuestion();
+                    if (quizzScreenQuestionCreation.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionCreation.txtRep1.getText().isEmpty() == false
+                       && quizzScreenQuestionCreation.txtRep2.getText().isEmpty() == false)
+                    {
+                       if(quizzScreenQuestionCreation.cbxQ1.isSelected() == true ||
+                          quizzScreenQuestionCreation.cbxQ2.isSelected() == true ||
+                          quizzScreenQuestionCreation.cbxQ3.isSelected() == true ||
+                          quizzScreenQuestionCreation.cbxQ4.isSelected() == true )
+                       {
+                           if(quizzScreenQuestionCreation.imageQuestion.getText().isEmpty() == true ||
+                              quizzScreenQuestionCreation.imageQuestion.getText().equals("http://"))
+                           {
+                               try
+                               {
+                                     //création de la variable de connexion
+                                     final java.sql.Statement statement = DBConnect.Connect();
+                                     //création du quizz
+
+                                     System.out.println("INSERT INTO QUESTION (idquestion, lblquestion) VALUES (inc_ques_seq.NEXTVAL, '" 
+                                             + roping(quizzScreenQuestionCreation.txtQuestion.getText().toString())+"')");
+                                     ResultSet rs = statement.executeQuery("INSERT INTO QUESTION (idquestion, lblquestion) VALUES (inc_ques_seq.NEXTVAL, '" 
+                                             + roping(quizzScreenQuestionCreation.txtQuestion.getText().toString())+"')");
+                                     rs = statement.executeQuery("select max(idquestion) from question");
+                                     rs.next();
+                                     int idQuestion = rs.getInt(1);
+                                     rs = statement.executeQuery("INSERT INTO composer values ("+ quiz.getId()+" ,"+idQuestion+")");
+
+                                     int state;
+                                     //création de la solution 1
+                                     if(quizzScreenQuestionCreation.cbxQ1.isSelected() == true)
+                                     {
+                                         state = 1;
+                                     }
+                                     else
+                                     {
+                                         state = 0;
+                                     }
+                                     rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                             + roping(quizzScreenQuestionCreation.txtRep1.getText().toString())+"', "+idQuestion+", "
+                                             +state+")");
+                                     //création de la solution 2
+                                     if(quizzScreenQuestionCreation.cbxQ2.isSelected() == true)
+                                     {
+                                         state = 1;
+                                     }
+                                     else
+                                     {
+                                         state = 0;
+                                     }
+                                     rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                             + roping(quizzScreenQuestionCreation.txtRep2.getText().toString())+"', "+idQuestion+", "
+                                             +state+")");
+                                     //vérification d'une solution 3 et création
+                                     if(!quizzScreenQuestionCreation.txtRep3.getText().isEmpty())
+                                     {
+                                        if(quizzScreenQuestionCreation.cbxQ3.isSelected() == true)
+                                         {
+                                             state = 1;
+                                         }
+                                         else
+                                         {
+                                             state = 0;
+                                         }
+                                         rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                                 + roping(quizzScreenQuestionCreation.txtRep3.getText().toString())+"', "+idQuestion+", "
+                                                 +state+")"); 
+                                     }
+                                     //vérification d'une solution 4 et création
+                                     if(!quizzScreenQuestionCreation.txtRep4.getText().isEmpty())
+                                     {
+                                        if(quizzScreenQuestionCreation.cbxQ4.isSelected() == true)
+                                         {
+                                             state = 1;
+                                         }
+                                         else
+                                         {
+                                             state = 0;
+                                         }
+                                         rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                                 + roping(quizzScreenQuestionCreation.txtRep4.getText().toString())+"', "+idQuestion+", "
+                                                 +state+")"); 
+                                     } 
+                                     adminScreenHome.setVisible(true);
+                                     quizzScreenQuestionCreation.dispose();
+                                     rs = statement.executeQuery("update quiz set nbquestionquiz = "+quiz.getNbQuestion()+" where idquiz = "+quiz.getId()); 
+                               }
+                               catch (SQLException ex)
+                               {
+                                     Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
+                               } 
+                           }
+                           else
+                           {
+                               try
+                               {
+                                     //création de la variable de connexion
+                                     final java.sql.Statement statement = DBConnect.Connect();
+                                     ResultSet rs = statement.executeQuery("INSERT INTO QUESTION VALUES (inc_ques_seq.NEXTVAL, '" + roping(quizzScreenQuestionCreation.txtQuestion.getText().toString()+"', '"+quizzScreenQuestionCreation.imageQuestion.getText().toString())+"')");
+                                     rs = statement.executeQuery("select max(idquestion) from question");
+                                     rs.next();
+                                     int idQuestion = rs.getInt(1);
+                                     rs = statement.executeQuery("INSERT INTO composer values ("+ quiz.getId()+" ,"+idQuestion+")");
+
+                                     int state;
+                                     //création de la solution 1
+                                     if(quizzScreenQuestionCreation.cbxQ1.isSelected() == true)
+                                     {
+                                         state = 1;
+                                     }
+                                     else
+                                     {
+                                         state = 0;
+                                     }
+                                     rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                             + roping(quizzScreenQuestionCreation.txtRep1.getText().toString())+"', "+idQuestion+", "
+                                             +state+")");
+                                     //création de la solution 2
+                                     if(quizzScreenQuestionCreation.cbxQ2.isSelected() == true)
+                                     {
+                                         state = 1;
+                                     }
+                                     else
+                                     {
+                                         state = 0;
+                                     }
+                                     rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                             + roping(quizzScreenQuestionCreation.txtRep2.getText().toString())+"', "+idQuestion+", "
+                                             +state+")");
+                                     //vérification d'une solution 3 et création
+                                     if(!quizzScreenQuestionCreation.txtRep3.getText().isEmpty())
+                                     {
+                                        if(quizzScreenQuestionCreation.cbxQ3.isSelected() == true)
+                                         {
+                                             state = 1;
+                                         }
+                                         else
+                                         {
+                                             state = 0;
+                                         }
+                                         rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                                 + roping(quizzScreenQuestionCreation.txtRep3.getText().toString())+"', "+idQuestion+", "
+                                                 +state+")"); 
+                                     }
+                                     //vérification d'une solution 4 et création
+                                     if(!quizzScreenQuestionCreation.txtRep4.getText().isEmpty())
+                                     {
+                                        if(quizzScreenQuestionCreation.cbxQ4.isSelected() == true)
+                                         {
+                                             state = 1;
+                                         }
+                                         else
+                                         {
+                                             state = 0;
+                                         }
+                                         rs = statement.executeQuery("INSERT INTO SOLUTION values (inc_sol_seq.NEXTVAL, '"
+                                                 + roping(quizzScreenQuestionCreation.txtRep4.getText().toString())+"', "+idQuestion+", "
+                                                 +state+")"); 
+                                     }
+                                     rs = statement.executeQuery("update quiz set nbquestionquiz = "+quiz.getNbQuestion()+" where idquiz = "+quiz.getId());
+                                     adminScreenHome.setVisible(true);
+                                     quizzScreenQuestionCreation.dispose();
+                               }
+                               catch (SQLException ex)
+                               {
+                                     Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
+                               }
+                               
+                               
+                           }                  
+                       }
+                       else
+                       {
+                           JOptionPane.showMessageDialog(quizzScreenCreation, "Veuillez sélectionner au moin une réponse valide pour votre question.");
+                       }
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
+                    }
 		}
-
        }
-
        
     }
     
