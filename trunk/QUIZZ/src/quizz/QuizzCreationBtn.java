@@ -21,6 +21,7 @@ import static quizz.QUIZZ.admin;
 import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.quiz;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static quizz.QUIZZ.quizzScreenCreation;
@@ -306,9 +307,18 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
            }           
        }
-       else if("Finir".equals(this.getText())){
-           quizzScreenCreation.setVisible(false);
-           adminScreenHome.setVisible(true);
+       else if("Finir Quizz".equals(this.getText())){
+           int reponse = JOptionPane.showConfirmDialog(this,
+                "Avez-vous terminé votre quizz ?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                quizzScreenQuestionCreation.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		if(reponse == JOptionPane.YES_OPTION ){
+			adminScreenHome.setVisible(true);
+                        quizzScreenQuestionCreation.dispose();
+		}
+
        }
 
        
