@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
 /**
  *
@@ -29,12 +31,10 @@ public class PlayerScreenHome extends JFrame
     public JLabel lbl4 = new JLabel("Nom du Quizz");
     public JLabel lbl5 = new JLabel("Thème");
     public JLabel lbl6 = new JLabel("Date Création");
-    public JLabel lbl7 = new JLabel("Date MaJ");
     public JLabel lbl8 = new JLabel("[listeQuizz]");
     public JLabel lbl9 = new JLabel("Difficulté");
-    String[] head = {"Nom", "Thème", "Difficulté", "Date Création", "Date Maj"};
-    Object[][] data = {};
-    public JTable quizzTable = new JTable(data, head);
+    String[] head = {"Nom", "Thème", "Difficulté", "Date Création"};
+    Object[][] data = new Object[100][4];
     public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
     public PlayerBtn btnRankPlayer = new PlayerBtn("Classement");
     public PlayerBtn btnPlayPlayer = new PlayerBtn("Jouer");
@@ -60,7 +60,6 @@ public class PlayerScreenHome extends JFrame
     public JPanel JPlbl4 = new JPanel();
     public JPanel JPlbl5 = new JPanel();
     public JPanel JPlbl6 = new JPanel();
-    public JPanel JPlbl7 = new JPanel();
     public JPanel JPlbl8 = new JPanel();
     public JPanel JPlbl9 = new JPanel();
     public JPanel bottomBtnStat = new JPanel();
@@ -74,7 +73,8 @@ public class PlayerScreenHome extends JFrame
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
     
-    PlayerScreenHome()
+    @SuppressWarnings("empty-statement")
+    PlayerScreenHome() throws SQLException
     {   
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
 
@@ -132,28 +132,56 @@ public class PlayerScreenHome extends JFrame
         JPlbl4.add(lbl4);
         JPlbl5.add(lbl5);
         JPlbl6.add(lbl6);
-        JPlbl7.add(lbl7);
         JPlbl9.add(lbl9);
         JPlbl4.setPreferredSize(new Dimension( 250, 25));
-        JPlbl5.setPreferredSize(new Dimension( 100, 25));
-        JPlbl6.setPreferredSize(new Dimension( 100, 25));
-        JPlbl7.setPreferredSize(new Dimension( 100, 25));
-        JPlbl8.setPreferredSize(new Dimension( 100, 25));
-        JPlbl9.setPreferredSize(new Dimension( 100, 25));
+        JPlbl5.setPreferredSize(new Dimension( 125, 25));
+        JPlbl6.setPreferredSize(new Dimension( 125, 25));
+        JPlbl9.setPreferredSize(new Dimension( 125, 25));
         JPlbl4.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JPlbl5.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JPlbl6.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JPlbl7.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JPlbl9.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         centerBottom.add(JPlbl4);
         centerBottom.add(JPlbl5);
         centerBottom.add(JPlbl9);
         centerBottom.add(JPlbl6);
-        centerBottom.add(JPlbl7);
         centerBottom.setOpaque(false);
         
         JPlbl8.setPreferredSize(new Dimension( 670, 180));
         JPlbl8.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        
+        final java.sql.Statement statement = DBConnect.Connect();
+        ResultSet rs = statement.executeQuery("SELECT Q.nomQuiz, T.lblTheme, D.lblDifficulte, Q.dateCreaQuiz FROM QUIZ Q, THEME T, DIFFICULTE D WHERE Q.idDifficulte = D.idDifficulte AND Q.idTheme = T.idTheme");
+        rs.next();
+        while(rs.next() == true){
+            String nomQuiz = rs.getString("nomQuiz");
+            String lblDifficulte = rs.getString("lblDifficulte");
+            String lblTheme = rs.getString("lblTheme");
+            String dateQuiz = rs.getDate("dateCreaQuiz").toString();
+            int i=0;
+            data[i][0]=nomQuiz;
+            data[i][1]=lblTheme;
+            data[i][2]=lblDifficulte;
+            data[i][3]=dateQuiz;
+            i++;
+            rs.next();    
+        }
+        
+           
+
+        
+        
+        JTable tableau = new JTable (data, head);
+        tableau.setPreferredSize(new Dimension( 665, 170));
+        tableau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableau.getColumnModel().getColumn(0).setPreferredWidth(250);
+        tableau.getColumnModel().getColumn(1).setPreferredWidth(125);
+        tableau.getColumnModel().getColumn(2).setPreferredWidth(125);
+        tableau.getColumnModel().getColumn(3).setPreferredWidth(125);
+        tableau.setEnabled(false);
+        JScrollPane scrollPane = new JScrollPane(tableau);
+        scrollPane.setPreferredSize(new Dimension( 670, 500));
+        JPlbl8.add(tableau);
         centerUnderBottom.add(JPlbl8);
         centerUnderBottom.setOpaque(false);
 
