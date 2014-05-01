@@ -27,7 +27,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public JLabel lbl1 = new JLabel(" ");
     public JLabel lbl2 = new JLabel("Question N° "+ numQuestion + " : ");
     public JLabel lblImage = new JLabel("Image (facultatif) : ");
-    public JLabel lblNB = new JLabel(" Cochez la réponse correcte ! ");
+    public JLabel lblNB = new JLabel(" Cochez la (les) réponse(s) correcte(s) ! ");
     public JLabel lbl3 = new JLabel("Réponse n°1 : ");
     public JLabel lbl4 = new JLabel("Réponse n°2 : ");
     public JLabel lbl5 = new JLabel("Réponse N°3 : ");
@@ -155,7 +155,7 @@ public class QuizzScreenQuestionCreation extends JFrame
         background.add(bottom);
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
         
-        this.setTitle("QUIZZ : Création du QUIZZ");
+        this.setTitle("QWIZZ : Création du QUIZ");
         setLayout(new BorderLayout());
         this.setSize(700,400);
         this.setResizable(false);
