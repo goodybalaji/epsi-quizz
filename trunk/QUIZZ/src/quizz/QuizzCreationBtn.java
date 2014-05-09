@@ -85,11 +85,11 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
                 {
                     //création de la variable de connexion
                     final java.sql.Statement statement = DBConnect.Connect();
-
+                   
                     ResultSet rs = statement.executeQuery("INSERT INTO QUIZ "
                     + "VALUES (inc_quiz_seq.NEXTVAL," + idDifficulte + ", " + idThema + ", "
                     + admin.getId() +", '"+ quizzScreenCreation.txtNameQuizz.getText().toString() + "', 0,'"
-                    + quizzScreenCreation.txtTemps.getText().toString() +"', sysdate, 0)");
+                    + quizzScreenCreation.txtTemps.getText().toString() +"',sysdate, 0)");
                     
                     rs = statement.executeQuery("Select Max(idQuiz) from QUIZ");
                     rs.next();

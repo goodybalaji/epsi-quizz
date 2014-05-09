@@ -7,13 +7,19 @@
 package quizz;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Arc
@@ -28,13 +34,7 @@ public class PlayerScreenHome extends JFrame
     public JRadioButton radioEasy = new JRadioButton(" Facile ", true);
     public JRadioButton radioNormal = new JRadioButton(" Normal ", true);
     public JRadioButton radioHard = new JRadioButton(" Difficle ", true);
-    public JLabel lbl4 = new JLabel("Nom du Quizz");
-    public JLabel lbl5 = new JLabel("Thème");
-    public JLabel lbl6 = new JLabel("Date Création");
-    public JLabel lbl8 = new JLabel("[listeQuizz]");
-    public JLabel lbl9 = new JLabel("Difficulté");
-    String[] head = {"Nom", "Thème", "Difficulté", "Date Création"};
-    Object[][] data = new Object[100][4];
+   
     public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
     public PlayerBtn btnRankPlayer = new PlayerBtn("Classement");
     public PlayerBtn btnPlayPlayer = new PlayerBtn("Jouer");
@@ -57,17 +57,19 @@ public class PlayerScreenHome extends JFrame
     public JPanel centerTopName = new JPanel();
     public JPanel centerTopTheme = new JPanel();
     public JPanel centerTopCheck = new JPanel();
-    public JPanel JPlbl4 = new JPanel();
-    public JPanel JPlbl5 = new JPanel();
-    public JPanel JPlbl6 = new JPanel();
+   
     public JPanel JPlbl8 = new JPanel();
-    public JPanel JPlbl9 = new JPanel();
+    public JTable tableau;
+    public QwizTableModel data;
+    TableRowSorter<TableModel> sorter;
+   
+    public int nb;
     public JPanel bottomBtnStat = new JPanel();
     public JPanel bottomBtnClass = new JPanel();
     public JPanel bottomBtnPlay = new JPanel();
     public JPanel background = new JPanel();
     
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {    }
     public void mousePressed(MouseEvent e) {}
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
@@ -77,7 +79,7 @@ public class PlayerScreenHome extends JFrame
     PlayerScreenHome() throws SQLException
     {   
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
-
+        final java.sql.Statement statement = DBConnect.Connect();
         
         topCenterC.add(new JLabel(" "));
         topCenterC.add(new JLabel(" "));
@@ -109,6 +111,13 @@ public class PlayerScreenHome extends JFrame
         btnDeco.addActionListener(btnDeco);
         
         //CENTER
+        cbxTheme.addItem("");
+        ResultSet rs = statement.executeQuery("Select * from THEME");
+            while(rs.next() == true)
+            {
+                cbxTheme.addItem(rs.getString("lblTheme"));
+            }
+            
         txtNameQuizz.setPreferredSize(new Dimension( 150, 25));
         cbxTheme.setPreferredSize(new Dimension( 120, 25));
         centerTopName.add(lbl2);
@@ -128,66 +137,76 @@ public class PlayerScreenHome extends JFrame
         centerTop.add(centerTopTheme);
         centerTop.add(centerTopCheck);
         centerTop.setOpaque(false);
+        cbxTheme.addItemListener(new ItemListener()
+        {
+            
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                if (e.getStateChange() == ItemEvent.SELECTED)
+                {
+                    //tableau = null;
+                    Object item = e.getItem();
+                   if (item.toString().equals(""))
+                   {
+                        sorter.setRowFilter(null);
+                   }
+                   else
+                   {
+                      try {
+                        sorter.setRowFilter(
+                            RowFilter.regexFilter(item.toString()));
+                         } catch (PatternSyntaxException pse) {
+                        System.err.println("Bad regex pattern");
+                      } 
+                   }       
+                    
+                   
+                }
+            }
+        });
         
-        JPlbl4.add(lbl4);
-        JPlbl5.add(lbl5);
-        JPlbl6.add(lbl6);
-        JPlbl9.add(lbl9);
-        JPlbl4.setPreferredSize(new Dimension( 250, 25));
-        JPlbl5.setPreferredSize(new Dimension( 125, 25));
-        JPlbl6.setPreferredSize(new Dimension( 125, 25));
-        JPlbl9.setPreferredSize(new Dimension( 125, 25));
-        JPlbl4.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JPlbl5.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JPlbl6.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JPlbl9.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        centerBottom.add(JPlbl4);
-        centerBottom.add(JPlbl5);
-        centerBottom.add(JPlbl9);
-        centerBottom.add(JPlbl6);
+        
         centerBottom.setOpaque(false);
-        
-        JPlbl8.setPreferredSize(new Dimension( 670, 180));
-        JPlbl8.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        
-        final java.sql.Statement statement = DBConnect.Connect();
-        ResultSet rs = statement.executeQuery("SELECT Q.nomQuiz, T.lblTheme, D.lblDifficulte, Q.dateCreaQuiz FROM QUIZ Q, THEME T, DIFFICULTE D WHERE Q.idDifficulte = D.idDifficulte AND Q.idTheme = T.idTheme");
+        rs = statement.executeQuery("Select count(nomquiz) "
+                + "from QUIZ Q");
         rs.next();
+        nb = rs.getInt(1);
+        tableau = new JTable(data = new QwizTableModel(nb));
+        sorter = new TableRowSorter<TableModel>(tableau.getModel());
+        tableau.setRowSorter(sorter);
+        rs = statement.executeQuery("SELECT Q.idQuiz, Q.nomQuiz, T.lblTheme, D.lblDifficulte, Q.dateCreaQuiz "
+                + "FROM QUIZ Q, THEME T, DIFFICULTE D WHERE Q.idDifficulte = D.idDifficulte "
+                + "AND Q.idTheme = T.idTheme ORDER BY Q.nomQuiz");
+        int i=0;        
         while(rs.next() == true){
-            String nomQuiz = rs.getString("nomQuiz");
-            String lblDifficulte = rs.getString("lblDifficulte");
-            String lblTheme = rs.getString("lblTheme");
-            String dateQuiz = rs.getDate("dateCreaQuiz").toString();
-            int i=0;
-            data[i][0]=nomQuiz;
-            data[i][1]=lblTheme;
-            data[i][2]=lblDifficulte;
-            data[i][3]=dateQuiz;
-            i++;
-            rs.next();    
-        }
+            data.setValueAt(rs.getString("nomQuiz"), i, 0);
+            data.setValueAt(rs.getString("lblTheme"), i, 1);
+            data.setValueAt(rs.getString("lblDifficulte"), i, 2);
+            data.setValueAt(setDate(rs.getDate("dateCreaQuiz").toString()), i, 3);
+            data.setValueAt(""+rs.getInt("idQuiz"), i, 4);
+            i++;  
+        } 
         
-           
-
-        
-        
-        JTable tableau = new JTable (data, head);
-        tableau.setPreferredSize(new Dimension( 665, 170));
+        JPlbl8.setPreferredSize(new Dimension( 670, 230));
+        tableau.setPreferredSize(new Dimension( 665, tableau.getRowCount()*16));
         tableau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tableau.getColumnModel().getColumn(0).setPreferredWidth(250);
-        tableau.getColumnModel().getColumn(1).setPreferredWidth(125);
-        tableau.getColumnModel().getColumn(2).setPreferredWidth(125);
-        tableau.getColumnModel().getColumn(3).setPreferredWidth(125);
+        tableau.getColumnModel().getColumn(1).setPreferredWidth(130);
+        tableau.getColumnModel().getColumn(2).setPreferredWidth(130);
+        tableau.getColumnModel().getColumn(3).setPreferredWidth(130);
+        tableau.getColumnModel().getColumn(4).setPreferredWidth(0);
         tableau.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(tableau);
-        scrollPane.setPreferredSize(new Dimension( 670, 500));
-        JPlbl8.add(tableau);
-        centerUnderBottom.add(JPlbl8);
-        centerUnderBottom.setOpaque(false);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);               
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(665, 215));
+        JPlbl8.add(scrollPane);
+        centerBottom.add(JPlbl8);
+        centerBottom.setOpaque(false);
 
         center.add(centerTop);
         center.add(centerBottom);
-        center.add(centerUnderBottom);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
         
@@ -231,4 +250,19 @@ public class PlayerScreenHome extends JFrame
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    
+   
+     public static String setDate(String str)
+    {
+       char[] Char = new char[10];
+       str.getChars(8, 10, Char, 0);
+       Char[2] += '/';
+       str.getChars(5, 7, Char, 3);
+       Char[5] += '/';
+       str.getChars(0, 4, Char, 6);           
+        return String.valueOf(Char);        
+    }    
+    
+    
+    
 }
