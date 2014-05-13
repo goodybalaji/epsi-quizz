@@ -72,18 +72,13 @@ public class PlayerBtn extends JButton implements ActionListener
         else if("Jouer".equals(this.getText()))
         {
             playerScreenHome.setVisible(false);
-            quiz = new Quiz(playerScreenHome.selectedRow);
-            quizzScreenAnswer.setVisible(true);
 
             //BDD
             java.sql.Statement statement;
            try {
                statement = DBConnect.Connect();
-               
-               //PREVIOUS
-               //Connection conn = null;
-                //statement = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
-               
+               int leQuizIdQuestion = 64;
+               System.out.print(playerScreenHome.selectedRow);
                //ID
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
                                 + "WHERE idquiz = "+ playerScreenHome.idQuiz);
