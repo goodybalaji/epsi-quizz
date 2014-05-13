@@ -18,6 +18,7 @@ import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
 import static quizz.QUIZZ.connectionScreen;
+import static quizz.QUIZZ.quiz;
 import static quizz.QUIZZ.quizzScreenAnswer;
 
 /**
@@ -70,8 +71,9 @@ public class PlayerBtn extends JButton implements ActionListener
         }
         else if("Jouer".equals(this.getText()))
         {
-            playerScreenHome.setVisible(false); 
-            int idDuQuizz = 64;
+            playerScreenHome.setVisible(false);
+            quiz = new Quiz(playerScreenHome.selectedRow);
+            quizzScreenAnswer.setVisible(true);
 
             //BDD
             java.sql.Statement statement;
@@ -84,13 +86,13 @@ public class PlayerBtn extends JButton implements ActionListener
                
                //ID
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
-                                + "WHERE idquiz = "+ idDuQuizz);
+                                + "WHERE idquiz = "+ playerScreenHome.selectedRow);
                 rsID.next();
                 leQuizNbQuestion = rsID.getInt("nbquestionquiz");
                                  
                 //Question
                 rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
-                        + "WHERE Q.IDQUIZ = "+ idDuQuizz
+                        + "WHERE Q.IDQUIZ = "+ playerScreenHome.selectedRow
                         + "AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();
@@ -120,6 +122,7 @@ public class PlayerBtn extends JButton implements ActionListener
            }
            
             
+
         }
     }
 
