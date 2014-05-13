@@ -14,8 +14,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -30,11 +28,9 @@ public class PlayerScreenHome extends JFrame
     public JLabel lbl2 = new JLabel("Nom : ");
     public JTextField txtNameQuizz = new JTextField();
     public JLabel lbl3 = new JLabel("Theme : ");
+    public JLabel lbl4 = new JLabel("Difficulté : ");
     public JComboBox cbxTheme = new JComboBox();
-    public JRadioButton radioEasy = new JRadioButton(" Facile ", true);
-    public JRadioButton radioNormal = new JRadioButton(" Normal ", true);
-    public JRadioButton radioHard = new JRadioButton(" Difficle ", true);
-   
+    public JComboBox cbxDiffilute = new JComboBox();
     public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
     public PlayerBtn btnRankPlayer = new PlayerBtn("Classement");
     public PlayerBtn btnPlayPlayer = new PlayerBtn("Jouer");
@@ -118,25 +114,30 @@ public class PlayerScreenHome extends JFrame
                 cbxTheme.addItem(rs.getString("lblTheme"));
             }
             
-        txtNameQuizz.setPreferredSize(new Dimension( 150, 25));
-        cbxTheme.setPreferredSize(new Dimension( 120, 25));
+        cbxDiffilute.addItem("");
+        rs = statement.executeQuery("Select * from Difficulte");
+            while(rs.next() == true)
+            {
+                cbxDiffilute.addItem(rs.getString("lbldifficulte"));
+            }
+            
+        txtNameQuizz.setPreferredSize(new Dimension( 190, 25));
+        cbxTheme.setPreferredSize(new Dimension( 140, 25));
+        cbxDiffilute.setPreferredSize(new Dimension( 140, 25));
         centerTopName.add(lbl2);
         centerTopName.add(txtNameQuizz);
         centerTopName.setOpaque(false);
         centerTopTheme.add(lbl3);
         centerTopTheme.add(cbxTheme);
         centerTopTheme.setOpaque(false);
-        centerTopCheck.add(radioEasy);
-        centerTopCheck.add(radioNormal);
-        centerTopCheck.add(radioHard);
-        radioEasy.setOpaque(false);
-        radioNormal.setOpaque(false);
-        radioHard.setOpaque(false);
+        centerTopTheme.add(lbl4);
+        centerTopTheme.add(cbxDiffilute);
         centerTopCheck.setOpaque(false);
         centerTop.add(centerTopName);
         centerTop.add(centerTopTheme);
         centerTop.add(centerTopCheck);
         centerTop.setOpaque(false);
+        
         cbxTheme.addItemListener(new ItemListener()
         {
             
@@ -153,15 +154,44 @@ public class PlayerScreenHome extends JFrame
                    }
                    else
                    {
-                      try {
-                        sorter.setRowFilter(
-                            RowFilter.regexFilter(item.toString()));
-                         } catch (PatternSyntaxException pse) {
+                      try 
+                      {
+                        sorter.setRowFilter(RowFilter.regexFilter(item.toString(),1));
+                      }
+                      catch (PatternSyntaxException pse)
+                      {
                         System.err.println("Bad regex pattern");
                       } 
-                   }       
-                    
-                   
+                   }  
+                }
+            }
+        });
+        
+        cbxDiffilute.addItemListener(new ItemListener()
+        {
+            
+            @Override
+            public void itemStateChanged(ItemEvent e)
+            {
+                if (e.getStateChange() == ItemEvent.SELECTED)
+                {
+                    //tableau = null;
+                    Object item = e.getItem();
+                   if (item.toString().equals(""))
+                   {
+                        sorter.setRowFilter(null);
+                   }
+                   else
+                   {
+                      try 
+                      {
+                        sorter.setRowFilter(RowFilter.regexFilter(item.toString(),2));
+                      }
+                      catch (PatternSyntaxException pse)
+                      {
+                        System.err.println("Bad regex pattern");
+                      } 
+                   }   
                 }
             }
         });
