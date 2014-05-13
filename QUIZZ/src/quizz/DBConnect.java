@@ -8,6 +8,7 @@ package quizz;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -25,7 +26,7 @@ public class DBConnect {
         // Load Oracle JDBC Driver
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         Connection con = DriverManager.getConnection(DBURL, DBUSER, DBPASS); 
-        java.sql.Statement statement = con.createStatement();
+        java.sql.Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         return statement;
        // ResultSet rs = statement.executeQuery("SELECT * from TABLE1222");
     }
