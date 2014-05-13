@@ -98,18 +98,17 @@ public class PlayerBtn extends JButton implements ActionListener
                 leQuizIdQuestion = rsQ.getInt("idquestion");
                 
 
-                /*Solution
+                //Solution
                 rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
                         + "WHERE QT.IDQUESTION = "+ leQuizIdQuestion
                         + "AND QT.IDQUESTION = S.IDQUESTION");
                 rsS.next();
                 leQuizSolution1 = rsS.getString("lblsolution");
-                if(rsS.next() == true){
-                     leQuizSolution2 = rsS.getString("lblsolution");
-                } 
+                rsS.next();
+                leQuizSolution2 = rsS.getString("lblsolution");
                 if(rsS.next() == true){
                      leQuizSolution3 = rsS.getString("lblsolution");
-                } */
+                } 
                 
                 QuizzTimer quizzTimer = new QuizzTimer(); 
                 quizzScreenAnswer = new QuizzScreenAnswer();

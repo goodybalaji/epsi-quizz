@@ -43,7 +43,8 @@ import static quizz.PlayerBtn.leQuizSolution3;
  */
 public class QuizzBtn extends JButton implements ActionListener
 {
-  
+    public int compteurQ = 1;
+    
     QuizzBtn(String str)
     {
         super(str);
@@ -91,28 +92,40 @@ public class QuizzBtn extends JButton implements ActionListener
             {
             numQuestion++;
             try {
+                int idDuQuizz = 64;
                 
-                 rsQ.next();
-                 leQuizQuestion = rsQ.getString("lblquestion");
-                 
-                 leQuizIdQuestion++;
-                 System.out.println(leQuizIdQuestion);
-                 
-                 /*SOLUTION
-                 java.sql.Statement statement;
+                java.sql.Statement statement;
                  statement = DBConnect.Connect();
                  
-                 rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
+                 //Question
+                rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
+                        + "WHERE Q.IDQUIZ = "+ idDuQuizz
+                        + "AND C.IDQUIZ = Q.IDQUIZ "
+                        + "AND QT.IDQUESTION = C.IDQUESTION");
+                rsQ.next();
+                for(int i=0; i<numQuestion-1; i++){
+                    
+                    rsQ.next();
+                }
+                compteurQ++;
+                leQuizQuestion = rsQ.getString("lblquestion");
+                leQuizIdQuestion = rsQ.getInt("idquestion");
+                 
+
+                 System.out.println("id : "+leQuizIdQuestion+"   question : "+leQuizQuestion);
+                 System.out.println(numQuestion);
+                 
+                 //SOLUTION
+                rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
                         + "WHERE QT.IDQUESTION = "+ leQuizIdQuestion
                         + "AND QT.IDQUESTION = S.IDQUESTION");
-                 rsS.next();
-                 leQuizSolution1 = rsS.getString("lblsolution");
-                 if(rsS.next() == true){
-                     leQuizSolution2 = rsS.getString("lblsolution");
-                } 
+                rsS.next();
+                leQuizSolution1 = rsS.getString("lblsolution");
+               rsS.next();
+                leQuizSolution2 = rsS.getString("lblsolution");
                 if(rsS.next() == true){
                      leQuizSolution3 = rsS.getString("lblsolution");
-                } */
+                }
                  
             } catch (SQLException ex) {
                  Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
