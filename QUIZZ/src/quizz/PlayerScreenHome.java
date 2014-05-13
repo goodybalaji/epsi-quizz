@@ -64,6 +64,7 @@ public class PlayerScreenHome extends JFrame
     public QwizTableModel data;
     TableRowSorter<TableModel> sorter;
     public int selectedRow;
+    public String idQuiz;
    
     public int nb;
     public JPanel bottomBtnStat = new JPanel();
@@ -239,6 +240,7 @@ public class PlayerScreenHome extends JFrame
             else
                 {
                     selectedRow = lsm.getMinSelectionIndex();
+                    idQuiz = data.getValueAt(selectedRow, 4).toString();
                 }
             }
         });
