@@ -86,13 +86,13 @@ public class PlayerBtn extends JButton implements ActionListener
                
                //ID
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
-                                + "WHERE idquiz = "+ playerScreenHome.selectedRow);
+                                + "WHERE idquiz = "+ playerScreenHome.idQuiz);
                 rsID.next();
                 leQuizNbQuestion = rsID.getInt("nbquestionquiz");
                                  
                 //Question
                 rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
-                        + "WHERE Q.IDQUIZ = "+ playerScreenHome.selectedRow
+                        + "WHERE Q.IDQUIZ = "+ playerScreenHome.idQuiz
                         + "AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();
