@@ -5,6 +5,7 @@
 package quizz;
 
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 /**
  *
@@ -38,12 +39,19 @@ public class QUIZZ
     static public CustomFont customFont;
     static public CalculScore calculScore;
     
+    
+    public static int[] BtnColor = new int[40];
     /**
      * @param args the command line arguments
      * @throws java.net.MalformedURLException
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) throws MalformedURLException
+    public static void main(String[] args) throws MalformedURLException, SQLException
     {   
+        for(int i=0; i<40; i++){
+            BtnColor[i]=0;
+        }
+        
         quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
        //quizzScreenQuestionCreation.setVisible(true);
         questionCorrectionScreen = new QuizzScreenQuestionCorrection();
@@ -59,36 +67,20 @@ public class QUIZZ
         
 
         connectionScreen = new ConnectionScreen();
-        //connectionScreen.setVisible(true);
-
-        quizzScreenAnswer = new QuizzScreenAnswer();
-        quizzScreenAnswer.setVisible(true);
-        
-        
-        playerScreenHome = new PlayerScreenHome();
-        //playerScreenHome.setVisible(true);
-         
+        connectionScreen.setVisible(true);
 
 
         quizzScreenFinish = new QuizzScreenFinish();
         //quizzScreenFinish.setVisible(true);
         
-        playerScreenHome = new PlayerScreenHome();
-        //playerScreenHome.setVisible(true);
-
-
-        
-        playerScreenHome = new PlayerScreenHome();
-        //playerScreenHome.setVisible(true);
-        
-
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
        // playerScreenRankQuizz.setVisible(true);
         
         playerScreenStat = new PlayerScreenStat();
        //playerScreenStat.setVisible(true);
         
-
+        playerScreenHome = new PlayerScreenHome();
+        
         connectionScreenAddUser = new ConnectionScreenAddUser();
         //connectionScreenAddUser.setVisible(true);        
         
@@ -102,6 +94,6 @@ public class QUIZZ
         
         calculScore = new CalculScore();
         
-
+        
     }
 }

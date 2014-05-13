@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import static quizz.QuizzScreenAnswer.numQuestion;
+import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import java.awt.Color;
 import static java.awt.Color.RED;
@@ -31,13 +32,10 @@ public class NumBtn extends JButton implements ActionListener{
         this.setBackground(RED);
        
         numQuestion= Integer.parseInt(this.getText());
-          /*  quizzScreenAnswer.dispose();
+       // BtnColor[numQuestion-1]=1;
+          quizzScreenAnswer.dispose();
             quizzScreenAnswer = new QuizzScreenAnswer();
             quizzScreenAnswer.setVisible(true);
-    */
-        quizzScreenAnswer.revalidate();
-    quizzScreenAnswer.repaint();
-    quizzScreenAnswer.lblNbQuestion.revalidate();
-    quizzScreenAnswer.lblNbQuestion.repaint();
+ 
     }
 }
