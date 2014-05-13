@@ -7,6 +7,7 @@
 package quizz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
@@ -16,6 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
+import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 /**
@@ -34,6 +38,7 @@ public class PlayerScreenHome extends JFrame
     public PlayerBtn btnStatPlayer = new PlayerBtn("Statistiques");
     public PlayerBtn btnRankPlayer = new PlayerBtn("Classement");
     public PlayerBtn btnPlayPlayer = new PlayerBtn("Jouer");
+    
     
     public JPanel top = new JPanel();
     public JPanel center = new JPanel();
@@ -58,6 +63,7 @@ public class PlayerScreenHome extends JFrame
     public JTable tableau;
     public QwizTableModel data;
     TableRowSorter<TableModel> sorter;
+    public int selectedRow;
    
     public int nb;
     public JPanel bottomBtnStat = new JPanel();
@@ -218,6 +224,25 @@ public class PlayerScreenHome extends JFrame
             i++;  
         } 
         
+        ListSelectionModel listSelectionModel = tableau.getSelectionModel();        
+        listSelectionModel.addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting())
+                    return;
+                ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+                if (lsm.isSelectionEmpty())
+                {
+                    System.out.println("No rows selected");
+                }
+            else
+                {
+                    selectedRow = lsm.getMinSelectionIndex();
+                }
+            }
+        });
+        
         JPlbl8.setPreferredSize(new Dimension( 670, 230));
         tableau.setPreferredSize(new Dimension( 665, tableau.getRowCount()*16));
         tableau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -226,7 +251,12 @@ public class PlayerScreenHome extends JFrame
         tableau.getColumnModel().getColumn(2).setPreferredWidth(130);
         tableau.getColumnModel().getColumn(3).setPreferredWidth(130);
         tableau.getColumnModel().getColumn(4).setPreferredWidth(0);
-        tableau.setEnabled(false);
+        tableau.getSelectionModel().setSelectionMode(SINGLE_SELECTION);
+        tableau.setSelectionBackground(Color.GREEN);
+        tableau.setRowSelectionAllowed(true);
+        tableau.setColumnSelectionAllowed(false);
+        tableau.setCellSelectionEnabled(false);
+        tableau.setCellEditor(null);
         JScrollPane scrollPane = new JScrollPane(tableau);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);               
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
