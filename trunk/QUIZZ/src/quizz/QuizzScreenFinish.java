@@ -87,6 +87,10 @@ public class QuizzScreenFinish extends JFrame
         background.add(bottom);
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
         
+        btnToCorrection.addActionListener(btnToCorrection);
+        btnToRanking.addActionListener(btnToRanking);
+        btnQuitterPlayer.addActionListener(btnQuitterPlayer);
+        
         this.setTitle("QWIZZ : Fin du Quiz");
         setLayout(new BorderLayout());
         this.setSize(700,400);

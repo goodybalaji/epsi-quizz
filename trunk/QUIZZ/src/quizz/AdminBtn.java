@@ -33,7 +33,7 @@ public class AdminBtn extends JButton implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if("Deconnexion".equals(this.getText()))
+        if("Déconnexion".equals(this.getText()))
         {
             admin = null;
             adminScreenHome.setVisible(false);

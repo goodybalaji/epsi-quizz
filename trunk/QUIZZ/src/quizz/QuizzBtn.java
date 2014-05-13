@@ -4,25 +4,38 @@
  */
 package quizz;
 
+import static java.awt.Color.GREEN;
+import static java.awt.Color.RED;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.quizzScreenAddImage;
-import static quizz.QUIZZ.quizzScreenShowImage;
 import static quizz.QUIZZ.quizzScreenAnswer;
+import static quizz.QUIZZ.quizzScreenShowImage;
 import static quizz.QUIZZ.quizzScreenFinish;
 import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QuizzCreationBtn.icon;
 import static quizz.QuizzScreenAnswer.numQuestion;
-
+import static quizz.QuizzScreenAnswer.quizzTimer;
+import static quizz.PlayerBtn.leQuizNbQuestion;
+import static quizz.PlayerBtn.leQuiz;
+import static quizz.PlayerBtn.leQuizIdQuestion;
+import static quizz.PlayerBtn.rsQ;
+import static quizz.PlayerBtn.rsS;
+import static quizz.PlayerBtn.leQuizQuestion;
+import static quizz.PlayerBtn.leQuizSolution1;
+import static quizz.PlayerBtn.leQuizSolution2;
+import static quizz.PlayerBtn.leQuizSolution3;
 
 /**
  *
@@ -60,15 +73,50 @@ public class QuizzBtn extends JButton implements ActionListener
                 JOptionPane.QUESTION_MESSAGE);
                 quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		if(reponse == JOptionPane.YES_OPTION ){
-			quizzScreenFinish.setVisible(true);
-                        quizzScreenAnswer.dispose();
+                    leQuiz = null;
+                    BtnColor = new int[40];
+                    for(int i=0; i<40; i++){
+                        BtnColor[i]=0;
+                    }
+                    leQuizNbQuestion = 0;
+                    numQuestion=1;
+                    quizzTimer= new QuizzTimer();
+                    quizzScreenAnswer.dispose();
+                    quizzScreenFinish.setVisible(true);
 		}
         }
         else if("  Suivant  ".equals(this.getText()))
         {
-            if(numQuestion<40)
+            if(numQuestion<leQuizNbQuestion)
             {
             numQuestion++;
+            try {
+                
+                 rsQ.next();
+                 leQuizQuestion = rsQ.getString("lblquestion");
+                 
+                 leQuizIdQuestion++;
+                 System.out.println(leQuizIdQuestion);
+                 
+                 /*SOLUTION
+                 java.sql.Statement statement;
+                 statement = DBConnect.Connect();
+                 
+                 rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
+                        + "WHERE QT.IDQUESTION = "+ leQuizIdQuestion
+                        + "AND QT.IDQUESTION = S.IDQUESTION");
+                 rsS.next();
+                 leQuizSolution1 = rsS.getString("lblsolution");
+                 if(rsS.next() == true){
+                     leQuizSolution2 = rsS.getString("lblsolution");
+                } 
+                if(rsS.next() == true){
+                     leQuizSolution3 = rsS.getString("lblsolution");
+                } */
+                 
+            } catch (SQLException ex) {
+                 Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
+            }
             quizzScreenAnswer.dispose();
             quizzScreenAnswer = new QuizzScreenAnswer();
                if(false){
@@ -80,6 +128,7 @@ public class QuizzBtn extends JButton implements ActionListener
                     }
                     quizzScreenShowImage.setVisible(true);
                }
+               
                quizzScreenAnswer.setVisible(true);
             }
         }
@@ -88,6 +137,12 @@ public class QuizzBtn extends JButton implements ActionListener
             if(numQuestion>1)
             {
                    numQuestion--;
+                    try {
+                        rsQ.previous();
+                        leQuizQuestion = rsQ.getString("lblquestion");
+                     } catch (SQLException ex) {
+                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     quizzScreenAnswer.dispose();
                     quizzScreenAnswer = new QuizzScreenAnswer();
                if(false){
@@ -107,7 +162,38 @@ public class QuizzBtn extends JButton implements ActionListener
             quizzScreenShowImage.setVisible(false);
             
         }
-        
-        
+        else if("Quitter".equals(this.getText()))
+        {
+            playerScreenHome.setVisible(true);
+            quizzScreenFinish.setVisible(false);
+        }
+        else if("Valider Question".equals(this.getText()))
+        {
+
+            if(numQuestion<leQuizNbQuestion)
+            {
+            BtnColor[numQuestion-1]=1;
+            numQuestion++;
+            quizzScreenAnswer.dispose();
+            quizzScreenAnswer = new QuizzScreenAnswer();
+               if(false){
+                   try {
+                        icon = new ImageIcon(new ImageIcon(new URL("http://blog.fysiki.com/wp-content/uploads/2010/07/biere.jpg")).getImage());
+                        quizzScreenShowImage = new QuizzScreenShowImage();
+                    } catch (MalformedURLException ex) {
+                        Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    quizzScreenShowImage.setVisible(true);
+               }
+               quizzScreenAnswer.setVisible(true);
+            }
+            else
+            {
+                BtnColor[numQuestion-1]=1;
+                quizzScreenAnswer.dispose();
+                quizzScreenAnswer = new QuizzScreenAnswer();
+                quizzScreenAnswer.setVisible(true);
+            }
+        }
     }    
 }

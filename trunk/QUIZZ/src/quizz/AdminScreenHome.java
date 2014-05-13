@@ -20,7 +20,7 @@ import javax.swing.border.Border;
 public class AdminScreenHome extends JFrame
 {
     public JLabel lbl1 = new JLabel(" ");
-    public JButton btnDeco = new JButton("Déconnexion");
+    public AdminBtn btnDeco = new AdminBtn("Déconnexion");
     public JLabel lbl4 = new JLabel("Nom du Quizz");
     public JLabel lbl5 = new JLabel("Theme");
     public JLabel lbl6 = new JLabel("Date Creation");
@@ -140,6 +140,7 @@ public class AdminScreenHome extends JFrame
         btnModifAdmin.addActionListener(btnModifAdmin);
         btnDelAdmin.addActionListener(btnDelAdmin);
         btnAddAdmin.addActionListener(btnAddAdmin);
+        btnDeco.addActionListener(btnDeco);
         btnClassAdmin.setPreferredSize(new Dimension( 120, 50));
         btnModifAdmin.setPreferredSize(new Dimension( 120, 50));
         btnDelAdmin.setPreferredSize(new Dimension( 120, 50));

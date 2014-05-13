@@ -35,4 +35,8 @@ public class Quiz
     {
         return nbQuestion;
     }
+    public void setNbQuestion(int i)
+    {
+        nbQuestion = i;
+    }
 }

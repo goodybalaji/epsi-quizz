@@ -314,7 +314,9 @@ public class QuizzCreationBtn extends JButton implements ActionListener{
        else if("Finir Quizz".equals(this.getText()))
        {
            int reponse = JOptionPane.showConfirmDialog(this,
+
                 "Avez-vous terminé votre Qwizz ?",
+
                 "Confirmation",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
