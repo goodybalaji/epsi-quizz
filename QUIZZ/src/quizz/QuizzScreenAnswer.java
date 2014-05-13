@@ -49,7 +49,7 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnValideQuestion = new QuizzBtn("Valider Question");
     public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");    
     public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
-    public JLabel lblNbQuestion = new JLabel("Question : "+ numQuestion +"/"+leQuizNbQuestion, JLabel.CENTER);
+    public JLabel lblNbQuestion = new JLabel("       Question : "+ numQuestion +"/"+leQuizNbQuestion, JLabel.CENTER);
     public JLabel lblQuestion= new JLabel("Question : "+ leQuizQuestion);
     public JLabel lblRep1 = new JLabel("Solution 1 : "+ leQuizSolution1);
     public JLabel lblRep2 = new JLabel("Solution 2 : "+ leQuizSolution2);
@@ -143,10 +143,13 @@ public class QuizzScreenAnswer extends JFrame {
             {
                 topQuestionList2.add(questionBtnList.get(i));
                 topQuestionList2.setOpaque(false);
+                topSouth.add(topQuestionList2);
             }
          }
+        else{
+           topQuestionList1.setBorder(new EmptyBorder(0,0,30,0)); 
+        }
         topSouth.add(topQuestionList1);
-        topSouth.add(topQuestionList2);
         topSouth.setOpaque(false);
         topSouth.setLayout(new BoxLayout(topSouth, BoxLayout.Y_AXIS));
         
