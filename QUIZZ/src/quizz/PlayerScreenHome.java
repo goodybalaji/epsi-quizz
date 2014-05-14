@@ -266,6 +266,7 @@ public class PlayerScreenHome extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(665, 215));
         JPlbl8.add(scrollPane);
+        JPlbl8.setOpaque(false);
         centerBottom.add(JPlbl8);
         centerBottom.setOpaque(false);
 

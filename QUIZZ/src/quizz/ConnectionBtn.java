@@ -78,6 +78,7 @@ public class ConnectionBtn extends JButton implements ActionListener {
                                     //System.out.println("admin");
                                     admin = new Admin(login, id);
                                     rsAdmin = null;
+                                    adminScreenHome = new AdminScreenHome();
                                     connectionScreen.setVisible(false);
                                     adminScreenHome.setVisible(true);
                                     
