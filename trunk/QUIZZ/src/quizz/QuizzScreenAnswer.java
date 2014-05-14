@@ -52,11 +52,11 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");
     public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
 
-    public JLabel lblNbQuestion = new JLabel("       Question : "+ numQuestion +"/"+quizNbQuestion, JLabel.CENTER);
-    public JLabel lblQuestion= new JLabel("Question : "+ quizQuestion);
-    public JLabel lblRep1 = new JLabel("Solution 1 : "+ quizSolution1);
-    public JLabel lblRep2 = new JLabel("Solution 2 : "+ quizSolution2);
-    public JLabel lblRep3 = new JLabel("Solution 3 : "+ quizSolution3);
+    public JLabel lblNbQuestion = new JLabel("       Question : " + numQuestion + "/" + quizNbQuestion, JLabel.CENTER);
+    public JLabel lblQuestion = new JLabel("Question : " + quizQuestion);
+    public JLabel lblRep1 = new JLabel("Solution 1 : " + quizSolution1);
+    public JLabel lblRep2 = new JLabel("Solution 2 : " + quizSolution2);
+    public JLabel lblRep3 = new JLabel("Solution 3 : " + quizSolution3);
     public JLabel lblRep4 = new JLabel("Solution 4 : " + quizSolution4);
 
     public JLabel lblTimer = new JLabel("XX:YY");
@@ -64,7 +64,6 @@ public class QuizzScreenAnswer extends JFrame {
     public static JCheckBox cbxQ2 = new JCheckBox();
     public static JCheckBox cbxQ3 = new JCheckBox();
     public static JCheckBox cbxQ4 = new JCheckBox();
-   
 
     public Font CFont;
 
@@ -80,6 +79,9 @@ public class QuizzScreenAnswer extends JFrame {
     public JPanel topQuestionList2 = new JPanel();
 
     public JPanel center = new JPanel();
+    public JPanel centerNorth = new JPanel();
+    public JPanel centerWest = new JPanel();
+    public JPanel centerEast = new JPanel();
     public JPanel panelCenterQuestion = new JPanel();
     public JPanel panelCenterRep1 = new JPanel();
     public JPanel panelCenterRep2 = new JPanel();
@@ -98,9 +100,7 @@ public class QuizzScreenAnswer extends JFrame {
         CustomFont = new CustomFont();
         CFont = CustomFont.getFont("Hanged Letters.ttf");
 
-
         for (i = 1; i <= quizNbQuestion; i++) {
-
 
             NumBtn btn = new NumBtn("" + i);
             btn.setPreferredSize(new Dimension(28, 28));
@@ -114,14 +114,13 @@ public class QuizzScreenAnswer extends JFrame {
                 btn.setBackground(GREEN);
             }
         }
-        
-        /* lblRep3.setVisible(false);
-        cbxQ3.setVisible(false);
-        if (!quizSolution3.equals("")){
-            lblRep3.setVisible(true);
-            cbxQ3.setVisible(true);
-        }*/
 
+        /* lblRep3.setVisible(false);
+         cbxQ3.setVisible(false);
+         if (!quizSolution3.equals("")){
+         lblRep3.setVisible(true);
+         cbxQ3.setVisible(true);
+         }*/
         lblQuizzName.setForeground(WHITE);
         lblQuizzName.setFont(CFont.deriveFont(32.0f));
         lblNbQuestion.setFont(lblNbQuestion.getFont().deriveFont(18.0f));
@@ -178,34 +177,42 @@ public class QuizzScreenAnswer extends JFrame {
 
         panelCenterQuestion.add(lblQuestion);
         panelCenterQuestion.setOpaque(false);
-        center.add(panelCenterQuestion);
+        centerNorth.add(panelCenterQuestion);
         panelCenterRep1.add(lblRep1);
         panelCenterRep1.add(cbxQ1);
         cbxQ1.setOpaque(false);
+        centerNorth.setOpaque(false);
         panelCenterRep1.setOpaque(false);
-        center.add(panelCenterRep1);
+        centerWest.add(panelCenterRep1);
         panelCenterRep2.add(lblRep2);
         panelCenterRep2.add(cbxQ2);
         cbxQ2.setOpaque(false);
         panelCenterRep2.setOpaque(false);
-        center.add(panelCenterRep2);
- 
-        if (AnswerCpt == 3) {
+        centerWest.add(panelCenterRep2);
+        centerWest.setOpaque(false);
+        centerEast.setOpaque(false);
+        if (AnswerCpt >= 3) {
+            center.add(panelCenterRep2);
             panelCenterRep3.add(lblRep3);
             panelCenterRep3.add(cbxQ3);
             cbxQ3.setOpaque(false);
             panelCenterRep3.setOpaque(false);
-            center.add(panelCenterRep3);
+            centerEast.add(panelCenterRep3);
+            centerEast.setOpaque(false);
             if (AnswerCpt == 4) {
                 panelCenterRep4.add(lblRep4);
                 panelCenterRep4.add(cbxQ4);
                 cbxQ4.setOpaque(false);
                 panelCenterRep4.setOpaque(false);
-                center.add(panelCenterRep4);
+                centerEast.add(panelCenterRep4);
+                centerEast.setOpaque(false);
             }
         }
-        AnswerCpt=2;
-        
+        AnswerCpt = 2;
+
+        center.add(BorderLayout.NORTH, centerNorth);
+        center.add(BorderLayout.WEST, centerWest);
+        center.add(BorderLayout.EAST, centerEast);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
 
