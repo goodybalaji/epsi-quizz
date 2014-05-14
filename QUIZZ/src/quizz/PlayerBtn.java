@@ -28,7 +28,7 @@ import static quizz.QUIZZ.quizzScreenAnswer;
 public class PlayerBtn extends JButton implements ActionListener
 {
     static public Quiz leQuiz;
-    static public int leQuizNbQuestion;
+    static public int quizNbQuestion;
     static public int leQuizIdQuestion;
     static public int AnswerCpt=2;
 
@@ -37,11 +37,11 @@ public class PlayerBtn extends JButton implements ActionListener
      */
     static public ResultSet rsQ;
     static public ResultSet rsS;
-    static public String leQuizQuestion="";
-    static public String leQuizSolution1="";
-    static public String leQuizSolution2="";
-    static public String leQuizSolution3="";
-    static public String leQuizSolution4="";
+    static public String quizQuestion="";
+    static public String quizSolution1="";
+    static public String quizSolution2="";
+    static public String quizSolution3="";
+    static public String quizSolution4="";
     
     PlayerBtn(String str)
     {
@@ -79,13 +79,12 @@ public class PlayerBtn extends JButton implements ActionListener
             java.sql.Statement statement;
            try {
                statement = DBConnect.Connect();
-               int leQuizIdQuestion = 64;
                System.out.print(playerScreenHome.selectedRow);
                //ID
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
                                 + "WHERE idquiz = "+ playerScreenHome.idQuiz);
                 rsID.next();
-                leQuizNbQuestion = rsID.getInt("nbquestionquiz");
+                quizNbQuestion = rsID.getInt("nbquestionquiz");
                                  
                 //Question
                 rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
@@ -93,26 +92,28 @@ public class PlayerBtn extends JButton implements ActionListener
                         + "AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();
-                leQuizQuestion = rsQ.getString("lblquestion");
+                quizQuestion = rsQ.getString("lblquestion");
                 leQuizIdQuestion = rsQ.getInt("idquestion");
                 
-
+                
                 //Solution
                 rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
                         + "WHERE QT.IDQUESTION = "+ leQuizIdQuestion
                         + "AND QT.IDQUESTION = S.IDQUESTION");
                 rsS.next();
-                leQuizSolution1 = rsS.getString("lblsolution");
+                quizSolution1 = rsS.getString("lblsolution");
                 rsS.next();
-                leQuizSolution2 = rsS.getString("lblsolution");
+                quizSolution2 = rsS.getString("lblsolution");
+
                 if (rsS.next() == true) {
-                   leQuizSolution3 = rsS.getString("lblsolution");
+                   quizSolution3 = rsS.getString("lblsolution");
                    AnswerCpt++;
                    if (rsS.next() == true) {
-                       leQuizSolution4 = rsS.getString("lblsolution");
+                       quizSolution4 = rsS.getString("lblsolution");
                        AnswerCpt++;
                    }
                }
+
                 
                 QuizzTimer quizzTimer = new QuizzTimer(); 
                 quizzScreenAnswer = new QuizzScreenAnswer();
