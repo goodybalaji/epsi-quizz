@@ -42,6 +42,9 @@ import static quizz.PlayerBtn.quizSolution2;
 import static quizz.PlayerBtn.quizSolution3;
 import static quizz.PlayerBtn.quizSolution4;
 import static quizz.PlayerBtn.AnswerCpt;
+import static quizz.PlayerBtn.scorePlayer;
+import static quizz.PlayerBtn.timeMinute;
+import static quizz.PlayerBtn.timeSecond;
 
 /**
  *
@@ -50,7 +53,8 @@ import static quizz.PlayerBtn.AnswerCpt;
 public class QuizzBtn extends JButton implements ActionListener {
 
     public int compteurQ = 1;
-
+    
+    
     QuizzBtn(String str) {
         super(str);
     }
@@ -84,7 +88,8 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizNbQuestion = 0;
                 numQuestion = 1;
                 quizzTimer = new QuizzTimer();
-                quizzScreenAnswer.dispose();
+                quizzScreenAnswer.setVisible(false);
+                quizzScreenFinish = new QuizzScreenFinish();
                 quizzScreenFinish.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
@@ -94,10 +99,6 @@ public class QuizzBtn extends JButton implements ActionListener {
 
                 try {
                     statement = DBConnect.Connect();
-                    System.out.println("id : " + leQuizIdQuestion + "   question : " + quizQuestion);
-                    System.out.println(numQuestion);
-
-                    
 
                     //Question
                     rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
@@ -112,11 +113,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                     compteurQ++;
                     quizQuestion = rsQ.getString("lblquestion");
                     leQuizIdQuestion = rsQ.getInt("idquestion");
-
-                    System.out.println("id : " + leQuizIdQuestion + "   question : " + quizQuestion);
-                    System.out.println(numQuestion);
-                    
-                    
+             
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
                             + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
@@ -133,8 +130,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                             AnswerCpt++;
                         }
                     }
-                    
-                    System.out.println("answercpt" +AnswerCpt);
+
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,9 +168,6 @@ public class QuizzBtn extends JButton implements ActionListener {
                     rsQ.previous();
                     quizQuestion = rsQ.getString("lblquestion");
                     leQuizIdQuestion = rsQ.getInt("idquestion");
-
-                    System.out.println("id : " + leQuizIdQuestion + "   question : " + quizQuestion);
-                    System.out.println(numQuestion);
 
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
@@ -214,13 +207,14 @@ public class QuizzBtn extends JButton implements ActionListener {
         } else if ("Quitter".equals(this.getText())) {
             playerScreenHome.setVisible(true);
             quizzScreenFinish.setVisible(false);
-        } else if ("Valider Question".equals(this.getText()) || cbxQ1.isSelected() || cbxQ2.isSelected() ||cbxQ3.isSelected() ||cbxQ4.isSelected()) {
+        } else if ("Valider Question".equals(this.getText()) && (cbxQ1.isSelected() || cbxQ2.isSelected() ||cbxQ3.isSelected() ||cbxQ4.isSelected())) {
 
             if (numQuestion < quizNbQuestion) {
             
                 BtnColor[numQuestion - 1] = 1;
                 numQuestion++;
-
+                
+                
                 try {
 
                     java.sql.Statement statement;
@@ -239,9 +233,6 @@ public class QuizzBtn extends JButton implements ActionListener {
                     compteurQ++;
                     quizQuestion = rsQ.getString("lblquestion");
                     leQuizIdQuestion = rsQ.getInt("idquestion");
-
-                    System.out.println("id : " + leQuizIdQuestion + "   question : " + quizQuestion);
-                    System.out.println(numQuestion);
 
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
@@ -262,7 +253,15 @@ public class QuizzBtn extends JButton implements ActionListener {
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
+                scorePlayer++;
+                timeMinute += quizzTimer.minute;
+                timeSecond += quizzTimer.seconde;
+                System.out.print(scorePlayer);
+                cbxQ1.setSelected(false);
+                cbxQ2.setSelected(false);
+                cbxQ3.setSelected(false);
+                cbxQ4.setSelected(false);
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 if (false) {

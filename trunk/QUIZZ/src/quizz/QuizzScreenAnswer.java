@@ -189,7 +189,7 @@ public class QuizzScreenAnswer extends JFrame {
         cbxQ2.setOpaque(false);
         panelCenterRep2.setOpaque(false);
         center.add(panelCenterRep2);
-        System.out.println("answercpt QSA" +AnswerCpt);
+ 
         if (AnswerCpt == 3) {
             panelCenterRep3.add(lblRep3);
             panelCenterRep3.add(cbxQ3);

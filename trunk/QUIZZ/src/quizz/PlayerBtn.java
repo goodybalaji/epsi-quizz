@@ -31,10 +31,10 @@ public class PlayerBtn extends JButton implements ActionListener
     static public int quizNbQuestion;
     static public int leQuizIdQuestion;
     static public int AnswerCpt=2;
-
-    /**
-     *
-     */
+    public static int scorePlayer;
+    public static int timeMinute;
+    public static int timeSecond;
+    static public QuizzTimer quizzTimer;
     static public ResultSet rsQ;
     static public ResultSet rsS;
     static public String quizQuestion="";
@@ -115,7 +115,7 @@ public class PlayerBtn extends JButton implements ActionListener
                }
 
                 
-                QuizzTimer quizzTimer = new QuizzTimer(); 
+                 quizzTimer = new QuizzTimer();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 quizzScreenAnswer.setVisible(true);
                 
