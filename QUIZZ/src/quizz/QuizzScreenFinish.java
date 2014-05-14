@@ -10,16 +10,21 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.*;
+import static quizz.PlayerBtn.scorePlayer;
+import static quizz.PlayerBtn.timeMinute;
+import static quizz.PlayerBtn.timeSecond;
 
 /**
  *
- * @author Llauron
+ * @author mathieu
  */
 public class QuizzScreenFinish extends JFrame
 {
+    
+    
     public JLabel lbl1 = new JLabel("   ");
-    public JLabel lbl2 = new JLabel("Votre Score : Score_Joueur");
-    public JLabel lbl3 = new JLabel("Votre Temps : Temps_Joueur");
+    public JLabel lbl2 = new JLabel("Votre Score : "+scorePlayer);
+    public JLabel lbl3 = new JLabel("Votre Temps : "+timeMinute+" min "+timeSecond+" sec ");
     public JPanel PlayerScore = new JPanel();
     public JPanel PlayerTime = new JPanel();
     
