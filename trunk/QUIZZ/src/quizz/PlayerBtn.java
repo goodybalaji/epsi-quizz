@@ -30,6 +30,7 @@ public class PlayerBtn extends JButton implements ActionListener
     static public Quiz leQuiz;
     static public int leQuizNbQuestion;
     static public int leQuizIdQuestion;
+    static public int AnswerCpt=2;
 
     /**
      *
@@ -40,6 +41,7 @@ public class PlayerBtn extends JButton implements ActionListener
     static public String leQuizSolution1="";
     static public String leQuizSolution2="";
     static public String leQuizSolution3="";
+    static public String leQuizSolution4="";
     
     PlayerBtn(String str)
     {
@@ -103,9 +105,14 @@ public class PlayerBtn extends JButton implements ActionListener
                 leQuizSolution1 = rsS.getString("lblsolution");
                 rsS.next();
                 leQuizSolution2 = rsS.getString("lblsolution");
-                if(rsS.next() == true){
-                     leQuizSolution3 = rsS.getString("lblsolution");
-                } 
+                if (rsS.next() == true) {
+                   leQuizSolution3 = rsS.getString("lblsolution");
+                   AnswerCpt++;
+                   if (rsS.next() == true) {
+                       leQuizSolution4 = rsS.getString("lblsolution");
+                       AnswerCpt++;
+                   }
+               }
                 
                 QuizzTimer quizzTimer = new QuizzTimer(); 
                 quizzScreenAnswer = new QuizzScreenAnswer();

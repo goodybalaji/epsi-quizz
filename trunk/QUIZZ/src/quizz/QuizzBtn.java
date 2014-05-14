@@ -36,6 +36,8 @@ import static quizz.PlayerBtn.leQuizQuestion;
 import static quizz.PlayerBtn.leQuizSolution1;
 import static quizz.PlayerBtn.leQuizSolution2;
 import static quizz.PlayerBtn.leQuizSolution3;
+import static quizz.PlayerBtn.leQuizSolution4;
+import static quizz.PlayerBtn.AnswerCpt;
 
 /**
  *
@@ -85,10 +87,29 @@ public class QuizzBtn extends JButton implements ActionListener {
         } else if ("  Suivant  ".equals(this.getText())) {
             if (numQuestion < leQuizNbQuestion) {
                 numQuestion++;
-                try {
+                java.sql.Statement statement;
 
-                    java.sql.Statement statement;
+                try {
                     statement = DBConnect.Connect();
+                    System.out.println("id : " + leQuizIdQuestion + "   question : " + leQuizQuestion);
+                    System.out.println(numQuestion);
+
+                    //SOLUTION
+                    rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
+                            + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
+                            + "AND QT.IDQUESTION = S.IDQUESTION");
+                    rsS.next();
+                    leQuizSolution1 = rsS.getString("lblsolution");
+                    rsS.next();
+                    leQuizSolution2 = rsS.getString("lblsolution");
+                    if (rsS.next() == true) {
+                        leQuizSolution3 = rsS.getString("lblsolution");
+                        AnswerCpt++;
+                        if (rsS.next() == true) {
+                            leQuizSolution4 = rsS.getString("lblsolution");
+                            AnswerCpt++;
+                        }
+                    }
 
                     //Question
                     rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
@@ -106,18 +127,6 @@ public class QuizzBtn extends JButton implements ActionListener {
 
                     System.out.println("id : " + leQuizIdQuestion + "   question : " + leQuizQuestion);
                     System.out.println(numQuestion);
-
-                    //SOLUTION
-                    rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                            + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
-                            + "AND QT.IDQUESTION = S.IDQUESTION");
-                    rsS.next();
-                    leQuizSolution1 = rsS.getString("lblsolution");
-                    rsS.next();
-                    leQuizSolution2 = rsS.getString("lblsolution");
-                    if (rsS.next() == true) {
-                        leQuizSolution3 = rsS.getString("lblsolution");
-                    }
 
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,6 +178,11 @@ public class QuizzBtn extends JButton implements ActionListener {
                     leQuizSolution2 = rsS.getString("lblsolution");
                     if (rsS.next() == true) {
                         leQuizSolution3 = rsS.getString("lblsolution");
+                        AnswerCpt++;
+                        if (rsS.next() == true) {
+                            leQuizSolution4 = rsS.getString("lblsolution");
+                            AnswerCpt++;
+                        }
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,6 +244,11 @@ public class QuizzBtn extends JButton implements ActionListener {
                     leQuizSolution2 = rsS.getString("lblsolution");
                     if (rsS.next() == true) {
                         leQuizSolution3 = rsS.getString("lblsolution");
+                        AnswerCpt++;
+                        if (rsS.next() == true) {
+                            leQuizSolution4 = rsS.getString("lblsolution");
+                            AnswerCpt++;
+                        }
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
