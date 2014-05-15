@@ -63,8 +63,7 @@ public class AdminScreenHome extends JFrame {
 
     AdminScreenHome() {
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\AdminHome.png"))));
-        connectionScreen.txtUser.setText("");
-        connectionScreen.txtPwd.setText("");
+        
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
 
