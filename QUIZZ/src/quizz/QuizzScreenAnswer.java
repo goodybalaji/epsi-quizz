@@ -173,25 +173,26 @@ public class QuizzScreenAnswer extends JFrame {
         centerNorth.add(panelCenterQuestion);
         panelCenterRep1.add(lblRep1);
         panelCenterRep1.add(cbxQ1);
+        panelCenterRep1.setSize(75,50);
         cbxQ1.setOpaque(false);
         centerNorth.setOpaque(false);
         panelCenterRep1.setOpaque(false);
         centerWest.add(panelCenterRep1);
         panelCenterRep2.add(lblRep2);
         panelCenterRep2.add(cbxQ2);
+        panelCenterRep2.setSize(75,50);
         cbxQ2.setOpaque(false);
         panelCenterRep2.setOpaque(false);
-        centerWest.add(panelCenterRep2);
+        centerEast.add(panelCenterRep2);
         centerWest.setOpaque(false);
         centerEast.setOpaque(false);
         if (AnswerCpt >= 3) {
-            center.add(panelCenterRep2);
             panelCenterRep3.add(lblRep3);
             panelCenterRep3.add(cbxQ3);
             cbxQ3.setOpaque(false);
             panelCenterRep3.setOpaque(false);
-            centerEast.add(panelCenterRep3);
-            centerEast.setOpaque(false);
+            centerWest.add(panelCenterRep3);
+            centerWest.setOpaque(false);
             if (AnswerCpt == 4) {
                 panelCenterRep4.add(lblRep4);
                 panelCenterRep4.add(cbxQ4);
