@@ -76,8 +76,7 @@ public class PlayerScreenHome extends JFrame {
     
     PlayerScreenHome() throws SQLException {
         
-        connectionScreen.txtUser.setText("");
-        connectionScreen.txtPwd.setText("");
+        
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
         final java.sql.Statement statement = DBConnect.Connect();
 

@@ -51,7 +51,7 @@ public class QuizzScreenQuestionCreation extends JFrame
     public QuizzCreationBtn btnQuitterAdmin = new QuizzCreationBtn("Quitter");
     public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
     public QuizzCreationBtn btnFinishQuestionCreation = new QuizzCreationBtn("Finir Quizz");
-    public QuizzCreationBtn btnAddURL = new QuizzCreationBtn("Valider");
+    public QuizzCreationBtn btnAddURL = new QuizzCreationBtn("Visualiser");
     
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
