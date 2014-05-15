@@ -19,6 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import static quizz.PlayerScreenHome.setDate;
 import static quizz.QUIZZ.admin;
+import static quizz.QUIZZ.connectionScreen;
 
 /**
  *
@@ -62,6 +63,8 @@ public class AdminScreenHome extends JFrame {
 
     AdminScreenHome() {
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\AdminHome.png"))));
+        connectionScreen.txtUser.setText("");
+        connectionScreen.txtPwd.setText("");
         //TOP
         lbl1.setFont(lbl1.getFont().deriveFont(18.0f));
 
