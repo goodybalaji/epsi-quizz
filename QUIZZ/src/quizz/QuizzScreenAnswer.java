@@ -29,7 +29,6 @@ import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.QuizzScreenAnswer.quizzTimer;
 import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.playerScreenHome;
-import static quizz.QUIZZ.quizzScreenAnswer;
 
 /**
  *
