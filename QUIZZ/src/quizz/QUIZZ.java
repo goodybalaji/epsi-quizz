@@ -66,10 +66,9 @@ public class QUIZZ
 
         connectionScreen = new ConnectionScreen();
         connectionScreen.setVisible(true);
-
-
-        quizzScreenAnswer = new QuizzScreenAnswer();
-        //quizzScreenAnswer.setVisible(true);
+        
+        playerScreenHome = new PlayerScreenHome();
+        //playerScreenHome.setVisible(true);
 
         quizzScreenFinish = new QuizzScreenFinish();
         //quizzScreenFinish.setVisible(true);
