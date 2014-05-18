@@ -11,7 +11,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import quizz.CustomFont;
@@ -24,6 +28,8 @@ import static quizz.PlayerBtn.quizSolution4;
 import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.QuizzScreenAnswer.quizzTimer;
 import static quizz.QUIZZ.BtnColor;
+import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.quizzScreenAnswer;
 
 /**
  *
@@ -81,17 +87,29 @@ public class QuizzScreenAnswer extends JFrame {
     public JPanel panelCenterRep3 = new JPanel();
     public JPanel panelCenterRep4 = new JPanel();
     public JPanel background = new JPanel();
+    public String idQuiz;
+    public String nameQuiz;
 
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
 
     QuizzScreenAnswer() {
-
+        java.sql.Statement statement;
+        try {
+            statement = DBConnect.Connect();
+        ResultSet rsName = statement.executeQuery("SELECT nomQuiz FROM QUIZ "
+                + "WHERE idquiz =" + playerScreenHome.idQuiz);
+        rsName.next();
+        nameQuiz = rsName.getString("nomQuiz");
+        lblQuizzName.setText(nameQuiz);
+        } catch (SQLException ex) {
+            Logger.getLogger(QuizzScreenAnswer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         lblTimer = quizzTimer.lbl1;
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizAnswer.png"))));
         CustomFont = new CustomFont();
-        CFont = CustomFont.getFont("Hanged Letters.ttf");
+        CFont = CustomFont.getFont("SF Slapstick Comic.ttf");
 
         for (i = 1; i <= quizNbQuestion; i++) {
 
@@ -126,7 +144,6 @@ public class QuizzScreenAnswer extends JFrame {
         topWest.setOpaque(false);
         topWestC.setLayout(new BoxLayout(topWestC, BoxLayout.Y_AXIS));
         topCenterC.add(lblQuizzName);
-        topCenterC.setBorder(new EmptyBorder(-10, 0, 0, 0));
         topCenterC.add(lblNbQuestion);
         topCenterC.setLayout(new BoxLayout(topCenterC, BoxLayout.Y_AXIS));
         topCenterC.setOpaque(false);
