@@ -86,7 +86,9 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenFinish.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
-            quizzScreenShowImage.dispose();
+            if (quizzScreenShowImage != null) {
+                quizzScreenShowImage.dispose();
+            }
             if (numQuestion < quizNbQuestion) {
                 numQuestion++;
                 java.sql.Statement statement;
@@ -141,7 +143,9 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.setVisible(true);
             }
         } else if ("Précédent".equals(this.getText())) {
-            quizzScreenShowImage.dispose();
+            if (quizzScreenShowImage != null) {
+                quizzScreenShowImage.dispose();
+            }
             if (numQuestion > 1) {
                 numQuestion--;
                 try {
@@ -199,8 +203,7 @@ public class QuizzBtn extends JButton implements ActionListener {
             playerScreenHome.setVisible(true);
             quizzScreenFinish.setVisible(false);
         } else if ("Valider Question".equals(this.getText()) && (cbxQ1.isSelected() || cbxQ2.isSelected() || cbxQ3.isSelected() || cbxQ4.isSelected())) {
-            
-            
+
             if (numQuestion < quizNbQuestion) {
 
                 BtnColor[numQuestion - 1] = 1;
@@ -254,7 +257,9 @@ public class QuizzBtn extends JButton implements ActionListener {
                 cbxQ3.setSelected(false);
                 cbxQ4.setSelected(false);
                 quizzScreenShowImage.dispose();
-                quizzScreenAnswer.dispose();
+                if (quizzScreenShowImage != null) {
+                    quizzScreenShowImage.dispose();
+                }
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
                     System.out.println(quizUrlQuestion);
