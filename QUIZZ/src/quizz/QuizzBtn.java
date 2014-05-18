@@ -276,10 +276,25 @@ public class QuizzBtn extends JButton implements ActionListener {
                 }
                 quizzScreenAnswer.setVisible(true);
             } else {
-                BtnColor[numQuestion - 1] = 1;
-                quizzScreenAnswer.dispose();
-                quizzScreenAnswer = new QuizzScreenAnswer();
-                quizzScreenAnswer.setVisible(true);
+                int reponse = JOptionPane.showConfirmDialog(this,
+                    "Vous avez validé toutes les questions, voulez-vous terminer le quiz ?",
+                    "Confirmation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+                quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                if (reponse == JOptionPane.YES_OPTION) {
+                    leQuiz = null;
+                    BtnColor = new int[40];
+                    for (int i = 0; i < 40; i++) {
+                        BtnColor[i] = 0;
+                    }
+                    quizNbQuestion = 0;
+                    numQuestion = 1;
+                    quizzTimer = new QuizzTimer();
+                    quizzScreenAnswer.setVisible(false);
+                    quizzScreenFinish = new QuizzScreenFinish();
+                    quizzScreenFinish.setVisible(true);
+                }
             }
         }
     }
