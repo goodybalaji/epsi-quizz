@@ -83,6 +83,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 }
                 
                 quizzScreenCreation.setVisible(false);
+                quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
                 quizzScreenQuestionCreation.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(quizzScreenCreation, "Vous devez donner un nom au QWIZZ avant de pouvoir le créer !!");
@@ -319,6 +320,8 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                             + roping(quizzScreenQuestionCreation.txtRep4.getText().toString()) + "', " + idQuestion + ", "
                                             + state + ")");
                                 }
+                                adminScreenHome.dispose();
+                                adminScreenHome = new AdminScreenHome();                                
                                 adminScreenHome.setVisible(true);
                                 quizzScreenQuestionCreation.dispose();
                                 rs = statement.executeQuery("update quiz set nbquestionquiz = " + quiz.getNbQuestion() + " where idquiz = " + quiz.getId());
@@ -377,6 +380,8 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                             + state + ")");
                                 }
                                 rs = statement.executeQuery("update quiz set nbquestionquiz = " + quiz.getNbQuestion() + " where idquiz = " + quiz.getId());
+                                adminScreenHome.dispose();
+                                adminScreenHome = new AdminScreenHome();                                
                                 adminScreenHome.setVisible(true);
                                 quizzScreenQuestionCreation.dispose();
                             } catch (SQLException ex) {

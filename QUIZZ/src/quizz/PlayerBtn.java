@@ -6,18 +6,22 @@ package quizz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
 import static quizz.QUIZZ.connectionScreen;
-import static quizz.QUIZZ.quiz;
 import static quizz.QUIZZ.player;
 import static quizz.QUIZZ.quizzScreenAnswer;
+import static quizz.QUIZZ.quizzScreenShowImage;
+import static quizz.QuizzCreationBtn.icon;
 
 /**
  *
@@ -27,7 +31,7 @@ public class PlayerBtn extends JButton implements ActionListener {
 
     static public Quiz leQuiz;
     static public int quizNbQuestion;
-    static public int leQuizIdQuestion;
+    static public int quizIdQuestion;
     static public int AnswerCpt = 2;
     public static int scorePlayer;
     public static int timeMinute;
@@ -36,6 +40,7 @@ public class PlayerBtn extends JButton implements ActionListener {
     static public ResultSet rsQ;
     static public ResultSet rsS;
     static public String quizQuestion = "";
+    static public String quizUrlQuestion = "";
     static public String quizSolution1 = "";
     static public String quizSolution2 = "";
     static public String quizSolution3 = "";
@@ -72,23 +77,31 @@ public class PlayerBtn extends JButton implements ActionListener {
                 statement = DBConnect.Connect();
 
                 //ID
+                
+                System.out.println("SELECT nbquestionquiz from QUIZ "
+                        + "WHERE idquiz = " + playerScreenHome.idQuiz);
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
                         + "WHERE idquiz = " + playerScreenHome.idQuiz);
                 rsID.next();
                 quizNbQuestion = rsID.getInt("nbquestionquiz");
 
                 //Question
-                rsQ = statement.executeQuery("SELECT lblquestion, QT.idquestion from QUESTION QT, COMPOSER C, QUIZ Q "
+                System.out.println("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
                         + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
-                        + "AND C.IDQUIZ = Q.IDQUIZ "
+                        + " AND C.IDQUIZ = Q.IDQUIZ "
+                        + "AND QT.IDQUESTION = C.IDQUESTION");
+                rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
+                        + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                        + " AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();
                 quizQuestion = rsQ.getString("lblquestion");
-                leQuizIdQuestion = rsQ.getInt("idquestion");
-
+                quizIdQuestion = rsQ.getInt("idquestion");
+                quizUrlQuestion = rsQ.getString("urlQuestion");
+                
                 //Solution
                 rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                        + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
+                        + "WHERE QT.IDQUESTION = " + quizIdQuestion
                         + "AND QT.IDQUESTION = S.IDQUESTION");
                 rsS.next();
                 quizSolution1 = rsS.getString("lblsolution");
@@ -103,7 +116,15 @@ public class PlayerBtn extends JButton implements ActionListener {
                         AnswerCpt++;
                     }
                 }
-
+                try {
+                    System.out.println(quizUrlQuestion);
+                    if (!quizUrlQuestion.isEmpty()) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
+                        quizzScreenShowImage.setVisible(true);
+                    }
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 quizzTimer = new QuizzTimer();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 quizzScreenAnswer.setVisible(true);
