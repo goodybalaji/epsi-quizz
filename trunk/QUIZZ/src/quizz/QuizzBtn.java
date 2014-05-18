@@ -7,11 +7,9 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,7 +18,6 @@ import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import static quizz.QUIZZ.quizzScreenShowImage;
 import static quizz.QUIZZ.quizzScreenFinish;
-import static quizz.QuizzCreationBtn.icon;
 import static quizz.QuizzScreenAnswer.numQuestion;
 import static quizz.QuizzScreenAnswer.cbxQ1;
 import static quizz.QuizzScreenAnswer.cbxQ2;
@@ -29,7 +26,7 @@ import static quizz.QuizzScreenAnswer.cbxQ4;
 import static quizz.QuizzScreenAnswer.quizzTimer;
 import static quizz.PlayerBtn.quizNbQuestion;
 import static quizz.PlayerBtn.leQuiz;
-import static quizz.PlayerBtn.leQuizIdQuestion;
+import static quizz.PlayerBtn.quizIdQuestion;
 import static quizz.PlayerBtn.rsQ;
 import static quizz.PlayerBtn.rsS;
 import static quizz.PlayerBtn.quizQuestion;
@@ -37,6 +34,7 @@ import static quizz.PlayerBtn.quizSolution1;
 import static quizz.PlayerBtn.quizSolution2;
 import static quizz.PlayerBtn.quizSolution3;
 import static quizz.PlayerBtn.quizSolution4;
+import static quizz.PlayerBtn.quizUrlQuestion;
 import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.PlayerBtn.scorePlayer;
 import static quizz.PlayerBtn.timeMinute;
@@ -88,6 +86,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenFinish.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
+            quizzScreenShowImage.dispose();
             if (numQuestion < quizNbQuestion) {
                 numQuestion++;
                 java.sql.Statement statement;
@@ -96,7 +95,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                     statement = DBConnect.Connect();
 
                     //Question
-                    rsQ = statement.executeQuery("SELECT * from QUESTION QT, COMPOSER C, QUIZ Q "
+                    rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
                             + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
@@ -107,11 +106,11 @@ public class QuizzBtn extends JButton implements ActionListener {
                     }
                     compteurQ++;
                     quizQuestion = rsQ.getString("lblquestion");
-                    leQuizIdQuestion = rsQ.getInt("idquestion");
-
+                    quizIdQuestion = rsQ.getInt("idquestion");
+                    quizUrlQuestion = rsQ.getString("urlquestion");
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                            + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
+                            + "WHERE QT.IDQUESTION = " + quizIdQuestion
                             + "AND QT.IDQUESTION = S.IDQUESTION");
                     rsS.next();
                     quizSolution1 = rsS.getString("lblsolution");
@@ -132,10 +131,8 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!rsQ.getString("lblquestion").equals("")) {
-
-                        icon = new ImageIcon(new ImageIcon(new URL(rsQ.getString("lblquestion"))).getImage());
-                        quizzScreenShowImage = new QuizzScreenShowImage();
+                    if (!quizUrlQuestion.isEmpty()) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
@@ -146,6 +143,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.setVisible(true);
             }
         } else if ("Précédent".equals(this.getText())) {
+            quizzScreenShowImage.dispose();
             if (numQuestion > 1) {
                 numQuestion--;
                 try {
@@ -153,7 +151,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                     statement = DBConnect.Connect();
 
                     //Question
-                    rsQ = statement.executeQuery("SELECT * from QUESTION QT, COMPOSER C, QUIZ Q "
+                    rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
                             + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
@@ -163,11 +161,11 @@ public class QuizzBtn extends JButton implements ActionListener {
                     }
                     rsQ.previous();
                     quizQuestion = rsQ.getString("lblquestion");
-                    leQuizIdQuestion = rsQ.getInt("idquestion");
-
+                    quizIdQuestion = rsQ.getInt("idquestion");
+                    quizUrlQuestion = rsQ.getString("urlquestion");
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                            + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
+                            + "WHERE QT.IDQUESTION = " + quizIdQuestion
                             + "AND QT.IDQUESTION = S.IDQUESTION");
                     rsS.next();
                     quizSolution1 = rsS.getString("lblsolution");
@@ -187,10 +185,8 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!rsQ.getString("lblquestion").equals("")) {
-
-                        icon = new ImageIcon(new ImageIcon(new URL(rsQ.getString("lblquestion"))).getImage());
-                        quizzScreenShowImage = new QuizzScreenShowImage();
+                    if (!quizUrlQuestion.isEmpty()) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
@@ -201,13 +197,13 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.setVisible(true);
             }
         } else if ("Masquer".equals(this.getText())) {
-            quizzScreenShowImage.setVisible(false);
+            quizzScreenShowImage.dispose();
 
         } else if ("Quitter".equals(this.getText())) {
             playerScreenHome.setVisible(true);
             quizzScreenFinish.setVisible(false);
         } else if ("Valider Question".equals(this.getText()) && (cbxQ1.isSelected() || cbxQ2.isSelected() || cbxQ3.isSelected() || cbxQ4.isSelected())) {
-
+            quizzScreenShowImage.dispose();
             if (numQuestion < quizNbQuestion) {
 
                 BtnColor[numQuestion - 1] = 1;
@@ -219,7 +215,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                     statement = DBConnect.Connect();
 
                     //Question
-                    rsQ = statement.executeQuery("SELECT * from QUESTION QT, COMPOSER C, QUIZ Q "
+                    rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
                             + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
@@ -230,11 +226,11 @@ public class QuizzBtn extends JButton implements ActionListener {
                     }
                     compteurQ++;
                     quizQuestion = rsQ.getString("lblquestion");
-                    leQuizIdQuestion = rsQ.getInt("idquestion");
-
+                    quizIdQuestion = rsQ.getInt("idquestion");
+                    quizUrlQuestion = rsQ.getString("urlquestion");
                     //SOLUTION
                     rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                            + "WHERE QT.IDQUESTION = " + leQuizIdQuestion
+                            + "WHERE QT.IDQUESTION = " + quizIdQuestion
                             + "AND QT.IDQUESTION = S.IDQUESTION");
                     rsS.next();
                     quizSolution1 = rsS.getString("lblsolution");
@@ -263,10 +259,8 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!rsQ.getString("lblquestion").equals("")) {
-
-                        icon = new ImageIcon(new ImageIcon(new URL(rsQ.getString("lblquestion"))).getImage());
-                        quizzScreenShowImage = new QuizzScreenShowImage();
+                    if (!quizUrlQuestion.isEmpty()) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {

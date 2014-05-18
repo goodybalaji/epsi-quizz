@@ -31,22 +31,16 @@ import javax.swing.JPanel;
 public class QuizzScreenShowImage extends JFrame{
     
     public QuizzBtn btnHide = new QuizzBtn("Masquer");
-
+    public ImageIcon icon;
     public JPanel image = new JPanel();
     public JPanel bottom = new JPanel();
     
-    QuizzScreenShowImage() throws MalformedURLException {
+    
+    QuizzScreenShowImage(String str) throws MalformedURLException {
         
-       bottom.add(btnHide);
-
-       
-       btnHide.addActionListener(btnHide);
-        
-       //IMAGE
-      
-       
-        
-        ImageIcon icon = new ImageIcon(new ImageIcon(new URL("http://blog.fysiki.com/wp-content/uploads/2010/07/biere.jpg")).getImage());
+        icon = new ImageIcon(new ImageIcon(new URL(str)).getImage());
+        bottom.add(btnHide);
+        btnHide.addActionListener(btnHide);
         Image zoom = scaleImage(icon.getImage(), 450);
         Icon iconScaled = new ImageIcon(zoom);
         JLabel img = new JLabel(iconScaled);
