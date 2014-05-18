@@ -61,8 +61,6 @@ public class QUIZZ
         //quizzScreenCreation.setVisible(true);
         quizzScreenAddImage = new QuizzScreenAddImage();
         //quizzScreenAddImage.setVisible(true);
-        
-        quizzScreenShowImage = new QuizzScreenShowImage();
         //quizzScreenShowImage.setVisible(true);
         
 
@@ -70,15 +68,19 @@ public class QUIZZ
         connectionScreen.setVisible(true);
 
 
+        quizzScreenAnswer = new QuizzScreenAnswer();
+        //quizzScreenAnswer.setVisible(true);
+
         quizzScreenFinish = new QuizzScreenFinish();
         //quizzScreenFinish.setVisible(true);
-        
+
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
        // playerScreenRankQuizz.setVisible(true);
         
+        playerScreenHome = new PlayerScreenHome();
+                
         playerScreenStat = new PlayerScreenStat();
-       //playerScreenStat.setVisible(true);
-        
+        //playerScreenStat.setVisible(true);        
         playerScreenHome = new PlayerScreenHome();
         
         connectionScreenAddUser = new ConnectionScreenAddUser();
@@ -87,7 +89,7 @@ public class QUIZZ
         adminScreenAddAdmin = new AdminScreenAddAdmin();
         //adminScreenAddAdmin.setVisible(true);
         
-        adminScreenHome = new AdminScreenHome();
+        //adminScreenHome = new AdminScreenHome();
         //adminScreenHome.setVisible(true);
         
         customFont = new CustomFont();
