@@ -118,7 +118,7 @@ public class PlayerBtn extends JButton implements ActionListener {
                 }
                 try {
                     System.out.println(quizUrlQuestion);
-                    if (!quizUrlQuestion.equals("")){
+                    if (quizUrlQuestion != null){
                         quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
                         quizzScreenShowImage.setVisible(true);
                     }
