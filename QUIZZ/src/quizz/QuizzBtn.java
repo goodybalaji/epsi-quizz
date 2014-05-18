@@ -131,7 +131,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!quizUrlQuestion.isEmpty()) {
+                    if (!quizUrlQuestion.equals("")) {
                         quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
                         quizzScreenShowImage.setVisible(true);
                     }
@@ -185,7 +185,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!quizUrlQuestion.isEmpty()) {
+                    if (!quizUrlQuestion.equals("")) {
                         quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
                         quizzScreenShowImage.setVisible(true);
                     }
@@ -203,7 +203,8 @@ public class QuizzBtn extends JButton implements ActionListener {
             playerScreenHome.setVisible(true);
             quizzScreenFinish.setVisible(false);
         } else if ("Valider Question".equals(this.getText()) && (cbxQ1.isSelected() || cbxQ2.isSelected() || cbxQ3.isSelected() || cbxQ4.isSelected())) {
-            quizzScreenShowImage.dispose();
+            
+            
             if (numQuestion < quizNbQuestion) {
 
                 BtnColor[numQuestion - 1] = 1;
@@ -256,17 +257,17 @@ public class QuizzBtn extends JButton implements ActionListener {
                 cbxQ2.setSelected(false);
                 cbxQ3.setSelected(false);
                 cbxQ4.setSelected(false);
+                quizzScreenShowImage.dispose();
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!quizUrlQuestion.isEmpty()) {
-                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
+                    System.out.println(quizUrlQuestion);
+                    if (!quizUrlQuestion.equals("")) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 quizzScreenAnswer.setVisible(true);
             } else {
