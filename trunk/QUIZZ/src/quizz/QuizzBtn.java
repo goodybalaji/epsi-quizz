@@ -126,6 +126,10 @@ public class QuizzBtn extends JButton implements ActionListener {
                             AnswerCpt++;
                         }
                     }
+                    cbxQ1.setSelected(false);
+                    cbxQ2.setSelected(false);
+                    cbxQ3.setSelected(false);
+                    cbxQ4.setSelected(false);
 
                 } catch (SQLException ex) {
                     Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
