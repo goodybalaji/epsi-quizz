@@ -16,6 +16,9 @@ import java.awt.Color;
 import static java.awt.Color.RED;
 import static java.awt.Color.WHITE;
 import static java.awt.PageAttributes.ColorType.COLOR;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 /**
  *
@@ -34,7 +37,7 @@ public class NumBtn extends JButton implements ActionListener{
         numQuestion= Integer.parseInt(this.getText());
        // BtnColor[numQuestion-1]=1;
           quizzScreenAnswer.dispose();
-            quizzScreenAnswer = new QuizzScreenAnswer();
+          quizzScreenAnswer = new QuizzScreenAnswer();
             quizzScreenAnswer.setVisible(true);
  
     }

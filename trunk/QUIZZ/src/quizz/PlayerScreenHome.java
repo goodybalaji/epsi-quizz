@@ -246,6 +246,7 @@ public class PlayerScreenHome extends JFrame {
                 } else {
                     selectedRow = lsm.getMinSelectionIndex();
                     idQuiz = data.getValueAt(selectedRow, 4).toString();
+                    System.out.println(selectedRow +" "+ idQuiz);
                 }
             }
         });
