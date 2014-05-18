@@ -256,7 +256,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 cbxQ2.setSelected(false);
                 cbxQ3.setSelected(false);
                 cbxQ4.setSelected(false);
-                quizzScreenShowImage.dispose();
+                quizzScreenAnswer.dispose();
                 if (quizzScreenShowImage != null) {
                     quizzScreenShowImage.dispose();
                 }
