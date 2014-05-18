@@ -18,6 +18,7 @@ import static quizz.QUIZZ.adminScreenAddAdmin;
 import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.admin;
 import static quizz.QUIZZ.connectionScreen;
+import static quizz.QUIZZ.quizzScreenUpdate;
 
 /**
  *
@@ -46,6 +47,10 @@ public class AdminBtn extends JButton implements ActionListener {
             adminScreenAddAdmin.setVisible(true);
         } else if ("Retour".equals(this.getText())) {
             adminScreenAddAdmin.setVisible(false);
+        } else if ("Modifier".equals(this.getText())) {
+            quizzScreenUpdate = new QuizzScreenUpdate();
+            adminScreenHome.setVisible(false);
+            quizzScreenUpdate.setVisible(true);
         } else if ("Créer".equals(this.getText())) {
             //création des variable de verification du mdp
             char[] pwd = adminScreenAddAdmin.txtPwd.getPassword();

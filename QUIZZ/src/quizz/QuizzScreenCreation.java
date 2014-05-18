@@ -4,7 +4,6 @@
  */
 package quizz;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,12 +15,12 @@ import javax.swing.*;
 
 /**
  *
- * @author Mama
- * Le nombre de question par QUIZZ sera compté par le soft et on valide la création avec le nombre de question.
- * 
+ * @author Mama Le nombre de question par QUIZZ sera compté par le soft et on
+ * valide la création avec le nombre de question.
+ *
  */
-public class QuizzScreenCreation extends JFrame
-{
+public class QuizzScreenCreation extends JFrame {
+
     public JLabel lbl1 = new JLabel(" ");
     public JLabel lbl2 = new JLabel("Nom du Qwizz : ");
     public JLabel lbl3 = new JLabel("Thème :               ");
@@ -33,10 +32,10 @@ public class QuizzScreenCreation extends JFrame
     public JTextField txtTemps = new JTextField();
     public QuizzCreationBtn btnQuitterAdmin = new QuizzCreationBtn("Quitter");
     public QuizzCreationBtn btnNextQuestion = new QuizzCreationBtn("Suivant");
-    
+
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
-    
+
     public JPanel center = new JPanel();
     public JPanel panelCenterSpace = new JPanel();
     public JPanel panelCenterName = new JPanel();
@@ -44,45 +43,38 @@ public class QuizzScreenCreation extends JFrame
     public JPanel panelCenterLevel = new JPanel();
     public JPanel panelCenterTemp = new JPanel();
     public JPanel background = new JPanel();
-    
+
     public JPanel bottom = new JPanel();
     public JPanel theBottom = new JPanel();
     public JPanel underBottom = new JPanel();
-    
-    
-    QuizzScreenCreation()
-    {
+
+    QuizzScreenCreation() {
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuizCreationBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
-        txtNameQuizz.setPreferredSize(new Dimension( 200, 25));
-        txtTemps.setPreferredSize(new Dimension( 200, 25));
-        cbxLevel.setPreferredSize(new Dimension( 198, 25));
-        cbxTheme.setPreferredSize(new Dimension( 198, 25));
-        
+        txtNameQuizz.setPreferredSize(new Dimension(200, 25));
+        txtTemps.setPreferredSize(new Dimension(200, 25));
+        cbxLevel.setPreferredSize(new Dimension(198, 25));
+        cbxTheme.setPreferredSize(new Dimension(198, 25));
+
         topLbl.add(lbl1);
         topLbl.setOpaque(false);
         top.add(topLbl);
         top.setLayout(new BoxLayout(top, BoxLayout.Y_AXIS));
         top.setOpaque(false);
 
-try 
-        {
+        try {
             java.sql.Statement statement = DBConnect.Connect();
             ResultSet rs = statement.executeQuery("Select * from THEME");
-            while(rs.next() == true)
-            {
+            while (rs.next() == true) {
                 cbxTheme.addItem(rs.getString("lblTheme"));
             }
             rs = statement.executeQuery("Select * from Difficulte");
-            while(rs.next() == true)
-            {
+            while (rs.next() == true) {
                 cbxLevel.addItem(rs.getString("lblDifficulte"));
             }
             rs = null;
             statement = null;
-        } 
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             Logger.getLogger(QuizzScreenCreation.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -93,25 +85,25 @@ try
         panelCenterName.add(lbl2);
         panelCenterName.add(txtNameQuizz);
         panelCenterName.setOpaque(false);
-        center.add(panelCenterName);        
+        center.add(panelCenterName);
         panelCenterTheme.add(lbl3);
         panelCenterTheme.add(cbxTheme);
         panelCenterTheme.setOpaque(false);
-        center.add(panelCenterTheme);        
+        center.add(panelCenterTheme);
         panelCenterLevel.add(lbl4);
         panelCenterLevel.add(cbxLevel);
         panelCenterLevel.setOpaque(false);
-        center.add(panelCenterLevel);        
+        center.add(panelCenterLevel);
         panelCenterTemp.add(lbl5);
         panelCenterTemp.add(txtTemps);
         panelCenterTemp.setOpaque(false);
-        center.add(panelCenterTemp);        
+        center.add(panelCenterTemp);
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
-        
+
         btnQuitterAdmin.addActionListener(btnQuitterAdmin);
         btnNextQuestion.addActionListener(btnNextQuestion);
-        
+
         theBottom.add(new JLabel("                                                                                                                                                                          "));
         theBottom.add(btnQuitterAdmin);
         theBottom.add(new JLabel(" "));
@@ -123,21 +115,21 @@ try
         bottom.add(underBottom);
         bottom.setLayout(new BoxLayout(bottom, BoxLayout.X_AXIS));
         bottom.setOpaque(false);
-        
+
         background.add(top);
         background.add(center);
         background.add(bottom);
         background.setLayout(new BoxLayout(background, BoxLayout.Y_AXIS));
-        
+
         this.setTitle("QUIZZ : Création du QUIZZ");
         setLayout(new BorderLayout());
-        this.setSize(700,400);
+        this.setSize(700, 400);
         this.setResizable(false);
         this.getContentPane().add(BorderLayout.SOUTH, bottom);
         this.getContentPane().add(BorderLayout.NORTH, top);
         this.getContentPane().add(BorderLayout.CENTER, center);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
