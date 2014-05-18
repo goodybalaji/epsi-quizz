@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import static quizz.PlayerScreenHome.setDate;
 import static quizz.QUIZZ.admin;
 import static quizz.QUIZZ.connectionScreen;
+import static quizz.QUIZZ.quiz;
 
 /**
  *
@@ -54,14 +55,13 @@ public class AdminScreenHome extends JFrame {
     public JPanel bottom = new JPanel();
     public JPanel background = new JPanel();
 
-   
     public JPanel JPlbl8 = new JPanel();
     public JPanel bottomClassBtn = new JPanel();
     public JPanel bottomModifBtn = new JPanel();
     public JPanel bottomDelBtn = new JPanel();
     public JPanel bottomNewBtn = new JPanel();
 
-    AdminScreenHome() {
+    AdminScreenHome(){
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\AdminHome.png"))));
         
         //TOP
@@ -98,7 +98,6 @@ public class AdminScreenHome extends JFrame {
         top.setOpaque(false);
 
         //CENTER       
-        
         centerTop.setOpaque(false);
 
         final java.sql.Statement statement;
@@ -106,7 +105,7 @@ public class AdminScreenHome extends JFrame {
             statement = DBConnect.Connect();
             ResultSet rs = statement.executeQuery("Select count(nomquiz) "
                     + "from QUIZ Q "
-                    + "Where idAdmin = "+ admin.getId());
+                    + "Where idAdmin = " + admin.getId());
             rs.next();
             nb = rs.getInt(1);
             tableau = new JTable(data = new QwizTableModel(nb));
@@ -141,6 +140,7 @@ public class AdminScreenHome extends JFrame {
                 } else {
                     selectedRow = lsm.getMinSelectionIndex();
                     idQuiz = data.getValueAt(selectedRow, 4).toString();
+                    quiz = new Quiz(Integer.parseInt(idQuiz));
                 }
             }
         });
@@ -159,6 +159,7 @@ public class AdminScreenHome extends JFrame {
         tableau.setColumnSelectionAllowed(false);
         tableau.setCellSelectionEnabled(false);
         tableau.setCellEditor(null);
+
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(665, 215));
