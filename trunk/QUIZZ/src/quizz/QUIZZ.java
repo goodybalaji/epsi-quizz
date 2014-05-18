@@ -15,6 +15,7 @@ public class QUIZZ
 {
 
     static public QuizzScreenQuestionCreation quizzScreenQuestionCreation;
+    static public QuizzScreenQuestionUpdate quizzScreenQuestionUpdate;
     static public QuizzScreenCreation quizzScreenCreation;
     static public QuizzScreenUpdate quizzScreenUpdate;
     
@@ -52,7 +53,6 @@ public class QUIZZ
             BtnColor[i]=0;
         }
         
-        quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
        //quizzScreenQuestionCreation.setVisible(true);
         questionCorrectionScreen = new QuizzScreenQuestionCorrection();
        //questionCorrectionScreen.setVisible(true);

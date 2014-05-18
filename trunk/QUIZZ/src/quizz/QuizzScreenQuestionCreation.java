@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import static quizz.QUIZZ.quiz;
 
 /**
  *
@@ -26,28 +27,24 @@ import javax.swing.border.EmptyBorder;
 
 public class QuizzScreenQuestionCreation extends JFrame
 {
-    public static int numQuestion = 1;
     public JLabel lbl1 = new JLabel(" ");
-    public JLabel lbl2 = new JLabel("Question N° "+ numQuestion + " : ");
+    public JLabel lbl2 = new JLabel("Question N° "+ quiz.getCurrentQuestion() + " : ");
     public JLabel lblImage = new JLabel("Image (facultatif) : ");
     public JLabel lblNB = new JLabel(" Cochez la (les) réponse(s) correcte(s) ! ");
     public JLabel lbl3 = new JLabel("Réponse n°1 : ");
     public JLabel lbl4 = new JLabel("Réponse n°2 : ");
     public JLabel lbl5 = new JLabel("Réponse N°3 : ");
     public JLabel lbl6 = new JLabel("Réponse N°4 : ");
-    public JLabel lbl7 = new JLabel("Réponse N°5 : ");
     public JTextField txtQuestion = new JTextField();
     public JTextField imageQuestion = new JTextField();
     public JTextField txtRep1 = new JTextField();
     public JTextField txtRep2 = new JTextField();
     public JTextField txtRep3 = new JTextField();
     public JTextField txtRep4 = new JTextField();
-    public JTextField txtRep5 = new JTextField();
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
-    public JCheckBox cbxQ5 = new JCheckBox();
     public QuizzCreationBtn btnQuitterAdmin = new QuizzCreationBtn("Quitter");
     public QuizzCreationBtn btnNextQuestionCreation = new QuizzCreationBtn("  Suivant  ");    
     public QuizzCreationBtn btnFinishQuestionCreation = new QuizzCreationBtn("Finir Quizz");
@@ -73,6 +70,8 @@ public class QuizzScreenQuestionCreation extends JFrame
     
     QuizzScreenQuestionCreation()
     {
+        
+        
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuestionCreationBG.png"))));
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
         txtQuestion.setPreferredSize(new Dimension( 550, 25));
@@ -81,7 +80,6 @@ public class QuizzScreenQuestionCreation extends JFrame
         txtRep2.setPreferredSize(new Dimension( 500, 25));
         txtRep3.setPreferredSize(new Dimension( 500, 25));
         txtRep4.setPreferredSize(new Dimension( 500, 25));
-        txtRep5.setPreferredSize(new Dimension( 500, 25));
         
         imageQuestion.addMouseListener(new MouseAdapter(){
             @Override

@@ -26,7 +26,6 @@ import javax.swing.JTextField;
 import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.quizzScreenAddImage;
 import static quizz.QUIZZ.quizzScreenQuestionCreation;
-import static quizz.QuizzScreenQuestionCreation.numQuestion;
 
 /**
  *
@@ -49,7 +48,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
         if ("Suivant".equals(this.getText())) {
             if (quizzScreenCreation.txtNameQuizz.getText().toString().isEmpty() != true) {
                 int idDifficulte = 1;
-                if (quizzScreenCreation.cbxLevel.getSelectedItem().toString().equals("Moyen")) {
+                if (quizzScreenCreation.cbxLevel.getSelectedItem().toString().equals("Normal")) {
                     idDifficulte = 2;
                 } else if (quizzScreenCreation.cbxLevel.getSelectedItem().toString().equals("Difficile")) {
                     idDifficulte = 3;
@@ -107,7 +106,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
             quizzScreenAddImage.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
-            quiz.incNbQuestion();
+            
             if (quizzScreenQuestionCreation.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionCreation.txtRep1.getText().isEmpty() == false
                     && quizzScreenQuestionCreation.txtRep2.getText().isEmpty() == false) {
                 if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true
@@ -172,7 +171,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                         + state + ")");
                             }
                             quizzScreenQuestionCreation.dispose();
-                            numQuestion++;
+                            quiz.incCurrentQuestion();
                             quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
                             quizzScreenQuestionCreation.setVisible(true);
                         } catch (SQLException ex) {
@@ -233,7 +232,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                         + state + ")");
                             }
                             quizzScreenQuestionCreation.dispose();
-                            numQuestion++;
+                            quiz.incCurrentQuestion();
                             quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
                             quizzScreenQuestionCreation.setVisible(true);
                         } catch (SQLException ex) {
@@ -384,10 +383,10 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                 adminScreenHome = new AdminScreenHome();                                
                                 adminScreenHome.setVisible(true);
                                 quizzScreenQuestionCreation.dispose();
+                                quiz = null;
                             } catch (SQLException ex) {
                                 Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
+                            }                            
                         }
                     } else {
                         JOptionPane.showMessageDialog(quizzScreenCreation, "Veuillez sélectionner au moin une réponse valide pour votre question.");
