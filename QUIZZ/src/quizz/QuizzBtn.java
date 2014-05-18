@@ -131,14 +131,12 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!quizUrlQuestion.equals("")) {
-                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
+                    if (quizUrlQuestion != null) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 quizzScreenAnswer.setVisible(true);
             }
@@ -185,14 +183,12 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer.dispose();
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
-                    if (!quizUrlQuestion.equals("")) {
-                        quizzScreenShowImage = new QuizzScreenShowImage(rsQ.getString("urlQuestion"));
+                    if (quizUrlQuestion != null) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 quizzScreenAnswer.setVisible(true);
             }
@@ -262,7 +258,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 try {
                     System.out.println(quizUrlQuestion);
-                    if (!quizUrlQuestion.equals("")) {
+                    if (quizUrlQuestion != null) {
                         quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
                         quizzScreenShowImage.setVisible(true);
                     }
