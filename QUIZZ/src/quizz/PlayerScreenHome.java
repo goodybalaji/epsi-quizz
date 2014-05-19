@@ -22,6 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import static quizz.QUIZZ.quiz;
 
 /**
  *
@@ -64,7 +65,6 @@ public class PlayerScreenHome extends JFrame {
     public QwizTableModel data;
     TableRowSorter<TableModel> sorter;
     public int selectedRow;
-    public String idQuiz;
 
     public int nb;
     public JPanel bottomBtnStat = new JPanel();
@@ -244,8 +244,8 @@ public class PlayerScreenHome extends JFrame {
                     System.out.println("No rows selected");
                 } else {
                     selectedRow = lsm.getMinSelectionIndex();
-                    idQuiz = data.getValueAt(selectedRow, 4).toString();
-                    System.out.println(selectedRow +" "+ idQuiz);
+                    quiz = new Quiz(Integer.parseInt(data.getValueAt(selectedRow, 4).toString()));
+                    System.out.println(selectedRow +" "+ quiz.getId());
                 }
             }
         });

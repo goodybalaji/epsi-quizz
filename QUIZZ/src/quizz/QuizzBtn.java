@@ -39,6 +39,7 @@ import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.PlayerBtn.scorePlayer;
 import static quizz.PlayerBtn.timeMinute;
 import static quizz.PlayerBtn.timeSecond;
+import static quizz.QUIZZ.quiz;
 
 /**
  *
@@ -98,7 +99,7 @@ public class QuizzBtn extends JButton implements ActionListener {
 
                     //Question
                     rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
-                            + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                            + "WHERE Q.IDQUIZ = " + quiz.getId()
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
                     rsQ.next();
@@ -158,7 +159,7 @@ public class QuizzBtn extends JButton implements ActionListener {
 
                     //Question
                     rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
-                            + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                            + "WHERE Q.IDQUIZ = " + quiz.getId()
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
                     rsQ.next();
@@ -220,7 +221,7 @@ public class QuizzBtn extends JButton implements ActionListener {
 
                     //Question
                     rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
-                            + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                            + "WHERE Q.IDQUIZ = " + quiz.getId()
                             + "AND C.IDQUIZ = Q.IDQUIZ "
                             + "AND QT.IDQUESTION = C.IDQUESTION");
                     rsQ.next();
