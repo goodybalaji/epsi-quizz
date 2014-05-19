@@ -46,10 +46,9 @@ public class QuizzScreenQuestionUpdate extends JFrame {
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
-    public QuizzUpdateBtn btnQuitterAdmin = new QuizzUpdateBtn("Quitter");
-    public QuizzUpdateBtn btnNextQuestionCreation = new QuizzUpdateBtn("  Suivant  ");
-    public QuizzUpdateBtn btnFinishQuestionCreation = new QuizzUpdateBtn("Finir Correction");
-    public QuizzUpdateBtn btnAddURL = new QuizzUpdateBtn("Visualiser");
+    public QuizzCorectionBtn btnNextQuestionCreation = new QuizzCorectionBtn("  Suivant  ");
+    public QuizzCorectionBtn btnFinishQuestionCreation = new QuizzCorectionBtn("Finir Correction");
+    public QuizzCorectionBtn btnAddURL = new QuizzCorectionBtn("Visualiser");
 
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -137,12 +136,7 @@ public class QuizzScreenQuestionUpdate extends JFrame {
         txtRep3.setPreferredSize(new Dimension(500, 25));
         txtRep4.setPreferredSize(new Dimension(500, 25));
 
-        imageQuestion.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                imageQuestion.setText("");
-            }
-        });
+       
 
         topLbl.add(lbl1);
         topLbl.setOpaque(false);
@@ -186,7 +180,7 @@ public class QuizzScreenQuestionUpdate extends JFrame {
          panelCenterRep5.add(cbxQ5);
          center.add(panelCenterRep5);*/
 
-        btnQuitterAdmin.addActionListener(btnQuitterAdmin);
+     
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
         btnAddURL.addActionListener(btnAddURL);
         btnFinishQuestionCreation.addActionListener(btnFinishQuestionCreation);
@@ -195,8 +189,7 @@ public class QuizzScreenQuestionUpdate extends JFrame {
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
 
-        theBottom.add(btnQuitterAdmin);
-        theBottom.add(new JLabel("                                                                                                                           "));
+        theBottom.add(new JLabel("                                                                                                                                                  "));
         theBottom.add(btnFinishQuestionCreation);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNextQuestionCreation);

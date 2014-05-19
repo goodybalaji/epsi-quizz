@@ -32,6 +32,7 @@ import static quizz.QUIZZ.answer4;
 import static quizz.QUIZZ.calculScore;
 import static quizz.QUIZZ.question;
 import static quizz.QUIZZ.quiz;
+import static quizz.QUIZZ.quizzScreenQuestionCorrection;
 
 /**
  *
@@ -41,8 +42,6 @@ public class QuizzBtn extends JButton implements ActionListener {
 
     public int compteurQ = 1;
     public double nbCorrectAnswers = 0;
-    public int[] idJust;
-    public double coeffDiff;
     public double minute;
     public double second;
     public double timeT;
@@ -66,7 +65,21 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quiz = null;
                 quizzTimer = null;
             }
-        } else if ("Valider Quizz".equals(this.getText())) {
+        } else if (("Voir Correction".equals(this.getText()))) {
+            quizzScreenFinish.setVisible(false);
+            
+            
+            int idQuiz = quiz.getId();
+            quiz = new Quiz(idQuiz);
+            
+            try {
+                quizzScreenQuestionCorrection = new QuizzScreenQuestionCorrection();
+                quizzScreenQuestionCorrection.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else if("Valider Quizz".equals(this.getText())) {
             int reponse = JOptionPane.showConfirmDialog(this,
                     "Voulez-vous valider votre quizz ? Attention, toute question non validée sera considérée comme fausse !",
                     "Confirmation",
