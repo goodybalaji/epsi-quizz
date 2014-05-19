@@ -12,12 +12,20 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import static quizz.QUIZZ.BtnColor;
+import static quizz.QUIZZ.answer1;
+import static quizz.QUIZZ.answer2;
+import static quizz.QUIZZ.answer3;
+import static quizz.QUIZZ.answer4;
+import static quizz.QUIZZ.tabPlayerAnswers;
+import static quizz.QUIZZ.tabRightAnswers;
 import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.player;
 import static quizz.QUIZZ.quiz;
+import static quizz.QUIZZ.question;
 import static quizz.QUIZZ.quizzTimer;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import static quizz.QUIZZ.quizzScreenShowImage;
@@ -28,22 +36,12 @@ import static quizz.QUIZZ.quizzScreenShowImage;
  */
 public class PlayerBtn extends JButton implements ActionListener {
 
-    static public Quiz leQuiz;
-    static public int quizNbQuestion;
-    static public int quizIdQuestion;
-    static public int AnswerCpt = 2;
     public static int scorePlayer;
     public static int timeMinute;
     public static int timeSecond;
-    
+
     static public ResultSet rsQ;
     static public ResultSet rsS;
-    static public String quizQuestion = "";
-    static public String quizUrlQuestion = "";
-    static public String quizSolution1 = "";
-    static public String quizSolution2 = "";
-    static public String quizSolution3 = "";
-    static public String quizSolution4 = "";
 
     PlayerBtn(String str) {
         super(str);
@@ -76,13 +74,11 @@ public class PlayerBtn extends JButton implements ActionListener {
                 statement = DBConnect.Connect();
 
                 //ID
-                
-                System.out.println("SELECT nbquestionquiz from QUIZ "
-                        + "WHERE idquiz = " + quiz.getId());
-                ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
+                ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz, iddifficulte from QUIZ "
                         + "WHERE idquiz = " + quiz.getId());
                 rsID.next();
-                quizNbQuestion = rsID.getInt("nbquestionquiz");
+                quiz.setNbQuestion(rsID.getInt("nbquestionquiz"));
+                quiz.setDifficulte(rsID.getInt("iddifficulte"));
 
                 //Question
                 System.out.println("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
@@ -94,36 +90,49 @@ public class PlayerBtn extends JButton implements ActionListener {
                         + " AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();
-                quizQuestion = rsQ.getString("lblquestion");
-                quizIdQuestion = rsQ.getInt("idquestion");
-                quizUrlQuestion = rsQ.getString("urlQuestion");
-                
+                question = new Question(rsQ.getInt("idquestion"));
+                question.setLblQuestion(rsQ.getString("lblquestion"));
+                question.setUrlQuestion(rsQ.getString("urlQuestion"));
+
                 //Solution
-                rsS = statement.executeQuery("SELECT lblsolution from SOLUTION S, QUESTION QT "
-                        + "WHERE QT.IDQUESTION = " + quizIdQuestion
+                rsS = statement.executeQuery("SELECT idsolution, lblsolution, estJuste from SOLUTION S, QUESTION QT "
+                        + "WHERE QT.IDQUESTION = " + question.getIdQuestion()
                         + "AND QT.IDQUESTION = S.IDQUESTION");
                 rsS.next();
-                quizSolution1 = rsS.getString("lblsolution");
+                question.incNbReponse();
+                answer1 = new Answer(rsS.getInt("idsolution"));
+                answer1.setLblAnswer(rsS.getString("lblsolution"));
+                answer1.setCorrection(rsS.getInt("estJuste"));
+
                 rsS.next();
-                quizSolution2 = rsS.getString("lblsolution");
+                question.incNbReponse();
+                answer2 = new Answer(rsS.getInt("idsolution"));
+                answer2.setLblAnswer(rsS.getString("lblsolution"));
+                answer2.setCorrection(rsS.getInt("estJuste"));
 
                 if (rsS.next() == true) {
-                    quizSolution3 = rsS.getString("lblsolution");
-                    AnswerCpt++;
+                    question.incNbReponse();
+                    answer3 = new Answer(rsS.getInt("idsolution"));
+                    answer3.setLblAnswer(rsS.getString("lblsolution"));
+                    answer3.setCorrection(rsS.getInt("estJuste"));
                     if (rsS.next() == true) {
-                        quizSolution4 = rsS.getString("lblsolution");
-                        AnswerCpt++;
+                        question.incNbReponse();
+                        answer4 = new Answer(rsS.getInt("idsolution"));
+                        answer4.setLblAnswer(rsS.getString("lblsolution"));
+                        answer4.setCorrection(rsS.getInt("estJuste"));
                     }
                 }
                 try {
-                    System.out.println(quizUrlQuestion);
-
-                    if (quizUrlQuestion != null){
-                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
+                    if (question.getUrlQuestion() != null) {
+                        quizzScreenShowImage = new QuizzScreenShowImage(question.getUrlQuestion());
                         quizzScreenShowImage.setVisible(true);
                     }
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                BtnColor = new int[quiz.getNbQuestion()];
+                for (int i = 0; i < quiz.getNbQuestion(); i++) {
+                    BtnColor[i] = 0;
                 }
                 quizzTimer = new QuizzTimer();
                 quizzScreenAnswer = new QuizzScreenAnswer();

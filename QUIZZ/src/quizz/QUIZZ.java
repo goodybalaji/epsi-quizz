@@ -37,6 +37,13 @@ public class QUIZZ
     static public Player player;
     static public Admin admin;
     static public Quiz quiz;    
+    static public Question question;
+    static public Answer answer1;
+    static public Answer answer2;
+    static public Answer answer3;
+    static public Answer answer4;
+    static public int tabPlayerAnswers[];
+    static public int tabRightAnswers[];
     static public CustomFont customFont;
     static public CalculScore calculScore;
     static public QuizzTimer quizzTimer;

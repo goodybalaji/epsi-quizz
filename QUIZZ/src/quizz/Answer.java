@@ -11,18 +11,29 @@ package quizz;
  * @author Arc
  */
 public class Answer {
-    public String answer;
-    public String pathImage;
-    public boolean correction;
     
-    public Answer(){
-        answer ="";
-        pathImage="";
-        correction = false;
+    public int idAnswer;
+    public String lblAnswer;
+    public int correction;
+
+    public String getLblAnswer() {
+        return lblAnswer;
+    }
+
+    public void setLblAnswer(String lblAnswer) {
+        this.lblAnswer = lblAnswer;
+    }
+
+    public int getCorrection() {
+        return correction;
+    }
+
+    public void setCorrection(int correction) {
+        this.correction = correction;
     }
     
-    public void setAnswer(){
-        
-        
+    public Answer(int i){
+        idAnswer = i;
     }
+    
 }
