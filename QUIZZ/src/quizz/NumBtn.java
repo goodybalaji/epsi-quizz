@@ -9,7 +9,6 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import static quizz.QuizzScreenAnswer.numQuestion;
 import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import java.awt.Color;
@@ -20,6 +19,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
+import static quizz.QUIZZ.quiz;
 /**
  *
  * @author Arc
@@ -41,7 +41,7 @@ public class NumBtn extends JButton implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         this.setBackground(RED);
        
-        numQuestion = Integer.parseInt(this.getText());
+        quiz.setCurrentQuestion(Integer.parseInt(this.getText()));
        // BtnColor[numQuestion-1]=1;
         quizzScreenAnswer.dispose();
         quizzScreenAnswer = new QuizzScreenAnswer();

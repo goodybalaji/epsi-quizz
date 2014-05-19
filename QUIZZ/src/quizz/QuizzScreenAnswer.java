@@ -37,7 +37,6 @@ public class QuizzScreenAnswer extends JFrame {
     public static CustomFont CustomFont;
     public ArrayList<JButton> questionBtnList = new ArrayList<JButton>();
     public int i;
-    public static int numQuestion = 1;
     public JLabel lblQuizzName = new JLabel("[Nom du Qwizz]", JLabel.CENTER);
 
     // public JLabel lblQuizzName = new JLabel("Nom du Qwizz");
@@ -47,7 +46,7 @@ public class QuizzScreenAnswer extends JFrame {
     public QuizzBtn btnNextAnswer = new QuizzBtn("  Suivant  ");
     public QuizzBtn btnPreviousAnswer = new QuizzBtn("Précédent");
 
-    public JLabel lblNbQuestion = new JLabel("       Question : " + numQuestion + "/" + quiz.getNbQuestion(), JLabel.CENTER);
+    public JLabel lblNbQuestion = new JLabel("       Question : " + quiz.getCurrentQuestion() + "/" + quiz.getNbQuestion(), JLabel.CENTER);
     public JLabel lblQuestion = new JLabel("Question : " + question.getLblQuestion());
     public JLabel lblRep1 = new JLabel("Solution 1 : " + answer1.getLblAnswer());
     public JLabel lblRep2 = new JLabel("Solution 2 : " + answer2.getLblAnswer());
@@ -116,11 +115,16 @@ public class QuizzScreenAnswer extends JFrame {
                 //listener
                 btn.addActionListener(btn);
                 questionBtnList.add(btn);
-
                 if (BtnColor[i - 1] == 1) {
                     btn.setBackground(GREEN);
                 }
+                i++;
 
+            }
+            if (quiz.getCurrentQuestion() >= 2) {
+                if (BtnColor[quiz.getCurrentQuestion() - 2] == 1) {
+                    btnPreviousAnswer.setEnabled(false);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(QuizzScreenAnswer.class.getName()).log(Level.SEVERE, null, ex);
