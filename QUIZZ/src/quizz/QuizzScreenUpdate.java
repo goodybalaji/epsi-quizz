@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.quiz;
 
 /**

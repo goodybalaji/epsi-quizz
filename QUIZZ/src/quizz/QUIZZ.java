@@ -17,9 +17,9 @@ public class QUIZZ
     static public QuizzScreenQuestionCreation quizzScreenQuestionCreation;
     static public QuizzScreenQuestionUpdate quizzScreenQuestionUpdate;
     static public QuizzScreenCreation quizzScreenCreation;
-    static public QuizzScreenUpdate quizzScreenUpdate;
+    static public QuizzScreenUpdate quizzScreenUpdate;    
+    static public QuizzScreenQuestionCorrection quizzScreenQuestionCorrection;
     
-    static public QuizzScreenQuestionCorrection questionCorrectionScreen;
     static public QuizzScreenAnswer quizzScreenAnswer;
     static public QuizzScreenFinish quizzScreenFinish;
     static public QuizzScreenAddImage quizzScreenAddImage;

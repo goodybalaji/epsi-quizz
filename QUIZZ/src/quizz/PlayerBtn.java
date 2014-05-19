@@ -36,8 +36,6 @@ import static quizz.QUIZZ.quizzScreenShowImage;
  */
 public class PlayerBtn extends JButton implements ActionListener {
 
-
-
     static public ResultSet rsQ;
     static public ResultSet rsS;
 
@@ -76,7 +74,7 @@ public class PlayerBtn extends JButton implements ActionListener {
                 rsID.next();
                 quiz.setNbQuestion(rsID.getInt("nbquestionquiz"));
                 quiz.setDifficulte(rsID.getInt("iddifficulte"));
-                
+
                 rsID = statement.executeQuery("Select count(idSolution) from solution s, question q , composer c"
                         + " where c.idquiz = " + quiz.getId()
                         + " and c.idquestion = q.idquestion and q.idquestion = s.idquestion"
@@ -135,6 +133,8 @@ public class PlayerBtn extends JButton implements ActionListener {
                     BtnColor[i] = 0;
                 }
                 quizzTimer = new QuizzTimer();
+                quizzTimer.setMinute(0);
+                quizzTimer.setSeconde(0);
                 quizzScreenAnswer = new QuizzScreenAnswer();
                 quizzScreenAnswer.setVisible(true);
 
