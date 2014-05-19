@@ -18,6 +18,7 @@ import static quizz.QUIZZ.playerScreenStat;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.player;
 import static quizz.QUIZZ.quiz;
+import static quizz.QUIZZ.quizzTimer;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import static quizz.QUIZZ.quizzScreenShowImage;
 
@@ -34,7 +35,7 @@ public class PlayerBtn extends JButton implements ActionListener {
     public static int scorePlayer;
     public static int timeMinute;
     public static int timeSecond;
-    static public QuizzTimer quizzTimer;
+    
     static public ResultSet rsQ;
     static public ResultSet rsS;
     static public String quizQuestion = "";

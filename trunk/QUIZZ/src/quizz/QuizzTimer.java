@@ -21,7 +21,7 @@ import javax.swing.Timer;
 public class QuizzTimer extends JFrame
 {
     int delai,seconde,minute;
-    String retour;
+    public String retour;
     public JLabel lbl1 = new JLabel("00:00");
     public JLabel lbl2 = new JLabel("");
     
@@ -73,5 +73,23 @@ public class QuizzTimer extends JFrame
         new Timer(delai, taskPerformer).start();
         retour = String.valueOf(lbl1);
     }
+
+    public int getSeconde() {
+        return seconde;
+    }
+
+    public void setSeconde(int seconde) {
+        this.seconde = seconde;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+    
+    
 
 }

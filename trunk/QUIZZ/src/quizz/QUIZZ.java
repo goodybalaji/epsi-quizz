@@ -39,7 +39,7 @@ public class QUIZZ
     static public Quiz quiz;    
     static public CustomFont customFont;
     static public CalculScore calculScore;
-    
+    static public QuizzTimer quizzTimer;
     
     public static int[] BtnColor = new int[40];
     /**
@@ -54,8 +54,6 @@ public class QUIZZ
         }
         
        //quizzScreenQuestionCreation.setVisible(true);
-        questionCorrectionScreen = new QuizzScreenQuestionCorrection();
-       //questionCorrectionScreen.setVisible(true);
         
         quizzScreenCreation = new QuizzScreenCreation();
         //quizzScreenCreation.setVisible(true);
@@ -70,8 +68,6 @@ public class QUIZZ
         playerScreenHome = new PlayerScreenHome();
         //playerScreenHome.setVisible(true);
 
-        quizzScreenFinish = new QuizzScreenFinish();
-        //quizzScreenFinish.setVisible(true);
 
         playerScreenRankQuizz = new PlayerScreenRankQuizz();
        // playerScreenRankQuizz.setVisible(true);
@@ -92,8 +88,6 @@ public class QUIZZ
         //adminScreenHome.setVisible(true);
         
         customFont = new CustomFont();
-        
-        calculScore = new CalculScore();
         
         
     }

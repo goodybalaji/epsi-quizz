@@ -7,7 +7,9 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -23,7 +25,6 @@ import static quizz.QuizzScreenAnswer.cbxQ1;
 import static quizz.QuizzScreenAnswer.cbxQ2;
 import static quizz.QuizzScreenAnswer.cbxQ3;
 import static quizz.QuizzScreenAnswer.cbxQ4;
-import static quizz.QuizzScreenAnswer.quizzTimer;
 import static quizz.PlayerBtn.quizNbQuestion;
 import static quizz.PlayerBtn.leQuiz;
 import static quizz.PlayerBtn.quizIdQuestion;
@@ -35,10 +36,12 @@ import static quizz.PlayerBtn.quizSolution2;
 import static quizz.PlayerBtn.quizSolution3;
 import static quizz.PlayerBtn.quizSolution4;
 import static quizz.PlayerBtn.quizUrlQuestion;
+import static quizz.QUIZZ.quizzTimer;
 import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.PlayerBtn.scorePlayer;
 import static quizz.PlayerBtn.timeMinute;
 import static quizz.PlayerBtn.timeSecond;
+import static quizz.QUIZZ.calculScore;
 import static quizz.QUIZZ.quiz;
 
 /**
@@ -48,6 +51,15 @@ import static quizz.QUIZZ.quiz;
 public class QuizzBtn extends JButton implements ActionListener {
 
     public int compteurQ = 1;
+    public int answers[] = new int[quizNbQuestion+1];
+    public double nbCorrectAnswers = 0;
+    public int[] idJust;
+    public double coeffDiff;
+    public double minute = quizzTimer.getMinute();
+    public double second = quizzTimer.getSeconde();
+    
+    public double timeT = minute + (second / 100);
+    public static double scoreQuiz = 0;
 
     QuizzBtn(String str) {
         super(str);
@@ -68,7 +80,7 @@ public class QuizzBtn extends JButton implements ActionListener {
             }
         } else if ("Valider Quizz".equals(this.getText())) {
             int reponse = JOptionPane.showConfirmDialog(this,
-                    "Voulez-vous valider votre quizz ?",
+                    "Voulez-vous valider votre quizz ? Attention, toute question non validée sera considérée comme fausse !",
                     "Confirmation",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
@@ -78,6 +90,50 @@ public class QuizzBtn extends JButton implements ActionListener {
                 BtnColor = new int[40];
                 for (int i = 0; i < 40; i++) {
                     BtnColor[i] = 0;
+                }
+
+                java.sql.Statement statement;
+                try {
+                    statement = DBConnect.Connect();
+                    ResultSet rsIdS = statement.executeQuery("SELECT idSolution from SOLUTION S, QUESTION QT, composer c "
+                            + "WHERE c.IDQUIZ = " + quiz.getId()
+                            + " AND QT.IDQUESTION = S.IDQUESTION"
+                            + " AND c.IDquestion = QT.IDQUESTION"
+                            + " AND S.ESTJUSTE = 1");
+                    int i = 0;
+                    while (rsIdS.next()) {
+                        i++;
+                    }
+                    idJust = new int[i+1];
+                    rsIdS.first();
+                    idJust[1] = rsIdS.getInt("idSolution");
+                    int j = 2;
+                    while (rsIdS.next()){
+                        idJust[j] = rsIdS.getInt("idSolution"); 
+                        j++;
+                    }
+                    for (i = 1; i <= idJust.length-1; i++) {
+                        if (answers[i] == idJust[i]) {
+                            nbCorrectAnswers++;
+                        }
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                try {
+                    statement = DBConnect.Connect();
+                    ResultSet rsDiff = statement.executeQuery("SELECT idDifficulte FROM QUIZ"
+                            + " WHERE idQuiz = " + quiz.getId());
+                    rsDiff.next();
+                    coeffDiff = rsDiff.getInt("idDifficulte");
+                    System.out.println("temps : "+minute+" "+second);
+                    System.out.println(nbCorrectAnswers);
+                    calculScore = new CalculScore(nbCorrectAnswers, coeffDiff, timeT);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 quizNbQuestion = 0;
                 numQuestion = 1;
@@ -208,16 +264,42 @@ public class QuizzBtn extends JButton implements ActionListener {
             playerScreenHome.setVisible(true);
             quizzScreenFinish.setVisible(false);
         } else if ("Valider Question".equals(this.getText()) && (cbxQ1.isSelected() || cbxQ2.isSelected() || cbxQ3.isSelected() || cbxQ4.isSelected())) {
+            try {
 
-            if (numQuestion < quizNbQuestion) {
+                java.sql.Statement statement;
+                statement = DBConnect.Connect();
+                
+                if (cbxQ1.isSelected()) {
+                    ResultSet rsJust = statement.executeQuery("SELECT idSolution FROM SOLUTION "
+                            + "WHERE lblSolution = '" + quizSolution1 + "' "
+                            + "AND idQuestion = " + quizIdQuestion);
+                    rsJust.next();
+                    answers[numQuestion] = rsJust.getInt("idSolution");
+                } else if (cbxQ2.isSelected()) {
+                    ResultSet rsJust = statement.executeQuery("SELECT idSolution FROM SOLUTION "
+                            + "WHERE lblSolution = '" + quizSolution2 + "' "
+                            + "AND idQuestion = " + quizIdQuestion);
+                    rsJust.next();
+                    answers[numQuestion] = rsJust.getInt("idSolution");
+                } else if (cbxQ3.isSelected()) {
+                    ResultSet rsJust = statement.executeQuery("SELECT idSolution FROM SOLUTION "
+                            + "WHERE lblSolution = '" + quizSolution3 + "' "
+                            + "AND idQuestion = " + quizIdQuestion);
+                    rsJust.next();
+                    answers[numQuestion] = rsJust.getInt("idSolution");
+                } else if (cbxQ4.isSelected()) {
+                    ResultSet rsJust = statement.executeQuery("SELECT idSolution FROM SOLUTION "
+                            + "WHERE lblSolution = '" + quizSolution4 + "' "
+                            + "AND idQuestion = " + quizIdQuestion);
+                    rsJust.next();
+                    answers[numQuestion] = rsJust.getInt("idSolution");
+                } else {
+                    answers[numQuestion] = 0;
+                }
+                if (numQuestion < quizNbQuestion) {
 
-                BtnColor[numQuestion - 1] = 1;
-                numQuestion++;
-
-                try {
-
-                    java.sql.Statement statement;
-                    statement = DBConnect.Connect();
+                    BtnColor[numQuestion - 1] = 1;
+                    numQuestion++;
 
                     //Question
                     rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT, COMPOSER C, QUIZ Q "
@@ -249,53 +331,53 @@ public class QuizzBtn extends JButton implements ActionListener {
                             AnswerCpt++;
                         }
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                scorePlayer++;
-                timeMinute += quizzTimer.minute;
-                timeSecond += quizzTimer.seconde;
-                System.out.print(scorePlayer);
-                cbxQ1.setSelected(false);
-                cbxQ2.setSelected(false);
-                cbxQ3.setSelected(false);
-                cbxQ4.setSelected(false);
-                quizzScreenAnswer.dispose();
-                if (quizzScreenShowImage != null) {
-                    quizzScreenShowImage.dispose();
+            scorePlayer++;
+            timeMinute += quizzTimer.minute;
+            timeSecond += quizzTimer.seconde;
+            System.out.print(scorePlayer);
+            cbxQ1.setSelected(false);
+            cbxQ2.setSelected(false);
+            cbxQ3.setSelected(false);
+            cbxQ4.setSelected(false);
+            quizzScreenAnswer.dispose();
+            if (quizzScreenShowImage != null) {
+                quizzScreenShowImage.dispose();
+            }
+            quizzScreenAnswer = new QuizzScreenAnswer();
+            try {
+                System.out.println(quizUrlQuestion);
+                if (quizUrlQuestion != null) {
+                    quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
+                    quizzScreenShowImage.setVisible(true);
                 }
-                quizzScreenAnswer = new QuizzScreenAnswer();
-                try {
-                    System.out.println(quizUrlQuestion);
-                    if (quizUrlQuestion != null) {
-                        quizzScreenShowImage = new QuizzScreenShowImage(quizUrlQuestion);
-                        quizzScreenShowImage.setVisible(true);
-                    }
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                quizzScreenAnswer.setVisible(true);
-            } else {
-                int reponse = JOptionPane.showConfirmDialog(this,
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            quizzScreenAnswer.setVisible(true);
+        } else {
+            int reponse = JOptionPane.showConfirmDialog(this,
                     "Vous avez validé toutes les questions, voulez-vous terminer le quiz ?",
                     "Confirmation",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
-                quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                if (reponse == JOptionPane.YES_OPTION) {
-                    leQuiz = null;
-                    BtnColor = new int[40];
-                    for (int i = 0; i < 40; i++) {
-                        BtnColor[i] = 0;
-                    }
-                    quizNbQuestion = 0;
-                    numQuestion = 1;
-                    quizzTimer = new QuizzTimer();
-                    quizzScreenAnswer.setVisible(false);
-                    quizzScreenFinish = new QuizzScreenFinish();
-                    quizzScreenFinish.setVisible(true);
+            quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            if (reponse == JOptionPane.YES_OPTION) {
+                leQuiz = null;
+                BtnColor = new int[40];
+                for (int i = 0; i < 40; i++) {
+                    BtnColor[i] = 0;
                 }
+                quizNbQuestion = 0;
+                numQuestion = 1;
+                quizzTimer = new QuizzTimer();
+                quizzScreenAnswer.setVisible(false);
+                quizzScreenFinish = new QuizzScreenFinish();
+                quizzScreenFinish.setVisible(true);
             }
         }
     }
