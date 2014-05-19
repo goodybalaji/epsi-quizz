@@ -17,6 +17,15 @@ public class Quiz
     int currentQuestion;
     int nbRightRep;
     int difficulte;
+    int nbTtRightRep;
+
+    public int getNbTtRightRep() {
+        return nbTtRightRep;
+    }
+
+    public void setNbTtRightRep(int nbTtRightRep) {
+        this.nbTtRightRep = nbTtRightRep;
+    }
 
     public int getDifficulte() {
         return difficulte;
@@ -42,6 +51,14 @@ public class Quiz
     public void incNbQuestion()
     {
         nbQuestion++;
+    }
+       
+    public void decCurrentQuestion(){
+        currentQuestion--;
+    }
+    
+    public void setCurrentQuestion(int i){
+        currentQuestion =i;
     }
     
     public void incNbRightRep()

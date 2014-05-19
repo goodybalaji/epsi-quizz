@@ -48,7 +48,7 @@ public class QUIZZ
     static public CalculScore calculScore;
     static public QuizzTimer quizzTimer;
     
-    public static int[] BtnColor = new int[40];
+    public static int[] BtnColor;
     /**
      * @param args the command line arguments
      * @throws java.net.MalformedURLException
@@ -56,9 +56,7 @@ public class QUIZZ
      */
     public static void main(String[] args) throws MalformedURLException, SQLException
     {   
-        for(int i=0; i<40; i++){
-            BtnColor[i]=0;
-        }
+        
         
        //quizzScreenQuestionCreation.setVisible(true);
         

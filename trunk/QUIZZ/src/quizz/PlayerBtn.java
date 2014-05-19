@@ -36,9 +36,7 @@ import static quizz.QUIZZ.quizzScreenShowImage;
  */
 public class PlayerBtn extends JButton implements ActionListener {
 
-    public static int scorePlayer;
-    public static int timeMinute;
-    public static int timeSecond;
+
 
     static public ResultSet rsQ;
     static public ResultSet rsS;
@@ -66,8 +64,7 @@ public class PlayerBtn extends JButton implements ActionListener {
             playerScreenStat.setVisible(false);
             playerScreenHome.setVisible(true);
         } else if ("Jouer".equals(this.getText())) {
-            playerScreenHome.setVisible(false);
-
+            playerScreenHome.dispose();
             //BDD
             java.sql.Statement statement;
             try {
@@ -79,12 +76,15 @@ public class PlayerBtn extends JButton implements ActionListener {
                 rsID.next();
                 quiz.setNbQuestion(rsID.getInt("nbquestionquiz"));
                 quiz.setDifficulte(rsID.getInt("iddifficulte"));
+                
+                rsID = statement.executeQuery("Select count(idSolution) from solution s, question q , composer c"
+                        + " where c.idquiz = " + quiz.getId()
+                        + " and c.idquestion = q.idquestion and q.idquestion = s.idquestion"
+                        + " and s.estJuste = 1");
+                rsID.next();
+                quiz.setNbTtRightRep(rsID.getInt(1));
 
                 //Question
-                System.out.println("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
-                        + "WHERE Q.IDQUIZ = " + quiz.getId()
-                        + " AND C.IDQUIZ = Q.IDQUIZ "
-                        + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
                         + "WHERE Q.IDQUIZ = " + quiz.getId()
                         + " AND C.IDQUIZ = Q.IDQUIZ "

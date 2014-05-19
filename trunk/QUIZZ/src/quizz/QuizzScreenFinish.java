@@ -8,15 +8,9 @@ package quizz;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import static quizz.PlayerBtn.timeMinute;
-import static quizz.PlayerBtn.timeSecond;
 import static quizz.QUIZZ.calculScore;
-import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.quizzTimer;
 
 /**
  *
@@ -24,11 +18,10 @@ import static quizz.QUIZZ.playerScreenHome;
  */
 public class QuizzScreenFinish extends JFrame {
     
-    Double score = new Double (calculScore.getScore());
- 
+    Double score = new Double (calculScore.getScore()); 
     public JLabel lbl1 = new JLabel("   ");
     public JLabel lbl2 = new JLabel("Votre Score : " + score.toString());
-    public JLabel lbl3 = new JLabel("Votre Temps : " + timeMinute + " min " + timeSecond + " sec ");
+    public JLabel lbl3 = new JLabel("Votre Temps : " + quizzTimer.getMinute() + " min " + quizzTimer.getSeconde() + " sec ");
     public JPanel PlayerScore = new JPanel();
     public JPanel PlayerTime = new JPanel();
 
@@ -55,7 +48,7 @@ public class QuizzScreenFinish extends JFrame {
         lbl1.setFont(lbl1.getFont().deriveFont(38.0f));
         PlayerScore.setPreferredSize(new Dimension(200, 25));
         PlayerTime.setPreferredSize(new Dimension(200, 25));
-
+   
         topLbl.add(lbl1);
         topLbl.setOpaque(false);
         top.add(topLbl);

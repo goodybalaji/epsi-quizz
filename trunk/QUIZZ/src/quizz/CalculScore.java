@@ -13,14 +13,11 @@ public class CalculScore {
 
     public double score;
 
+    CalculScore(int nbRigthRep, int difficulte, double timeT, int nbTtRep) {
+        score = ((((nbTtRep - nbRigthRep)* difficulte) / (timeT / 0.6)) * difficulte);
+    }
+
     public double getScore() {
         return this.score;
     }
-
-    CalculScore(double nbRepJuste, double coeff, double tpsPasse) {
-
-        score = ((nbRepJuste * coeff) / (tpsPasse / 0.6)) * coeff;
-
-    }
-
 }
