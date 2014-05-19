@@ -7,21 +7,19 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
 import static quizz.QUIZZ.connectionScreen;
 import static quizz.QUIZZ.player;
+import static quizz.QUIZZ.quiz;
 import static quizz.QUIZZ.quizzScreenAnswer;
 import static quizz.QUIZZ.quizzScreenShowImage;
-import static quizz.QuizzCreationBtn.icon;
 
 /**
  *
@@ -79,19 +77,19 @@ public class PlayerBtn extends JButton implements ActionListener {
                 //ID
                 
                 System.out.println("SELECT nbquestionquiz from QUIZ "
-                        + "WHERE idquiz = " + playerScreenHome.idQuiz);
+                        + "WHERE idquiz = " + quiz.getId());
                 ResultSet rsID = statement.executeQuery("SELECT nbquestionquiz from QUIZ "
-                        + "WHERE idquiz = " + playerScreenHome.idQuiz);
+                        + "WHERE idquiz = " + quiz.getId());
                 rsID.next();
                 quizNbQuestion = rsID.getInt("nbquestionquiz");
 
                 //Question
                 System.out.println("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
-                        + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                        + "WHERE Q.IDQUIZ = " + quiz.getId()
                         + " AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "
-                        + "WHERE Q.IDQUIZ = " + playerScreenHome.idQuiz
+                        + "WHERE Q.IDQUIZ = " + quiz.getId()
                         + " AND C.IDQUIZ = Q.IDQUIZ "
                         + "AND QT.IDQUESTION = C.IDQUESTION");
                 rsQ.next();

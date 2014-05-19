@@ -29,6 +29,7 @@ import static quizz.PlayerBtn.AnswerCpt;
 import static quizz.QuizzScreenAnswer.quizzTimer;
 import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.playerScreenHome;
+import static quizz.QUIZZ.quiz;
 
 /**
  *
@@ -98,7 +99,7 @@ public class QuizzScreenAnswer extends JFrame {
         try {
             statement = DBConnect.Connect();
         ResultSet rsName = statement.executeQuery("SELECT nomQuiz FROM QUIZ "
-                + "WHERE idquiz =" + playerScreenHome.idQuiz);
+                + "WHERE idquiz =" + quiz.getId());
         rsName.next();
         nameQuiz = rsName.getString("nomQuiz");
         lblQuizzName.setText(nameQuiz);
