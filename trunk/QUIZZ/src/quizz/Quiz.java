@@ -15,12 +15,23 @@ public class Quiz
     int idQuiz;
     int nbQuestion;
     int currentQuestion;
+    int nbRightRep;
+    int difficulte;
+
+    public int getDifficulte() {
+        return difficulte;
+    }
+
+    public void setDifficulte(int difficulte) {
+        this.difficulte = difficulte;
+    }
     
     public Quiz(int id)
     {
         idQuiz = id;
         nbQuestion = 0;
         currentQuestion = 1;
+        nbRightRep = 0;
     }
     
     public int getId()
@@ -33,6 +44,21 @@ public class Quiz
         nbQuestion++;
     }
     
+    public void incNbRightRep()
+    {
+        nbRightRep++;
+    }
+    
+    public void decNbRightRep()
+    {
+        nbRightRep++;
+    }
+    
+    public int getNbRigthRep()
+    {
+        return nbRightRep;
+    }
+        
     public int getNbQuestion()
     {
         return nbQuestion;

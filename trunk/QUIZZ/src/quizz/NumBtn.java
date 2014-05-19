@@ -25,20 +25,27 @@ import javax.swing.SwingUtilities;
  * @author Arc
  */
 public class NumBtn extends JButton implements ActionListener{
+    public int idQuestion;
+    
     NumBtn(String str)
     {
         super(str);
+    }
+    
+    public void setIdQuestion(int i)
+    {
+        idQuestion = i;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         this.setBackground(RED);
        
-        numQuestion= Integer.parseInt(this.getText());
+        numQuestion = Integer.parseInt(this.getText());
        // BtnColor[numQuestion-1]=1;
-          quizzScreenAnswer.dispose();
-          quizzScreenAnswer = new QuizzScreenAnswer();
-            quizzScreenAnswer.setVisible(true);
+        quizzScreenAnswer.dispose();
+        quizzScreenAnswer = new QuizzScreenAnswer();
+        quizzScreenAnswer.setVisible(true);
  
     }
 }

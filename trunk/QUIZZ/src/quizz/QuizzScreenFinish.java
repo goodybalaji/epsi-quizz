@@ -16,7 +16,6 @@ import javax.swing.*;
 import static quizz.PlayerBtn.timeMinute;
 import static quizz.PlayerBtn.timeSecond;
 import static quizz.QUIZZ.calculScore;
-import static quizz.QuizzBtn.scoreQuiz;
 import static quizz.QUIZZ.playerScreenHome;
 
 /**
