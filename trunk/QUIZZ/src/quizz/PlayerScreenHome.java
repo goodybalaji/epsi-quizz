@@ -13,6 +13,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.regex.PatternSyntaxException;
 import javax.swing.*;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
@@ -77,7 +78,7 @@ public class PlayerScreenHome extends JFrame {
         
         
         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\HomeBG.png"))));
-        final java.sql.Statement statement = DBConnect.Connect();
+        Statement statement = DBConnect.Connect();
 
         topCenterC.add(new JLabel(" "));
         topCenterC.add(new JLabel(" "));
