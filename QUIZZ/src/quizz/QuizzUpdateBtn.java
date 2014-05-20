@@ -7,18 +7,23 @@ package quizz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.quiz;
+import static quizz.QUIZZ.quizzScreenAddImage;
 import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QUIZZ.quizzScreenQuestionUpdate;
 import static quizz.QUIZZ.quizzScreenUpdate;
+import static quizz.QuizzCreationBtn.icon;
 
 /**
  *
@@ -77,6 +82,20 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
 
             } else {
                 JOptionPane.showMessageDialog(quizzScreenUpdate, "Vous devez donner un nom au QWIZZ avant de pouvoir le créer !!");
+            }
+        } else if ("Quitter".equals(this.getText())) {
+            quizzScreenUpdate.dispose();
+            adminScreenHome.setVisible(true);
+
+        } else if ("Visualiser".equals(this.getText())) {
+            if (!quizzScreenQuestionUpdate.imageQuestion.getText().toString().equals("")) {
+                try {
+                    icon = new ImageIcon(new ImageIcon(new URL(quizzScreenQuestionUpdate.imageQuestion.getText().toString())).getImage());
+                    quizzScreenAddImage = new QuizzScreenAddImage();
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                quizzScreenAddImage.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
             if (quizzScreenQuestionUpdate.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionUpdate.txtRep1.getText().isEmpty() == false
@@ -165,7 +184,7 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
                             } else {
                                 state = 0;
                             }
-                            
+
                             rs = statement.executeQuery("update SOLUTION set "
                                     + "lblsolution = '" + roping(quizzScreenQuestionUpdate.txtRep1.getText().toString())
                                     + "', estJuste = " + state + " "
@@ -204,10 +223,10 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
                                         + "', estJuste = " + state + " "
                                         + "where idSolution =" + quizzScreenQuestionUpdate.idSolution4);
                             }
-                            quizzScreenQuestionCreation.dispose();
+                            quizzScreenQuestionUpdate.dispose();
                             quiz.incCurrentQuestion();
-                            quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
-                            quizzScreenQuestionCreation.setVisible(true);
+                            quizzScreenQuestionUpdate = new QuizzScreenQuestionUpdate();
+                            quizzScreenQuestionUpdate.setVisible(true);
                         } catch (SQLException ex) {
                             Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -219,7 +238,8 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
             }
-        } else if ("Finir Correction".equals(this.getText())) {
+        } else if ("Finir Correction".equals(
+                this.getText())) {
             if (quizzScreenQuestionUpdate.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionUpdate.txtRep1.getText().isEmpty() == false
                     && quizzScreenQuestionUpdate.txtRep2.getText().isEmpty() == false) {
                 if (quizzScreenQuestionUpdate.cbxQ1.isSelected() == true

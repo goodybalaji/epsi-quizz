@@ -29,14 +29,19 @@ public class QuizzScreenQuestionCorrection extends JFrame {
     public JLabel lbl4 = new JLabel("Réponse n°2 : ");
     public JLabel lbl5 = new JLabel("Réponse N°3 : ");
     public JLabel lbl6 = new JLabel("Réponse N°4 : ");
+    public JLabel txtQuestion = new JLabel();
+    public JLabel imageQuestion = new JLabel();
+    public JLabel txtRep1 = new JLabel();
+    public JLabel txtRep2 = new JLabel();
+    public JLabel txtRep3 = new JLabel();
+    public JLabel txtRep4 = new JLabel();
     public JCheckBox cbxQ1 = new JCheckBox();
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
-    public QuizzUpdateBtn btnQuitterAdmin = new QuizzUpdateBtn("Quitter");
-    public QuizzUpdateBtn btnNextQuestionCreation = new QuizzUpdateBtn("  Suivant  ");
-    public QuizzUpdateBtn btnFinishQuestionCreation = new QuizzUpdateBtn("Finir Correction");
-    public QuizzUpdateBtn btnAddURL = new QuizzUpdateBtn("Visualiser");
+    public QuizzCorectionBtn btnNextQuestionCreation = new QuizzCorectionBtn("  Suivant  ");
+    public QuizzCorectionBtn btnFinishQuestionCreation = new QuizzCorectionBtn("Finir Correction");
+    public QuizzCorectionBtn btnAddURL = new QuizzCorectionBtn("Visualiser");
 
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();
@@ -63,7 +68,7 @@ public class QuizzScreenQuestionCorrection extends JFrame {
     int idSolution4 = 0;
 
     QuizzScreenQuestionCorrection() throws SQLException {
-        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuestionCreationBG.png"))));
+         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuestionCreationBG.png"))));
 
         statement = DBConnect.Connect();
         ResultSet rs = statement.executeQuery("Select qu.idquestion, qu.lblquestion, qu.urlquestion"
@@ -78,37 +83,37 @@ public class QuizzScreenQuestionCorrection extends JFrame {
                 i++;
                 rs.next();
             }
-            lbl2.setText(lbl2 + rs.getString("lblquestion").toString());
-            lblImage.setText(lblImage+rs.getString("urlquestion").toString());
+            txtQuestion.setText(rs.getString("lblquestion"));
+            imageQuestion.setText(rs.getString("urlquestion"));
             idQuestion = rs.getInt("idquestion");
 
             rs = statement.executeQuery("select idsolution, lblSolution, estJuste "
                     + "from solution where idquestion = " + idQuestion
                     + " order by idsolution");
             rs.next();
-            lbl3.setText(lbl3+rs.getString("lblSolution").toString());
+            txtRep1.setText(rs.getString("lblSolution"));
             idSolution1 = rs.getInt("idsolution");
             if (rs.getInt("estJuste") == 1) {
                 cbxQ1.setSelected(true);
             }
             rs.next();
-            lbl4.setText(lbl4+rs.getString("lblSolution").toString());
+            txtRep2.setText(rs.getString("lblSolution"));
             idSolution2 = rs.getInt("idsolution");
             if (rs.getInt("estJuste") == 1) {
                 cbxQ2.setSelected(true);
             }
             if (rs.next() == true) {
-                lbl5.setText(lbl5+rs.getString("lblSolution").toString());
+                txtRep3.setText(rs.getString("lblSolution"));
                 idSolution3 = rs.getInt("idsolution");
                 if (rs.getInt("estJuste") == 1) {
                     cbxQ3.setSelected(true);
                 }
-                if (rs.next() == true) {
-                    lbl6.setText(lbl6+rs.getString("lblSolution").toString());
-                    idSolution4 = rs.getInt("idsolution");
-                    if (rs.getInt("estJuste") == 1) {
-                        cbxQ4.setSelected(true);
-                    }
+            }
+            if (rs.next() == true) {
+                txtRep4.setText(rs.getString("lblSolution"));
+                idSolution4 = rs.getInt("idsolution");
+                if (rs.getInt("estJuste") == 1) {
+                    cbxQ4.setSelected(true);
                 }
             }
 
@@ -117,9 +122,14 @@ public class QuizzScreenQuestionCorrection extends JFrame {
             btnNextQuestionCreation.setEnabled(false);
         }
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
-        
+        txtQuestion.setPreferredSize(new Dimension(550, 25));
+        imageQuestion.setPreferredSize(new Dimension(350, 25));
+        txtRep1.setPreferredSize(new Dimension(500, 25));
+        txtRep2.setPreferredSize(new Dimension(500, 25));
+        txtRep3.setPreferredSize(new Dimension(500, 25));
+        txtRep4.setPreferredSize(new Dimension(500, 25));
 
-     
+       
 
         topLbl.add(lbl1);
         topLbl.setOpaque(false);
@@ -129,25 +139,31 @@ public class QuizzScreenQuestionCorrection extends JFrame {
         top.setBorder(new EmptyBorder(0, 0, 35, 0));
 
         panelCenterQuestion.add(lbl2);
+        panelCenterQuestion.add(txtQuestion);
         panelCenterQuestion.add(lblImage);
+        panelCenterQuestion.add(imageQuestion);
         panelCenterQuestion.add(btnAddURL);
         panelCenterQuestion.add(lblNB);
         panelCenterQuestion.setBorder(new EmptyBorder(0, 0, 60, 0));
         panelCenterQuestion.setOpaque(false);
         center.add(panelCenterQuestion);
         panelCenterRep1.add(lbl3);
+        panelCenterRep1.add(txtRep1);
         panelCenterRep1.add(cbxQ1);
         panelCenterRep1.setOpaque(false);
         center.add(panelCenterRep1);
         panelCenterRep2.add(lbl4);
+        panelCenterRep2.add(txtRep2);
         panelCenterRep2.add(cbxQ2);
         panelCenterRep2.setOpaque(false);
         center.add(panelCenterRep2);
         panelCenterRep3.add(lbl5);
+        panelCenterRep3.add(txtRep3);
         panelCenterRep3.add(cbxQ3);
         panelCenterRep3.setOpaque(false);
         center.add(panelCenterRep3);
         panelCenterRep4.add(lbl6);
+        panelCenterRep4.add(txtRep4);
         panelCenterRep4.add(cbxQ4);
         panelCenterRep4.setOpaque(false);
         center.add(panelCenterRep4);
@@ -157,7 +173,7 @@ public class QuizzScreenQuestionCorrection extends JFrame {
          panelCenterRep5.add(cbxQ5);
          center.add(panelCenterRep5);*/
 
-        btnQuitterAdmin.addActionListener(btnQuitterAdmin);
+     
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
         btnAddURL.addActionListener(btnAddURL);
         btnFinishQuestionCreation.addActionListener(btnFinishQuestionCreation);
@@ -166,8 +182,7 @@ public class QuizzScreenQuestionCorrection extends JFrame {
         center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
         center.setOpaque(false);
 
-        theBottom.add(btnQuitterAdmin);
-        theBottom.add(new JLabel("                                                                                                                           "));
+        theBottom.add(new JLabel("                                                                                                                                                  "));
         theBottom.add(btnFinishQuestionCreation);
         theBottom.add(new JLabel(" "));
         theBottom.add(btnNextQuestionCreation);

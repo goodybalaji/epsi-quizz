@@ -46,9 +46,9 @@ public class QuizzScreenQuestionUpdate extends JFrame {
     public JCheckBox cbxQ2 = new JCheckBox();
     public JCheckBox cbxQ3 = new JCheckBox();
     public JCheckBox cbxQ4 = new JCheckBox();
-    public QuizzCorectionBtn btnNextQuestionCreation = new QuizzCorectionBtn("  Suivant  ");
-    public QuizzCorectionBtn btnFinishQuestionCreation = new QuizzCorectionBtn("Finir Correction");
-    public QuizzCorectionBtn btnAddURL = new QuizzCorectionBtn("Visualiser");
+    public QuizzUpdateBtn btnNextQuestionCreation = new QuizzUpdateBtn("  Suivant  ");
+    public QuizzUpdateBtn btnFinishQuestionCreation = new QuizzUpdateBtn("Finir Correction");
+    public QuizzUpdateBtn btnAddURL = new QuizzUpdateBtn("Visualiser");
 
     public JPanel top = new JPanel();
     public JPanel topLbl = new JPanel();

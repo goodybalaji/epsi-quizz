@@ -66,11 +66,8 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzTimer = null;
             }
         } else if (("Voir Correction".equals(this.getText()))) {
-            quizzScreenFinish.setVisible(false);
-            
-            
-            int idQuiz = quiz.getId();
-            quiz = new Quiz(idQuiz);
+            quizzScreenFinish.setVisible(false);  
+            quiz.setCurrentQuestion(1);
             
             try {
                 quizzScreenQuestionCorrection = new QuizzScreenQuestionCorrection();
