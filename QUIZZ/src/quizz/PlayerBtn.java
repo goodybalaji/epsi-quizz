@@ -17,8 +17,6 @@ import static quizz.QUIZZ.answer1;
 import static quizz.QUIZZ.answer2;
 import static quizz.QUIZZ.answer3;
 import static quizz.QUIZZ.answer4;
-import static quizz.QUIZZ.tabPlayerAnswers;
-import static quizz.QUIZZ.tabRightAnswers;
 import static quizz.QUIZZ.playerScreenRankQuizz;
 import static quizz.QUIZZ.playerScreenHome;
 import static quizz.QUIZZ.playerScreenStat;
@@ -62,6 +60,7 @@ public class PlayerBtn extends JButton implements ActionListener {
             playerScreenStat.setVisible(false);
             playerScreenHome.setVisible(true);
         } else if ("Jouer".equals(this.getText())) {
+            playerScreenHome.setVisible(false);
             playerScreenHome.dispose();
             //BDD
             java.sql.Statement statement;
@@ -141,8 +140,6 @@ public class PlayerBtn extends JButton implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(PlayerBtn.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
-
 }
