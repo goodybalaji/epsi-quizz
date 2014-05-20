@@ -66,17 +66,17 @@ public class QuizzBtn extends JButton implements ActionListener {
                 quizzTimer = null;
             }
         } else if (("Voir Correction".equals(this.getText()))) {
-            quizzScreenFinish.setVisible(false);  
+            quizzScreenFinish.setVisible(false);
             quiz.setCurrentQuestion(1);
-            
+
             try {
                 quizzScreenQuestionCorrection = new QuizzScreenQuestionCorrection();
                 quizzScreenQuestionCorrection.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(QuizzBtn.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        }else if("Valider Quizz".equals(this.getText())) {
+
+        } else if ("Valider Quizz".equals(this.getText())) {
             int reponse = JOptionPane.showConfirmDialog(this,
                     "Voulez-vous valider votre quizz ? Attention, toute question non validée sera considérée comme fausse !",
                     "Confirmation",
@@ -88,6 +88,10 @@ public class QuizzBtn extends JButton implements ActionListener {
                 for (int i = 0; i < 40; i++) {
                     BtnColor[i] = 0;
                 }
+                cbxQ1.setSelected(false);
+                cbxQ2.setSelected(false);
+                cbxQ3.setSelected(false);
+                cbxQ4.setSelected(false);
                 minute = quizzTimer.getMinute();
                 second = quizzTimer.getSeconde();
                 timeT = minute + (second / 100);
@@ -332,10 +336,6 @@ public class QuizzBtn extends JButton implements ActionListener {
                             quiz.decNbRightRep();
                         }
                     }
-                    cbxQ1.setSelected(false);
-                    cbxQ2.setSelected(false);
-                    cbxQ3.setSelected(false);
-                    cbxQ4.setSelected(false);
                     quizzScreenAnswer.dispose();
                     if (quizzScreenShowImage != null) {
                         quizzScreenShowImage.dispose();
@@ -363,6 +363,10 @@ public class QuizzBtn extends JButton implements ActionListener {
                         JOptionPane.QUESTION_MESSAGE);
                 quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 if (reponse == JOptionPane.YES_OPTION) {
+                    cbxQ1.setSelected(false);
+                    cbxQ2.setSelected(false);
+                    cbxQ3.setSelected(false);
+                    cbxQ4.setSelected(false);
                     minute = quizzTimer.getMinute();
                     second = quizzTimer.getSeconde();
                     timeT = minute + (second / 100);
