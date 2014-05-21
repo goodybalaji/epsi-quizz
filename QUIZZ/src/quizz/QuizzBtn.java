@@ -303,10 +303,7 @@ public class QuizzBtn extends JButton implements ActionListener {
                             answer4.setCorrection(rsS.getInt("estJuste"));
                         }
                     }
-                    cbxQ1.setSelected(false);
-                    cbxQ2.setSelected(false);
-                    cbxQ3.setSelected(false);
-                    cbxQ4.setSelected(false);
+                    
 
                     if (cbxQ1.isSelected()) {
                         if (answer1.getCorrection() == 1) {
@@ -336,6 +333,10 @@ public class QuizzBtn extends JButton implements ActionListener {
                             quiz.decNbRightRep();
                         }
                     }
+                    cbxQ1.setSelected(false);
+                    cbxQ2.setSelected(false);
+                    cbxQ3.setSelected(false);
+                    cbxQ4.setSelected(false);
                     quizzScreenAnswer.dispose();
                     if (quizzScreenShowImage != null) {
                         quizzScreenShowImage.dispose();
@@ -363,6 +364,34 @@ public class QuizzBtn extends JButton implements ActionListener {
                         JOptionPane.QUESTION_MESSAGE);
                 quizzScreenAnswer.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 if (reponse == JOptionPane.YES_OPTION) {
+                    if (cbxQ1.isSelected()) {
+                        if (answer1.getCorrection() == 1) {
+                            quiz.incNbRightRep();
+                        } else {
+                            quiz.decNbRightRep();
+                        }
+                    }
+                    if (cbxQ2.isSelected()) {
+                        if (answer1.getCorrection() == 1) {
+                            quiz.incNbRightRep();
+                        } else {
+                            quiz.decNbRightRep();
+                        }
+                    }
+                    if (cbxQ3.isSelected()) {
+                        if (answer1.getCorrection() == 1) {
+                            quiz.incNbRightRep();
+                        } else {
+                            quiz.decNbRightRep();
+                        }
+                    }
+                    if (cbxQ4.isSelected()) {
+                        if (answer1.getCorrection() == 1) {
+                            quiz.incNbRightRep();
+                        } else {
+                            quiz.decNbRightRep();
+                        }
+                    }
                     cbxQ1.setSelected(false);
                     cbxQ2.setSelected(false);
                     cbxQ3.setSelected(false);
