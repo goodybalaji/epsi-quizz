@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ import static quizz.QUIZZ.adminScreenAddAdmin;
 import static quizz.QUIZZ.quizzScreenCreation;
 import static quizz.QUIZZ.admin;
 import static quizz.QUIZZ.connectionScreen;
+import static quizz.QUIZZ.quiz;
 import static quizz.QUIZZ.quizzScreenUpdate;
 
 /**
@@ -47,6 +49,25 @@ public class AdminBtn extends JButton implements ActionListener {
             adminScreenAddAdmin.setVisible(true);
         } else if ("Retour".equals(this.getText())) {
             adminScreenAddAdmin.setVisible(false);
+        } else if ("Supprimer".equals(this.getText())) {
+            try {
+                //création de la variable de connexion
+                Statement statementS = DBConnect.Connect();
+                Statement statement = DBConnect.Connect();
+                ResultSet rs = statementS.executeQuery("Select idquestion from composer where idquiz = "+quiz.getId());
+               
+                statement.executeQuery("delete from composer where idQuiz = "+quiz.getId());
+                while (rs.next() == true){
+                    statement.executeQuery("Delete from solution where idquestion = " + rs.getInt("idQuestion"));
+                    statement.executeQuery("Delete from question where idquestion = " + rs.getInt("idQuestion"));
+                }                
+                statement.executeQuery("delete from quiz where idQuiz = "+quiz.getId());
+                adminScreenHome.dispose();
+                adminScreenHome = new AdminScreenHome();
+                adminScreenHome.setVisible(true);                
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminBtn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if ("Modifier".equals(this.getText())) {
             quizzScreenUpdate = new QuizzScreenUpdate();
             adminScreenHome.setVisible(false);
