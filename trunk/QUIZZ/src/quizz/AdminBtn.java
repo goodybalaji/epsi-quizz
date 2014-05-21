@@ -62,6 +62,7 @@ public class AdminBtn extends JButton implements ActionListener {
                     statement.executeQuery("Delete from question where idquestion = " + rs.getInt("idQuestion"));
                 }                
                 statement.executeQuery("delete from quiz where idQuiz = "+quiz.getId());
+                quiz = null;
                 adminScreenHome.dispose();
                 adminScreenHome = new AdminScreenHome();
                 adminScreenHome.setVisible(true);                
