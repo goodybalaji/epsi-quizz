@@ -23,8 +23,7 @@ public class QuizzScreenQuestionCorrection extends JFrame {
 
     public JLabel lbl1 = new JLabel(" ");
     public JLabel lbl2 = new JLabel("Question N° " + quiz.getCurrentQuestion() + " : ");
-    public JLabel lblImage = new JLabel("Image (facultatif) : ");
-    public JLabel lblNB = new JLabel(" Cochez la (les) réponse(s) correcte(s) ! ");
+    public JLabel lblImage = new JLabel("Image : ");
     public JLabel lbl3 = new JLabel("Réponse n°1 : ");
     public JLabel lbl4 = new JLabel("Réponse n°2 : ");
     public JLabel lbl5 = new JLabel("Réponse N°3 : ");
@@ -68,7 +67,7 @@ public class QuizzScreenQuestionCorrection extends JFrame {
     int idSolution4 = 0;
 
     QuizzScreenQuestionCorrection() throws SQLException {
-         this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuestionCreationBG.png"))));
+        this.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("\\Resources\\QuestionCreationBG.png"))));
 
         statement = DBConnect.Connect();
         ResultSet rs = statement.executeQuery("Select qu.idquestion, qu.lblquestion, qu.urlquestion"
@@ -121,6 +120,12 @@ public class QuizzScreenQuestionCorrection extends JFrame {
         if (quiz.getCurrentQuestion() == quiz.getNbQuestion()) {
             btnNextQuestionCreation.setEnabled(false);
         }
+
+        cbxQ1.setEnabled(false);
+        cbxQ2.setEnabled(false);
+        cbxQ3.setEnabled(false);
+        cbxQ4.setEnabled(false);
+
         lbl1.setFont(lbl1.getFont().deriveFont(24.0f));
         txtQuestion.setPreferredSize(new Dimension(550, 25));
         imageQuestion.setPreferredSize(new Dimension(350, 25));
@@ -128,8 +133,6 @@ public class QuizzScreenQuestionCorrection extends JFrame {
         txtRep2.setPreferredSize(new Dimension(500, 25));
         txtRep3.setPreferredSize(new Dimension(500, 25));
         txtRep4.setPreferredSize(new Dimension(500, 25));
-
-       
 
         topLbl.add(lbl1);
         topLbl.setOpaque(false);
@@ -143,7 +146,6 @@ public class QuizzScreenQuestionCorrection extends JFrame {
         panelCenterQuestion.add(lblImage);
         panelCenterQuestion.add(imageQuestion);
         panelCenterQuestion.add(btnAddURL);
-        panelCenterQuestion.add(lblNB);
         panelCenterQuestion.setBorder(new EmptyBorder(0, 0, 60, 0));
         panelCenterQuestion.setOpaque(false);
         center.add(panelCenterQuestion);
@@ -173,7 +175,6 @@ public class QuizzScreenQuestionCorrection extends JFrame {
          panelCenterRep5.add(cbxQ5);
          center.add(panelCenterRep5);*/
 
-     
         btnNextQuestionCreation.addActionListener(btnNextQuestionCreation);
         btnAddURL.addActionListener(btnAddURL);
         btnFinishQuestionCreation.addActionListener(btnFinishQuestionCreation);
