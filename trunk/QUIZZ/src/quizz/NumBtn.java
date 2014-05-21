@@ -9,16 +9,8 @@ package quizz;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import static quizz.QUIZZ.BtnColor;
 import static quizz.QUIZZ.quizzScreenAnswer;
-import java.awt.Color;
 import static java.awt.Color.RED;
-import static java.awt.Color.WHITE;
-import static java.awt.PageAttributes.ColorType.COLOR;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.SwingUtilities;
 import static quizz.QUIZZ.quiz;
 /**
  *

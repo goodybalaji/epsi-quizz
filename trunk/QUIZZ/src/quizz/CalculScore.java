@@ -14,7 +14,11 @@ public class CalculScore {
     public double score;
 
     CalculScore(int nbRigthRep, int difficulte, double timeT, int nbTtRep) {
-        score = (double)((int)((((nbTtRep - nbRigthRep)* difficulte) / (timeT / 0.6)) * difficulte)*100)/100;
+        if (nbRigthRep > 0) {
+            score = (double) ((int) ((((nbTtRep / nbRigthRep) * difficulte) / (timeT / 0.6)) * difficulte) * 100) / 100;
+        }else {
+            score = 0;
+        }
     }
 
     public double getScore() {

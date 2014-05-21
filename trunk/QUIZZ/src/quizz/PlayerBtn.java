@@ -80,6 +80,8 @@ public class PlayerBtn extends JButton implements ActionListener {
                         + " and s.estJuste = 1");
                 rsID.next();
                 quiz.setNbTtRightRep(rsID.getInt(1));
+                
+                rsID = statement.executeQuery("Update QUIZ set popularitequiz = popularitequiz + 1 where idquiz = " + quiz.getId());
 
                 //Question
                 rsQ = statement.executeQuery("SELECT QT.idQuestion, QT.lblQuestion, QT.urlQuestion from QUESTION QT,  COMPOSER C,  QUIZ Q  "

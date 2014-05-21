@@ -20,7 +20,6 @@ import static quizz.QUIZZ.adminScreenHome;
 import static quizz.QUIZZ.quiz;
 import static quizz.QUIZZ.quizzScreenAddImage;
 import static quizz.QUIZZ.quizzScreenCreation;
-import static quizz.QUIZZ.quizzScreenQuestionCreation;
 import static quizz.QUIZZ.quizzScreenQuestionUpdate;
 import static quizz.QUIZZ.quizzScreenUpdate;
 import static quizz.QuizzCreationBtn.icon;
@@ -174,7 +173,7 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
 
                             ResultSet rs = statement.executeQuery("update QUESTION set lblquestion = '"
                                     + roping(quizzScreenQuestionUpdate.txtQuestion.getText().toString())
-                                    + ", urlquestion ='" + quizzScreenQuestionCreation.imageQuestion.getText().toString()
+                                    + ", urlquestion ='" + quizzScreenQuestionUpdate.imageQuestion.getText().toString()
                                     + "' where idQuestion = " + quizzScreenQuestionUpdate.idQuestion);
 
                             int state;
@@ -317,7 +316,7 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
 
                             ResultSet rs = statement.executeQuery("update QUESTION set lblquestion = '"
                                     + roping(quizzScreenQuestionUpdate.txtQuestion.getText().toString())
-                                    + ", urlquestion ='" + quizzScreenQuestionCreation.imageQuestion.getText().toString()
+                                    + "', urlquestion ='" + quizzScreenQuestionUpdate.imageQuestion.getText().toString()
                                     + "' where idQuestion = " + quizzScreenQuestionUpdate.idQuestion);
 
                             int state;
@@ -375,10 +374,10 @@ public class QuizzUpdateBtn extends JButton implements ActionListener {
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(quizzScreenCreation, "Veuillez sélectionner au moin une réponse valide pour votre question.");
+                    JOptionPane.showMessageDialog(quizzScreenQuestionUpdate, "Veuillez sélectionner au moin une réponse valide pour votre question.");
                 }
             } else {
-                JOptionPane.showMessageDialog(quizzScreenCreation, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
+                JOptionPane.showMessageDialog(quizzScreenQuestionUpdate, "Il faut créer une question avec deux réponse au minimum pour qu'elle soit valide");
             }
         }
     }
