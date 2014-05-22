@@ -32,17 +32,17 @@ import static quizz.QUIZZ.quizzScreenQuestionCreation;
  * @author Arc
  */
 public class QuizzCreationBtn extends JButton implements ActionListener {
-    
+
     public JLabel lbl, lbl1;
     public int indiceReponse;
     public JTextField txtRep;
     public JCheckBox cbx;
     public static ImageIcon icon;
-    
+
     QuizzCreationBtn(String str) {
         super(str);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("Suivant".equals(this.getText())) {
@@ -54,7 +54,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                     idDifficulte = 3;
                 }
                 int idThema = 1;
-                
+
                 if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Sport")) {
                     idThema = 1;
                 } else if (quizzScreenCreation.cbxTheme.getSelectedItem().toString().equals("Cinema")) {
@@ -67,12 +67,12 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 try {
                     //création de la variable de connexion
                     final java.sql.Statement statement = DBConnect.Connect();
-                    
+
                     ResultSet rs = statement.executeQuery("INSERT INTO QUIZ "
                             + "VALUES (inc_quiz_seq.NEXTVAL," + idDifficulte + ", " + idThema + ", "
                             + admin.getId() + ", '" + quizzScreenCreation.txtNameQuizz.getText().toString() + "', 0,'"
                             + quizzScreenCreation.txtTemps.getText().toString() + "',sysdate, 0)");
-                    
+
                     rs = statement.executeQuery("Select Max(idQuiz) from QUIZ");
                     rs.next();
                     int idQuiz = rs.getInt(1);
@@ -80,7 +80,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 } catch (SQLException ex) {
                     Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 quizzScreenCreation.setVisible(false);
                 quizzScreenQuestionCreation = new QuizzScreenQuestionCreation();
                 quizzScreenQuestionCreation.setVisible(true);
@@ -105,10 +105,10 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(QuizzCreationBtn.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            quizzScreenAddImage.setVisible(true);
+                quizzScreenAddImage.setVisible(true);
             }
         } else if ("  Suivant  ".equals(this.getText())) {
-            
+            quiz.incNbQuestion();
             if (quizzScreenQuestionCreation.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionCreation.txtRep1.getText().isEmpty() == false
                     && quizzScreenQuestionCreation.txtRep2.getText().isEmpty() == false) {
                 if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true
@@ -130,7 +130,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                             rs.next();
                             int idQuestion = rs.getInt(1);
                             rs = statement.executeQuery("INSERT INTO composer values (" + quiz.getId() + " ," + idQuestion + ")");
-                            
+
                             int state;
                             //création de la solution 1
                             if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true) {
@@ -183,15 +183,14 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                         try {
                             //création de la variable de connexion
                             final java.sql.Statement statement = DBConnect.Connect();
-                            
-                            
+
                             ResultSet rs = statement.executeQuery("INSERT INTO QUESTION VALUES (inc_ques_seq.NEXTVAL, '" + roping(quizzScreenQuestionCreation.txtQuestion.getText().toString()) + "', '" + quizzScreenQuestionCreation.imageQuestion.getText().toString() + "')");
-                            
+
                             rs = statement.executeQuery("select max(idquestion) from question");
                             rs.next();
                             int idQuestion = rs.getInt(1);
                             rs = statement.executeQuery("INSERT INTO composer values (" + quiz.getId() + " ," + idQuestion + ")");
-                            
+
                             int state;
                             //création de la solution 1
                             if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true) {
@@ -240,7 +239,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                         } catch (SQLException ex) {
                             Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(quizzScreenCreation, "Veuillez sélectionner au moin une réponse valide pour votre question.");
@@ -256,7 +255,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                     JOptionPane.QUESTION_MESSAGE);
             quizzScreenQuestionCreation.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             if (reponse == JOptionPane.YES_OPTION) {
-                
+
                 quiz.incNbQuestion();
                 if (quizzScreenQuestionCreation.txtQuestion.getText().isEmpty() == false && quizzScreenQuestionCreation.txtRep1.getText().isEmpty() == false
                         && quizzScreenQuestionCreation.txtRep2.getText().isEmpty() == false) {
@@ -279,7 +278,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                 rs.next();
                                 int idQuestion = rs.getInt(1);
                                 rs = statement.executeQuery("INSERT INTO composer values (" + quiz.getId() + " ," + idQuestion + ")");
-                                
+
                                 int state;
                                 //création de la solution 1
                                 if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true) {
@@ -322,10 +321,10 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                             + state + ")");
                                 }
                                 adminScreenHome.dispose();
-                                adminScreenHome = new AdminScreenHome();                                
+                                adminScreenHome = new AdminScreenHome();
                                 adminScreenHome.setVisible(true);
                                 quizzScreenQuestionCreation.dispose();
-                                rs = statement.executeQuery("update quiz set nbquestionquiz = " + quiz.getNbQuestion() + " where idquiz = " + quiz.getId());
+                                rs = statement.executeQuery("update quiz set nbquestionquiz = " + (quiz.getNbQuestion()) + " where idquiz = " + quiz.getId());
                             } catch (SQLException ex) {
                                 Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -338,7 +337,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                 rs.next();
                                 int idQuestion = rs.getInt(1);
                                 rs = statement.executeQuery("INSERT INTO composer values (" + quiz.getId() + " ," + idQuestion + ")");
-                                
+
                                 int state;
                                 //création de la solution 1
                                 if (quizzScreenQuestionCreation.cbxQ1.isSelected() == true) {
@@ -380,15 +379,15 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                                             + roping(quizzScreenQuestionCreation.txtRep4.getText().toString()) + "', " + idQuestion + ", "
                                             + state + ")");
                                 }
-                                rs = statement.executeQuery("update quiz set nbquestionquiz = " + quiz.getNbQuestion() + " where idquiz = " + quiz.getId());
+                                rs = statement.executeQuery("update quiz set nbquestionquiz = " + (quiz.getNbQuestion() ) + " where idquiz = " + quiz.getId());
                                 adminScreenHome.dispose();
-                                adminScreenHome = new AdminScreenHome();                                
+                                adminScreenHome = new AdminScreenHome();
                                 adminScreenHome.setVisible(true);
                                 quizzScreenQuestionCreation.dispose();
                                 quiz = null;
                             } catch (SQLException ex) {
                                 Logger.getLogger(ConnectionBtn.class.getName()).log(Level.SEVERE, null, ex);
-                            }                            
+                            }
                         }
                     } else {
                         JOptionPane.showMessageDialog(quizzScreenCreation, "Veuillez sélectionner au moin une réponse valide pour votre question.");
@@ -398,9 +397,9 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 }
             }
         }
-        
+
     }
-    
+
     public String roping(String str) {
         String quote = "'";
         char[] Char;
@@ -415,7 +414,7 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
         }
         return modif;
     }
-    
+
     public String setQuote(String str, String lettre, int index) {
         StringBuilder bMot = new StringBuilder(str);
         bMot.setLength(str.length());
