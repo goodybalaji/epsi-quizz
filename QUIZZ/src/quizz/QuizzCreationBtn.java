@@ -88,7 +88,9 @@ public class QuizzCreationBtn extends JButton implements ActionListener {
                 JOptionPane.showMessageDialog(quizzScreenCreation, "Vous devez donner un nom au QWIZZ avant de pouvoir le créer !!");
             }
         } else if ("Quitter".equals(this.getText())) {
-            quizzScreenCreation.setVisible(false);
+            quizzScreenCreation.dispose();
+            adminScreenHome.dispose();
+            adminScreenHome = new AdminScreenHome();
             adminScreenHome.setVisible(true);
         } else if ("Annuler".equals(this.getText())) {
             quizzScreenAddImage.setVisible(false);

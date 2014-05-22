@@ -117,9 +117,16 @@ public class QuizzScreenAnswer extends JFrame {
                 questionBtnList.add(btn);
                 if (BtnColor[i - 1] == 1) {
                     btn.setBackground(GREEN);
+                    btn.setEnabled(false);
                 }
                 i++;
 
+            }
+            if(quiz.getCurrentQuestion() == 1){
+                btnPreviousAnswer.setEnabled(false);
+            }
+            if(BtnColor[quiz.getCurrentQuestion() - 1] == 1){
+                btnValideQuestion.setEnabled(false);
             }
             if (quiz.getCurrentQuestion() >= 2) {
                 if (BtnColor[quiz.getCurrentQuestion() - 2] == 1) {

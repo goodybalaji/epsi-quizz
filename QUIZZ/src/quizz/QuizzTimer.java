@@ -30,7 +30,8 @@ public class QuizzTimer extends JFrame
         this.delai = 1000; //en millisecondes
         this.seconde = 0;
         this.minute = 0;
-              
+        this.lbl1.setText("00:00");
+        
         ActionListener taskPerformer; 
         taskPerformer = new ActionListener() 
         {
